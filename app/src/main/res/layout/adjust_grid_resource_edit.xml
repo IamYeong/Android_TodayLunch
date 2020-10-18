@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    >
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView_adjust_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="15dp"
+        >
+
+        <ImageView
+            android:src="@mipmap/ic_launcher_round"
+            android:id="@+id/img_adjust_grid"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            />
+
+
+    </androidx.cardview.widget.CardView>
+
+    <EditText
+        android:id="@+id/et_adjust_grid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textCursorDrawable="@drawable/edittext_cursor"
+        android:background="@drawable/edittext_custom1"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        />
+
+    <Button
+        android:id="@+id/btn_adjust_grid"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:text="@string/confirm"
+        android:background="@drawable/button_custom2"
+        android:layout_marginTop="5dp"
+                />
+
+</LinearLayout>

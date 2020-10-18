@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">오점무</string>
+
+    <string name="tabLayout_icon">아이콘</string>
+    <string name="tabLayout_list">리스트</string>
+    <string name="tabLayout_random">랜덤뽑기</string>
+    <string name="tabLayout_setting">설정</string>
+
+    <string name="mainScreen">메인화면</string>
+    <string name="edit">수정</string>
+    <string name="link">링크</string>
+    <string name="choice">선택</string>
+
+    <string name="start">시작</string>
+    <string name="beforeStart">메뉴 랜덤 선정</string>
+
+    <string name="settint_design">디자인 설정</string>
+    <string name="setting_language">언어 설정</string>
+    <string name="review">리뷰 남기기</string>
+    <string name="privacy">개인정보보호 약관</string>
+
+    <string name="colorpicker">테마 색상</string>
+    <string name="positive">확인</string>
+    <string name="negative">취소</string>
+
+    <string name="font_dialog">폰트 선택</string>
+    <string name="bmdohyeon">배달의 민족 도현</string>
+    <string name="bmeuljiro">배달의 민족 을지로</string>
+    <string name="bmhannaair">배달의 민족 한나에어</string>
+    <string name="bmhannaeleven">배달의 민족 한나는 열한살</string>
+    <string name="bmhannapro">배달의 민족 한나 프로</string>
+    <string name="bmjua">배달의 민족 주아</string>
+
+    <string name="menu_adjust">메뉴 수정하기</string>
+    <string name="confirm">적용</string>
+
+    <string name="add_menu">메뉴 추가하기</string>
+    <string name="delete">삭제</string>
+    <string name="spinner_1">대분류</string>
+    <string name="spinner_2">소분류</string>
+    <string name="store_title">가게 이름</string>
+    <string name="store_link">가게 링크</string>
+
+    <string name="toast_add">Add complete</string>
+    <string name="toast_adjust">Edit complete</string>
+    <string name="toast_delete">Delete complete</string>
+    <string name="toast_choose">Choose</string>
+    <string name="toast_complete">complete</string>
+
+    <string name="search">   검색</string>
+
+    <string name="late">최신순</string>
+    <string name="old">오래된순</string>
+    <string name="restore">되돌리기</string>
+
+</resources>

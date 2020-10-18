@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">今日のランチ</string>
+
+    <string name="tabLayout_icon">グリッド</string>
+    <string name="tabLayout_list">リスト</string>
+    <string name="tabLayout_random">ランダム</string>
+    <string name="tabLayout_setting">セッティング</string>
+
+    <string name="mainScreen">メーン</string>
+    <string name="edit">リタッチ</string>
+    <string name="link">URL</string>
+    <string name="choice">えらび</string>
+
+    <string name="start">スタート</string>
+    <string name="beforeStart">今日はこれ</string>
+
+    <string name="settint_design">デザイン</string>
+    <string name="setting_language">言語</string>
+    <string name="review">レビュー</string>
+    <string name="privacy">個人情報保護約款</string>
+
+    <string name="colorpicker">テーマ</string>
+    <string name="positive">セーブ</string>
+    <string name="negative">キャンセル</string>
+
+    <string name="font_dialog">フォント</string>
+    <string name="bmdohyeon">Baemin Dohyeon</string>
+    <string name="bmeuljiro">Baemin Euljiro</string>
+    <string name="bmhannaair">Baemin Hanna air</string>
+    <string name="bmhannaeleven">Baemin Hanna eleven</string>
+    <string name="bmhannapro">Baemin Hanna pro</string>
+    <string name="bmjua">Baemin Jua</string>
+
+    <string name="menu_adjust">メニュー</string>
+    <string name="confirm">OK</string>
+
+    <string name="add_menu">Add restaurant information</string>
+    <string name="delete">削除</string>
+    <string name="spinner_1">Large group</string>
+    <string name="spinner_2">Subdivision</string>
+    <string name="store_title">Restaurant name</string>
+    <string name="store_link">URL</string>
+
+    <string name="toast_add">Add complete</string>
+    <string name="toast_adjust">Edit complete</string>
+    <string name="toast_delete">Delete complete</string>
+    <string name="toast_choose">Choose</string>
+    <string name="toast_complete">complete</string>
+
+    <string name="search">サーチ</string>
+
+    <string name="late">Latest</string>
+    <string name="old">Old</string>
+    <string name="restore">Restore</string>
+
+</resources>

@@ -1,0 +1,59 @@
+<resources>
+    <string name="app_name">todayLunch</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <string name="tabLayout_icon">Grid</string>
+    <string name="tabLayout_list">List</string>
+    <string name="tabLayout_random">Random</string>
+    <string name="tabLayout_setting">Settings</string>
+
+    <string name="mainScreen">Main</string>
+    <string name="edit">Edit</string>
+    <string name="link">URL</string>
+    <string name="choice">Choose</string>
+
+    <string name="start">Start</string>
+    <string name="beforeStart">Random menu</string>
+
+    <string name="settint_design">Design settings</string>
+    <string name="setting_language">Language</string>
+    <string name="review">Feedback</string>
+    <string name="privacy">Privacy</string>
+
+    <string name="colorpicker">Theme</string>
+    <string name="positive">Save</string>
+    <string name="negative">Cancel</string>
+
+    <string name="font_dialog">Fonts</string>
+    <string name="bmdohyeon">Baemin Dohyeon</string>
+    <string name="bmeuljiro">Baemin Euljiro</string>
+    <string name="bmhannaair">Baemin Hanna air</string>
+    <string name="bmhannaeleven">Baemin Hanna eleven</string>
+    <string name="bmhannapro">Baemin Hanna pro</string>
+    <string name="bmjua">Baemin Jua</string>
+
+    <string name="menu_adjust">Menu setting</string>
+    <string name="confirm">OK</string>
+
+    <string name="add_menu">Add restaurant information</string>
+    <string name="delete">Delete</string>
+    <string name="spinner_1">Large group</string>
+    <string name="spinner_2">Subdivision</string>
+    <string name="store_title">Restaurant name</string>
+    <string name="store_link">Restaurant URL</string>
+
+    <string name="toast_add">Add complete</string>
+    <string name="toast_adjust">Edit complete</string>
+    <string name="toast_delete">Delete complete</string>
+    <string name="toast_choose">Choose</string>
+    <string name="toast_complete">complete</string>
+
+    <string name="search">   Search</string>
+
+    <string name="late">Latest</string>
+    <string name="old">Old</string>
+    <string name="restore">Restore</string>
+
+
+</resources>
