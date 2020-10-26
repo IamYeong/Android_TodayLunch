@@ -58,34 +58,40 @@ public class LanguageDialogAdapter extends RecyclerView.Adapter<LanguageViewHold
                     case 0 :
 
                         //언어변경 코드
+                        PreferencesManager.setLanguageValue(context, "LANGUAGE", "en");
 
                         Toast.makeText(context, "영어", Toast.LENGTH_SHORT).show();
                         listener.onDialogClickListener();
 
                         ((Activity) context).finishAffinity();
-                        Intent intent1 = new Intent(context, MainActivity.class);
+                        Intent intent1 = new Intent(context, SplashActivity.class);
                         context.startActivity(intent1);
 
                         break;
 
                     case 1 :
 
+
+                        PreferencesManager.setLanguageValue(context, "LANGUAGE", "ko");
+
                         Toast.makeText(context, "한국어", Toast.LENGTH_SHORT).show();
                         listener.onDialogClickListener();
 
                         ((Activity) context).finishAffinity();
-                        Intent intent2 = new Intent(context, MainActivity.class);
+                        Intent intent2 = new Intent(context, SplashActivity.class);
                         context.startActivity(intent2);
 
                         break;
 
                     case 2 :
 
+                        PreferencesManager.setLanguageValue(context, "LANGUAGE", "ja");
+
                         Toast.makeText(context, "일본어", Toast.LENGTH_SHORT).show();
                         listener.onDialogClickListener();
 
                         ((Activity) context).finishAffinity();
-                        Intent intent3 = new Intent(context, MainActivity.class);
+                        Intent intent3 = new Intent(context, SplashActivity.class);
                         context.startActivity(intent3);
 
                         break;

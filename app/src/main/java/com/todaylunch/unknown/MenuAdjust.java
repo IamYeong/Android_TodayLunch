@@ -5,6 +5,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -167,5 +168,10 @@ public class MenuAdjust extends AppCompatActivity implements AdapterClickListene
         Toast.makeText(MenuAdjust.this, "Click : " + clickImageId, Toast.LENGTH_SHORT).show();
         arrayList.get(CLICK_NUMBER).setmImgNum(clickImageId);
         mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(LocaleManager.updateResources(newBase));
     }
 }

@@ -64,10 +64,16 @@ public class ButtonAdapter extends RecyclerView.Adapter<ButtonViewHolder> {
             @Override
             public void onClick(View v) {
 
+                /*
                 SQLiteDatabase db = dbHelper.getWritableDatabase();
                 String update = MySQLite.SQL_UPDATE3 + MySQLite.DCOL_NAME5 + " = " + position;
                 db.execSQL(update);
                 db.close();
+
+
+                 */
+
+                PreferencesManager.setButtonValue(context, "BUTTON", position);
 
                 listener.onDialogClickListener();
 

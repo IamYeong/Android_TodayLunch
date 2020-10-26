@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import java.util.Locale;
+
 public class SplashActivity extends AppCompatActivity {
 
     private SharedPreferences pref;
@@ -15,41 +17,32 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        //if first run, viewpager intnet. or not main activity intent.
+        //Construct Locale.
+        LocaleManager.setLocale(PreferencesManager.getLanguageValue(this, "LANGUAGE"));
 
-        pref = getSharedPreferences("FIRST", MODE_PRIVATE);
-        boolean isFirst = pref.getBoolean("isFirst", true);
+        boolean prefFirst = PreferencesManager.getFirstRunValue(this, "FIRST");
 
-        System.out.println(isFirst);
-
-        firstRunCheck(isFirst);
-
-        /*
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        finish();
-
-
-         */
-
-    }
-
-    private void firstRunCheck(boolean pref) {
-
-        if (pref) {
-
-            Intent intent = new Intent(this, ViewPagerIntro.class);
-            startActivity(intent);
-            finish();
-
-        } else {
+        if (prefFirst == true) {
 
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();
 
+
+        } else {
+
+            PreferencesManager.setFirstRunValue(this, "FIRST", true);
+
+            Intent intent = new Intent(this, ViewPagerIntro.class);
+            startActivity(intent);
+            finish();
+
+
         }
 
+
     }
+
+
 
 }

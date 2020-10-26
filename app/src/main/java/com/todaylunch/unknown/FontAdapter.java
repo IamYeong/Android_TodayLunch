@@ -78,10 +78,14 @@ public class FontAdapter extends RecyclerView.Adapter<FontViewHolder> {
             @Override
             public void onClick(View v) {
 
+                /*
                 SQLiteDatabase db = dbHelper.getWritableDatabase();
                 String update = MySQLite.SQL_UPDATE3 + MySQLite.DCOL_NAME4 + " = " + position;
                 db.execSQL(update);
                 db.close();
+                 */
+
+                PreferencesManager.setFontValue(context, "FONT", position);
 
                 listener.onDialogClickListener();
 

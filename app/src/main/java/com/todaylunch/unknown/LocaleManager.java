@@ -1,38 +1,82 @@
 package com.todaylunch.unknown;
 
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
+import android.preference.PreferenceManager;
 
 import java.util.Locale;
 
 public class LocaleManager {
 
-    public LocaleManager() {}
+    /*
+   Tip. use like right : LocaleManager.setLocale(this, "kr");
 
-    public static void setLocale(Context c) {
-        //setNewLocale(c, getLanguage(c));
+   1. SharedPreference : get or set String Language data in device.
+   2. Locale : getDefault Language data.
+   3. Configuration : get resource data.
+   etc...
+
+
+     */
+
+    private static final String SELECTED_LANGUAGE = "Locale.Helper.Selected.language";
+    private static Locale locale = null;
+
+
+    public static void setLocale(String lang) {
+
+        locale = new Locale(lang);
+
+
     }
 
-    //public static void setNewLocale(Context c, String language) {
-        //persistLanguage(c, language);
-        //updateResources(c, language);
-    //}
 
-    //public static String getLanguage(Context c) {}
+    public static Context updateResources(Context context) {
 
-    //private static void persistLanguage(Context c, String language) { }
 
-    private static void updateResources(Context context, String language) {
-        Locale locale = new Locale(language);
-        Locale.setDefault(locale);
 
-        Resources res = context.getResources();
-        Configuration config = new Configuration(res.getConfiguration());
-        config.locale = locale;
-        res.updateConfiguration(config, res.getDisplayMetrics());
+        if (locale == null) {
+            return context;
+        }
+
+        final Resources res = context.getResources();
+        final Configuration config = res.getConfiguration();
+        config.setLocale(locale);
+
+        return context.createConfigurationContext(config);
+
     }
+
+
+    /*
+
+    public static Context onAttach(Context context) {
+
+        String language = getPersistedData(context, Locale.getDefault().getLanguage());
+        return setLocale(context, language);
+
+
+    }
+
+    public static Context onAttach(Context context, String defaultLanguage) {
+
+        String language = getPersistedData(context, defaultLanguage);
+        return setLocale(context, language);
+
+    }
+
+
+     */
+    //Getter fun's
+
+
+
+
+
 
 
 }

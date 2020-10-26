@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -31,8 +32,7 @@ public class MainActivity extends AppCompatActivity {
     static ArrayList<Integer> IMAGE_ID_ARRAYLIST = new ArrayList<>();
 
 
-    static int LANGUAGE_NUMBER;
-    static int RADIUS_NUMBER;
+    static String LANGUAGE_VALUE;
     static int COLOR_NUMBER;
     static int FONT_NUMBER;
     static int BACKGROUND_NUMBER;
@@ -45,6 +45,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+        init_value();
+
+        load_value();
+
+        load_design();
+
+
 
         tabLayout = (TabLayout) findViewById(R.id.tab_main);
 
@@ -55,11 +62,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.getTabAt(3).setIcon(R.drawable.tab_image_gear);
 
 
-        init_value();
 
-        load_value();
-
-        load_design();
 
         this.getWindow().setStatusBarColor(COLOR_NUMBER);
         //Fragmentd code
@@ -141,6 +144,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void load_design() {
 
+
+
+        /*
         SQLiteDatabase db = dbHelperDesign.getReadableDatabase();
         Cursor cursor = db.rawQuery(MySQLite.SQL_SELECT3, null);
         cursor.moveToFirst();
@@ -150,11 +156,20 @@ public class MainActivity extends AppCompatActivity {
         COLOR_NUMBER = cursor.getInt(2);
         FONT_NUMBER = cursor.getInt(3);
         BACKGROUND_NUMBER = cursor.getInt(4);
-
-        System.out.println(LANGUAGE_NUMBER + ", " + RADIUS_NUMBER + ", " + COLOR_NUMBER + ", " + FONT_NUMBER + ", " + BACKGROUND_NUMBER);
-
         cursor.close();
         db.close();
+
+         */
+
+        LANGUAGE_VALUE = PreferencesManager.getLanguageValue(this, "LANGUAGE");
+        COLOR_NUMBER = PreferencesManager.getThemeValue(this, "THEME");
+        FONT_NUMBER = PreferencesManager.getFontValue(this, "FONT");
+        BACKGROUND_NUMBER = PreferencesManager.getButtonValue(this, "BUTTON");
+
+
+        System.out.println(LANGUAGE_VALUE + ", " + COLOR_NUMBER + ", " + FONT_NUMBER + ", " + BACKGROUND_NUMBER);
+
+
 
     }
 
@@ -194,4 +209,8 @@ public class MainActivity extends AppCompatActivity {
         return tempId;
     }
 
+    @Override
+    protected void attachBaseContext(Context newBase) {
+        super.attachBaseContext(LocaleManager.updateResources(newBase));
+    }
 }
