@@ -50,8 +50,6 @@ public class MyAdapter_Fragment extends RecyclerView.Adapter<MyViewHolder> {
         btnNumber = MainActivity.BACKGROUND_NUMBER;
     }
 
-
-
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

@@ -49,33 +49,28 @@ public class fragment3 extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_fragment3, container, false);
 
-
         customProgressDialog = new CustomProgressDialog(getContext());
         customProgressDialog.setProgressDialog();
+
+        init(view);
 
         typefaceUtil = new TypefaceUtil(getContext());
         btnUtil = new ButtonDrawableUtil(getContext());
         fontNumber = MainActivity.FONT_NUMBER;
         btnNumber = MainActivity.BACKGROUND_NUMBER;
-        tvRandom = (TextView) view.findViewById(R.id.tvRandom);
+
         tvRandom.setTypeface(typefaceUtil.getTypeface(fontNumber));
 
-        frameLayout = view.findViewById(R.id.frg3_frame);
-        //frameLayout.setAlpha(0);
-        frame_open = AnimationUtils.loadAnimation(getContext(), R.anim.frame_opacity);
-        frame_close = AnimationUtils.loadAnimation(getContext(), R.anim.frame_opacity_reverse);
 
-        arrayList = new ArrayList<>();
         init_value();
         load_value();
 
-        button_start = (Button) view.findViewById(R.id.btn_start);
+
         button_start.setBackground(btnUtil.getDrawable(btnNumber));
 
         customProgressDialog.offProgressDialog();
 
         frameLayout.startAnimation(frame_close);
-
 
         button_start.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,6 +128,19 @@ public class fragment3 extends Fragment {
         cursor.close();
         db.close();
 
+    }
+
+    private void init(View view) {
+
+        arrayList = new ArrayList<>();
+
+        tvRandom = (TextView) view.findViewById(R.id.tvRandom);
+        frameLayout = view.findViewById(R.id.frg3_frame);
+
+        frame_open = AnimationUtils.loadAnimation(getContext(), R.anim.frame_opacity);
+        frame_close = AnimationUtils.loadAnimation(getContext(), R.anim.frame_opacity_reverse);
+
+        button_start = (Button) view.findViewById(R.id.btn_start);
     }
 
 }

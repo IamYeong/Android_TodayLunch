@@ -5,14 +5,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
-
-import petrov.kristiyan.colorpicker.ColorPicker;
 
 public class DesignMenuList extends AppCompatActivity {
 
@@ -36,16 +32,13 @@ public class DesignMenuList extends AppCompatActivity {
         tvTitle.setTypeface(typefaceUtil.getTypeface(fontNumber));
 
         arrayList = new ArrayList<>();
-
         addMenu();
-        //final ColorPicker cp = new ColorPicker(DesignMenuList.this);
+
         mRecyclerView = (RecyclerView) findViewById(R.id.rv_design_list);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mAdapter = new MyAdapter_Design(this, arrayList);
         mRecyclerView.setAdapter(mAdapter);
-
-        //해당 액티비티와 어댑터에서 사용자 커스텀 설정할 것.
 
     }
 

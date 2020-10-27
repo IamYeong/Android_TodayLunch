@@ -57,4 +57,12 @@ public class MySQLite {
             + TBL_DESIGN + " " + "(" + DCOL_NAME1 + ", " + DCOL_NAME2 + ", " + DCOL_NAME3 + ", " + DCOL_NAME4 + ", " + DCOL_NAME5 + ") VALUES ";
     public static final String SQL_UPDATE3 = "UPDATE " + TBL_DESIGN + " SET ";
 
+
+    /*
+    public static final String SQL_INSERT(String db1, String db2 ...) {
+    return "INSERT OR REPLACE INTO" + ... ;
+
+
+}
+     */
 }

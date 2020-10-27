@@ -24,20 +24,19 @@ import java.util.Collections;
 
 public class MenuAdjust extends AppCompatActivity implements AdapterClickListener {
 
-    SQLiteOpenHelperIcon dbHelper = null;
+    private SQLiteOpenHelperIcon dbHelper = null;
     static int CLICK_NUMBER;
-    //cardView => test CardView
 
-    ArrayList<ListObject3> arrayList = new ArrayList<>();
-    AdjustAdapter mAdapter = new AdjustAdapter(this, arrayList);
+    private ArrayList<ListObject3> arrayList = new ArrayList<>();
+    private AdjustAdapter mAdapter = new AdjustAdapter(this, arrayList);
     private Button btnConfirm, btnCancel;
     private TextView adjustTitle;
     private TypefaceUtil typefaceUtil;
     private int fontNumber, btnNumber;
     private ButtonDrawableUtil btnUtil;
 
-    Intent intent;
-    int clickNumber;
+    private Intent intent;
+    private int clickNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,25 +45,20 @@ public class MenuAdjust extends AppCompatActivity implements AdapterClickListene
 
         this.getWindow().setStatusBarColor(MainActivity.COLOR_NUMBER);
 
+        CustomProgressDialog progressDialog = new CustomProgressDialog();
+        progressDialog.setProgressDialog();
+
+        init();
+
         fontNumber = MainActivity.FONT_NUMBER;
         btnNumber = MainActivity.BACKGROUND_NUMBER;
-        typefaceUtil = new TypefaceUtil(this);
-        btnUtil = new ButtonDrawableUtil(this);
-
-        adjustTitle = findViewById(R.id.tv_menu_adjust_title);
         adjustTitle.setTypeface(typefaceUtil.getTypeface(fontNumber));
+        btnCancel.setBackground(btnUtil.getDrawable(btnNumber));
+        btnConfirm.setBackground(btnUtil.getDrawable(btnNumber));
 
         intent = getIntent();
         clickNumber = intent.getIntExtra("MenuAdjust", -1);
-
-
         Log.d("CLickNumber : ", " " + clickNumber);
-
-        btnConfirm = (Button) findViewById(R.id.btn_adjust_confirm);
-        btnCancel = (Button) findViewById(R.id.btn_adjust_cancel);
-
-        btnCancel.setBackground(btnUtil.getDrawable(btnNumber));
-        btnConfirm.setBackground(btnUtil.getDrawable(btnNumber));
 
         init_value();
         load_value(clickNumber);
@@ -74,6 +68,8 @@ public class MenuAdjust extends AppCompatActivity implements AdapterClickListene
         recyclerView.setLayoutManager(gridLayoutManager);
 
         recyclerView.setAdapter(mAdapter);
+
+        progressDialog.offProgressDialog();
 
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -161,6 +157,15 @@ public class MenuAdjust extends AppCompatActivity implements AdapterClickListene
         }
         db.close();
         //Adapter notifychange 쓸지는 향후 결정
+    }
+
+    private void init() {
+        typefaceUtil = new TypefaceUtil(this);
+        btnUtil = new ButtonDrawableUtil(this);
+        adjustTitle = findViewById(R.id.tv_menu_adjust_title);
+
+        btnConfirm = (Button) findViewById(R.id.btn_adjust_confirm);
+        btnCancel = (Button) findViewById(R.id.btn_adjust_cancel);
     }
 
     @Override

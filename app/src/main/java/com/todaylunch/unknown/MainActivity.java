@@ -31,13 +31,9 @@ public class MainActivity extends AppCompatActivity {
     SQLiteOpenHelperSetting dbHelperDesign = null;
     static ArrayList<Integer> IMAGE_ID_ARRAYLIST = new ArrayList<>();
 
-
-    static String LANGUAGE_VALUE;
     static int COLOR_NUMBER;
     static int FONT_NUMBER;
     static int BACKGROUND_NUMBER;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +56,6 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.getTabAt(1).setIcon(R.drawable.tab_image_list);
         tabLayout.getTabAt(2).setIcon(R.drawable.tab_image_random);
         tabLayout.getTabAt(3).setIcon(R.drawable.tab_image_gear);
-
-
-
 
         this.getWindow().setStatusBarColor(COLOR_NUMBER);
         //Fragmentd code
@@ -161,13 +154,13 @@ public class MainActivity extends AppCompatActivity {
 
          */
 
-        LANGUAGE_VALUE = PreferencesManager.getLanguageValue(this, "LANGUAGE");
+        //LANGUAGE_VALUE = PreferencesManager.getLanguageValue(this, "LANGUAGE");
         COLOR_NUMBER = PreferencesManager.getThemeValue(this, "THEME");
         FONT_NUMBER = PreferencesManager.getFontValue(this, "FONT");
         BACKGROUND_NUMBER = PreferencesManager.getButtonValue(this, "BUTTON");
 
 
-        System.out.println(LANGUAGE_VALUE + ", " + COLOR_NUMBER + ", " + FONT_NUMBER + ", " + BACKGROUND_NUMBER);
+        System.out.println(COLOR_NUMBER + ", " + FONT_NUMBER + ", " + BACKGROUND_NUMBER);
 
 
 

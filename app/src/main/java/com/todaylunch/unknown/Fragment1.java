@@ -64,31 +64,17 @@ public class Fragment1 extends Fragment {
         customProgressDialog = new CustomProgressDialog(getContext());
         customProgressDialog.setProgressDialog();
 
-        arrayListTextView = new ArrayList();
-        arrayListImageView = new ArrayList();
-        iconArrayList = new ArrayList<>();
+        init(view);
+
         fontNumber = MainActivity.FONT_NUMBER;
 
         typefaceUtil = new TypefaceUtil(getContext());
         tvTitle = view.findViewById(R.id.tv_fragment1_main);
         tvTitle.setTypeface(typefaceUtil.getTypeface(fontNumber));
 
-        fab1 = (FloatingActionButton) view.findViewById(R.id.fab_frg1);
-        fab2 = (FloatingActionButton) view.findViewById(R.id.fab_frg2);
-        fab3 = (FloatingActionButton) view.findViewById(R.id.fab_frg3);
-        fab_open = AnimationUtils.loadAnimation(getContext(), R.anim.fab_open);
-        fab_close = AnimationUtils.loadAnimation(getContext(), R.anim.fab_close);
-        fab_rotate = AnimationUtils.loadAnimation(getContext(), R.anim.fab_rotate);
-        fab_rotate_reverse = AnimationUtils.loadAnimation(getContext(), R.anim.fab_reverse_rotate);
-
-        //fab1.setRippleColor(MainActivity.COLOR_NUMBER);
-        //fab1.setBackgroundColor(MainActivity.COLOR_NUMBER);
-        //fab1.setBackgroundColor(getResources().getColor(R.color.design_default_color_primary_dark));
         fab1.setBackgroundTintList(ColorStateList.valueOf(MainActivity.COLOR_NUMBER));
         fab2.setBackgroundTintList(ColorStateList.valueOf(MainActivity.COLOR_NUMBER));
         fab3.setBackgroundTintList(ColorStateList.valueOf(MainActivity.COLOR_NUMBER));
-
-        imageViewQuestion = view.findViewById(R.id.img_fragment1_question);
 
         load_value();
 
@@ -102,11 +88,6 @@ public class Fragment1 extends Fragment {
 
 
         fabAnimation();
-
-
-
-
-
 
 
         fab1.setOnClickListener(new View.OnClickListener() {
@@ -131,7 +112,6 @@ public class Fragment1 extends Fragment {
             }
         });
 
-        //여기를 Extra형식으로 해결할 것.
         fab3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -220,6 +200,25 @@ public class Fragment1 extends Fragment {
         cursor.close();
         db.close();
         Log.d("close", "fragment1 db closed");
+
+    }
+
+    private void init(View view) {
+
+        arrayListTextView = new ArrayList();
+        arrayListImageView = new ArrayList();
+        iconArrayList = new ArrayList<>();
+
+        fab1 = (FloatingActionButton) view.findViewById(R.id.fab_frg1);
+        fab2 = (FloatingActionButton) view.findViewById(R.id.fab_frg2);
+        fab3 = (FloatingActionButton) view.findViewById(R.id.fab_frg3);
+        fab_open = AnimationUtils.loadAnimation(getContext(), R.anim.fab_open);
+        fab_close = AnimationUtils.loadAnimation(getContext(), R.anim.fab_close);
+        fab_rotate = AnimationUtils.loadAnimation(getContext(), R.anim.fab_rotate);
+        fab_rotate_reverse = AnimationUtils.loadAnimation(getContext(), R.anim.fab_reverse_rotate);
+
+        imageViewQuestion = view.findViewById(R.id.img_fragment1_question);
+
 
     }
 

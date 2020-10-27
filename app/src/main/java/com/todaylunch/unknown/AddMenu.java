@@ -35,7 +35,6 @@ public class AddMenu extends AppCompatActivity {
     EditText editTextTitle, editTextLink;
     Intent intent;
     Date date = new Date();
-    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     private TextView tvTitle, tvLargeGroup, tvSub, tvName, tvUrl;
     private TypefaceUtil typefaceUtil;
     private int fontNumber, btnNumber;
@@ -57,6 +56,8 @@ public class AddMenu extends AppCompatActivity {
         customProgressDialog = new CustomProgressDialog(this);
         customProgressDialog.setProgressDialog();
 
+        init();
+
         intent = getIntent();
         number = intent.getIntExtra("AddMenu", 0);
 
@@ -69,27 +70,11 @@ public class AddMenu extends AppCompatActivity {
 
         System.out.println("intent : " + number + ", " + getExtraTitle);
 
-        arrayList = new ArrayList<>();
-        arrayListMain = new ArrayList<>();
-        arrayList2 = new ArrayList<>();
-        arrayList3 = new ArrayList<>();
-        typefaceUtil = new TypefaceUtil(this);
-        btnUtil = new ButtonDrawableUtil(this);
         fontNumber = MainActivity.FONT_NUMBER;
         btnNumber = MainActivity.BACKGROUND_NUMBER;
 
         load_value();
         load_menu_value();
-
-
-        editTextTitle = (EditText) findViewById(R.id.et_add_title);
-        editTextLink = (EditText) findViewById(R.id.et_add_link);
-
-        tvTitle = (TextView) findViewById(R.id.tv_add_title);
-        tvLargeGroup = (TextView) findViewById(R.id.tv_add_large_group);
-        tvSub = (TextView) findViewById(R.id.tv_add_subdivision);
-        tvName = (TextView) findViewById(R.id.tv_add_store_name);
-        tvUrl = (TextView) findViewById(R.id.tv_add_url);
 
         tvTitle.setTypeface(typefaceUtil.getTypeface(fontNumber));
         tvLargeGroup.setTypeface(typefaceUtil.getTypeface(fontNumber));
@@ -97,19 +82,12 @@ public class AddMenu extends AppCompatActivity {
         tvName.setTypeface(typefaceUtil.getTypeface(fontNumber));
         tvUrl.setTypeface(typefaceUtil.getTypeface(fontNumber));
 
-        btn_cancel = (Button) findViewById(R.id.btn_add_cancel);
-        btn_add = (Button) findViewById(R.id.btn_add_add);
-        btn_delete = (Button) findViewById(R.id.btn_menu_delete);
-
         editTextLink.setBackgroundColor(MainActivity.COLOR_NUMBER);
         editTextTitle.setBackgroundColor(MainActivity.COLOR_NUMBER);
 
         btn_delete.setBackground(btnUtil.getDrawable(btnNumber));
         btn_cancel.setBackground(btnUtil.getDrawable(btnNumber));
         btn_add.setBackground(btnUtil.getDrawable(btnNumber));
-
-        spr1 = (Spinner) findViewById(R.id.spr_add1);
-        spr2 = (Spinner) findViewById(R.id.spr_add2);
 
         spinnerMenuSetter();
 
@@ -359,6 +337,33 @@ public class AddMenu extends AppCompatActivity {
 
         }
     }
+
+    private void init() {
+
+        arrayList = new ArrayList<>();
+        arrayListMain = new ArrayList<>();
+        arrayList2 = new ArrayList<>();
+        arrayList3 = new ArrayList<>();
+        typefaceUtil = new TypefaceUtil(this);
+        btnUtil = new ButtonDrawableUtil(this);
+
+        editTextTitle = (EditText) findViewById(R.id.et_add_title);
+        editTextLink = (EditText) findViewById(R.id.et_add_link);
+
+        tvTitle = (TextView) findViewById(R.id.tv_add_title);
+        tvLargeGroup = (TextView) findViewById(R.id.tv_add_large_group);
+        tvSub = (TextView) findViewById(R.id.tv_add_subdivision);
+        tvName = (TextView) findViewById(R.id.tv_add_store_name);
+        tvUrl = (TextView) findViewById(R.id.tv_add_url);
+
+        btn_cancel = (Button) findViewById(R.id.btn_add_cancel);
+        btn_add = (Button) findViewById(R.id.btn_add_add);
+        btn_delete = (Button) findViewById(R.id.btn_menu_delete);
+
+        spr1 = (Spinner) findViewById(R.id.spr_add1);
+        spr2 = (Spinner) findViewById(R.id.spr_add2);
+    }
+
 
     @Override
     protected void attachBaseContext(Context newBase) {

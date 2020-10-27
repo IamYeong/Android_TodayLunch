@@ -68,11 +68,9 @@ public class fragment2 extends Fragment {
         customProgressDialog = new CustomProgressDialog(getContext());
         customProgressDialog.setProgressDialog();
 
-        init_value();
+        init(view);
 
-        mArrayList = new ArrayList<>();
-        mArrayListIcon = new ArrayList<>();
-        searchArrayList = new ArrayList<>();
+        init_value();
 
         load_value();
         load_value_icon();
@@ -80,26 +78,21 @@ public class fragment2 extends Fragment {
         typefaceUtil = new TypefaceUtil(getContext());
         fontNumber = MainActivity.FONT_NUMBER;
 
-        fab = (FloatingActionButton) view.findViewById(R.id.fab_frg2);
-        editTextSearch = (EditText) view.findViewById(R.id.et_frg2);
         editTextSearch.setTypeface(typefaceUtil.getTypeface(fontNumber));
 
-        btn_late = (Button) view.findViewById(R.id.btn_frg2_late);
+        tvTitle.setTypeface(typefaceUtil.getTypeface(fontNumber));
         btn_late.setTypeface(typefaceUtil.getTypeface(fontNumber));
-        btn_long = (Button) view.findViewById(R.id.btn_frg2_long);
         btn_long.setTypeface(typefaceUtil.getTypeface(fontNumber));
-        btn_init = (Button) view.findViewById(R.id.btn_init);
         btn_init.setTypeface(typefaceUtil.getTypeface(fontNumber));
         fab.setBackgroundTintList(ColorStateList.valueOf(MainActivity.COLOR_NUMBER));
+
+
         final RecyclerView mRecyclerView = view.findViewById(R.id.rv_frg2);
         LinearLayoutManager mLinearManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLinearManager);
         mAdapter = new MyAdapter_Fragment(mArrayList, mArrayListIcon, getActivity());
         mRecyclerView.setAdapter(mAdapter);
 
-
-        tvTitle = view.findViewById(R.id.tv_fragment2_main);
-        tvTitle.setTypeface(typefaceUtil.getTypeface(fontNumber));
 
         customProgressDialog.offProgressDialog();
 
@@ -217,6 +210,22 @@ public class fragment2 extends Fragment {
         cursor.close();
         db.close();
         Log.d("close", "fragment2 menu db closed");
+
+    }
+
+    private void init(View view) {
+
+        mArrayList = new ArrayList<>();
+        mArrayListIcon = new ArrayList<>();
+        searchArrayList = new ArrayList<>();
+
+        fab = (FloatingActionButton) view.findViewById(R.id.fab_frg2);
+        tvTitle = view.findViewById(R.id.tv_fragment2_main);
+        editTextSearch = (EditText) view.findViewById(R.id.et_frg2);
+
+        btn_late = (Button) view.findViewById(R.id.btn_frg2_late);
+        btn_long = (Button) view.findViewById(R.id.btn_frg2_long);
+        btn_init = (Button) view.findViewById(R.id.btn_init);
 
     }
 

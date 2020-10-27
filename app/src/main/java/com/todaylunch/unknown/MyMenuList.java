@@ -58,6 +58,8 @@ public class MyMenuList extends AppCompatActivity {
         customProgressDialog = new CustomProgressDialog(this);
         customProgressDialog.setProgressDialog();
 
+        init();
+
         intentDetail = getIntent();
         clickNumber = intentDetail.getIntExtra("ClickNumber", 0);
         clickTitle1 = intentDetail.getStringExtra("title");
@@ -65,47 +67,25 @@ public class MyMenuList extends AppCompatActivity {
 
         Log.d("Click menu number : ", "" + clickNumber);
 
-        typefaceUtil = new TypefaceUtil(this);
-        btnUtil = new ButtonDrawableUtil(this);
+        init_value();
+        load_value();
+        load_value_icon();
+
         fontNumber = MainActivity.FONT_NUMBER;
         btnNumber = MainActivity.BACKGROUND_NUMBER;
 
-        tvMain = findViewById(R.id.tv_fragment2_main);
         tvMain.setTypeface(typefaceUtil.getTypeface(fontNumber));
-        pathText1 = (TextView) findViewById(R.id.tv_path_list1);
         pathText1.setTypeface(typefaceUtil.getTypeface(fontNumber));
-        pathText2 = (TextView) findViewById(R.id.tv_path_list2);
         pathText2.setTypeface(typefaceUtil.getTypeface(fontNumber));
-        right1 = (TextView) findViewById(R.id.tv_right1);
-        right2 = (TextView) findViewById(R.id.tv_right2);
-        searchEditText = (EditText) findViewById(R.id.et_frg2);
-        btn_late = (Button) findViewById(R.id.btn_frg2_late);
-        btn_long = (Button) findViewById(R.id.btn_frg2_long);
-        btn_init = (Button) findViewById(R.id.btn_init);
-
         btn_init.setBackground(btnUtil.getDrawable(btnNumber));
         btn_long.setBackground(btnUtil.getDrawable(btnNumber));
         btn_late.setBackground(btnUtil.getDrawable(btnNumber));
+        fab.setBackgroundTintList(ColorStateList.valueOf(MainActivity.COLOR_NUMBER));
 
         right1.setText(" > ");
         pathText1.setText(clickTitle1);
         right2.setText(" > ");
         pathText2.setText(clickTitle2);
-
-        init_value();
-        //activity_my_menu_list
-        arrayList = new ArrayList<>();
-        arrayListIcon = new ArrayList<>();
-        //arrayListName = new ArrayList<>();
-
-        fab = (FloatingActionButton) findViewById(R.id.fab_frg2);
-
-        fab.setBackgroundTintList(ColorStateList.valueOf(MainActivity.COLOR_NUMBER));
-
-        load_value();
-        load_value_icon();
-
-        //전체 목록 중 몇 번 메뉴를 클릭했느냐에 따라 sort하는 함수 추가.
 
         recyclerView = (RecyclerView) findViewById(R.id.rv_frg2);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
@@ -216,7 +196,6 @@ public class MyMenuList extends AppCompatActivity {
             cursor.close();
             db.close();
 
-
         }
 
     }
@@ -235,6 +214,26 @@ public class MyMenuList extends AppCompatActivity {
         }
         cursor.close();
         db.close();
+
+    }
+
+    private void init() {
+
+        typefaceUtil = new TypefaceUtil(this);
+        btnUtil = new ButtonDrawableUtil(this);
+        arrayList = new ArrayList<>();
+        arrayListIcon = new ArrayList<>();
+
+        tvMain = findViewById(R.id.tv_fragment2_main);
+        pathText1 = (TextView) findViewById(R.id.tv_path_list1);
+        pathText2 = (TextView) findViewById(R.id.tv_path_list2);
+        right1 = (TextView) findViewById(R.id.tv_right1);
+        right2 = (TextView) findViewById(R.id.tv_right2);
+        searchEditText = (EditText) findViewById(R.id.et_frg2);
+        btn_late = (Button) findViewById(R.id.btn_frg2_late);
+        btn_long = (Button) findViewById(R.id.btn_frg2_long);
+        btn_init = (Button) findViewById(R.id.btn_init);
+        fab = (FloatingActionButton) findViewById(R.id.fab_frg2);
 
     }
 
