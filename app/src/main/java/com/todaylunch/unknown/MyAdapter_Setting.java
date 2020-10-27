@@ -69,13 +69,13 @@ public class MyAdapter_Setting extends RecyclerView.Adapter<MyViewHolder2> {
                             Intent intent1 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.todaylunch.unknown"));
                             mContext.startActivity(intent1);
                         } catch (RuntimeException e) {
-                            Toast.makeText(mContext, "Please check link", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(mContext, R.string.toast_check_link, Toast.LENGTH_SHORT).show();
                         }
                         break;
 
                     case 3 :
                         //개인정보정책 링크 Intent에 넣을 것.
-                        Toast.makeText(mContext, "정책 검토 중", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, R.string.toast_developing, Toast.LENGTH_SHORT).show();
                         break;
 
                 }
@@ -93,8 +93,6 @@ public class MyAdapter_Setting extends RecyclerView.Adapter<MyViewHolder2> {
 
         LanguageDialog dialog = new LanguageDialog(mContext);
         dialog.callDialog();
-
-
     }
 
 }

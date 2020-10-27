@@ -2,6 +2,7 @@ package com.todaylunch.unknown;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,8 +60,9 @@ public class FragmentAdapter extends RecyclerView.Adapter<FragmentViewHolder> {
                 Intent intent = new Intent(context, MenuDetail.class);
                 intent.putExtra("Click", position + 1);
                 intent.putExtra("title", title);
-                System.out.println(position+1);
                 context.startActivity(intent);
+
+                Log.d("Click Grid Card : ", "" + (position + 1));
 
 
             }

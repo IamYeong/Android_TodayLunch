@@ -107,7 +107,7 @@ public class MyAdapter_Fragment extends RecyclerView.Adapter<MyViewHolder> {
         holder.btn_card_choice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "선택되었습니다.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, R.string.toast_choose, Toast.LENGTH_SHORT).show();
                 String strTitle = arrayList.get(position).getStrTitle();
                 SQLiteOpenHelperMain dbHelper = new SQLiteOpenHelperMain(context);
                 SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -129,7 +129,7 @@ public class MyAdapter_Fragment extends RecyclerView.Adapter<MyViewHolder> {
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(strLink));
                     context.startActivity(intent);
                 } catch (RuntimeException e) {
-                    Toast.makeText(context, "링크를 확인해주세요", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, R.string.toast_check_link, Toast.LENGTH_SHORT).show();
                 }
 
             }

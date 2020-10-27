@@ -121,7 +121,6 @@ public class MyMenuList extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 String searchKeyword = searchEditText.getText().toString().toLowerCase(Locale.getDefault());
-                System.out.println(searchKeyword);
                 mAdapter.filter(searchKeyword);
 
             }
@@ -175,7 +174,7 @@ public class MyMenuList extends AppCompatActivity {
         cursor.moveToFirst();
 
         if(cursor.getCount() == 0) {
-            Toast.makeText(this, "표시할 목록이 없습니다.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.toast_check_list, Toast.LENGTH_SHORT).show();
 
         } else {
 

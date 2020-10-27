@@ -83,7 +83,7 @@ public class fragment3 extends Fragment {
 
 
                 if (arrayList.size() == 0) {
-                    Toast.makeText(getActivity(), "Please add food list.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), R.string.toast_check_list, Toast.LENGTH_SHORT).show();
                 } else {
                     Random random = new Random();
                     int n = random.nextInt(arrayList.size());

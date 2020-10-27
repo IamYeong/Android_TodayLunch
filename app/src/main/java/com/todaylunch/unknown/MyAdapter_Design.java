@@ -164,7 +164,7 @@ public class MyAdapter_Design extends RecyclerView.Adapter<MyViewHolder3> {
                     @Override
                     public void onCancel() {
                         cp.dismissDialog();
-                        Toast.makeText(mContext, "cancel", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mContext, R.string.toast_cancel, Toast.LENGTH_SHORT).show();
 
                     }
 

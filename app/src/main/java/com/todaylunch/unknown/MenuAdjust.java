@@ -45,7 +45,7 @@ public class MenuAdjust extends AppCompatActivity implements AdapterClickListene
 
         this.getWindow().setStatusBarColor(MainActivity.COLOR_NUMBER);
 
-        CustomProgressDialog progressDialog = new CustomProgressDialog();
+        CustomProgressDialog progressDialog = new CustomProgressDialog(this);
         progressDialog.setProgressDialog();
 
         init();
@@ -170,7 +170,7 @@ public class MenuAdjust extends AppCompatActivity implements AdapterClickListene
 
     @Override
     public void onGridItemClickListener(int clickImageId) {
-        Toast.makeText(MenuAdjust.this, "Click : " + clickImageId, Toast.LENGTH_SHORT).show();
+        Log.d("Choose menu image : ", "" + clickImageId);
         arrayList.get(CLICK_NUMBER).setmImgNum(clickImageId);
         mAdapter.notifyDataSetChanged();
     }

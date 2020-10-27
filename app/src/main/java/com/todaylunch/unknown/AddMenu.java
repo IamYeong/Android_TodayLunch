@@ -68,8 +68,6 @@ public class AddMenu extends AppCompatActivity {
         getExtraDetailMenu = intent.getIntExtra("MENU2", 0);
         getExtraLink = intent.getStringExtra("LINK");
 
-        System.out.println("intent : " + number + ", " + getExtraTitle);
-
         fontNumber = MainActivity.FONT_NUMBER;
         btnNumber = MainActivity.BACKGROUND_NUMBER;
 
@@ -112,6 +110,8 @@ public class AddMenu extends AppCompatActivity {
                 spinnerMenuSetter2(spinnerPosition + 1);
                 arrayAdapter2.notifyDataSetChanged();
 
+                Log.d("Large Group Spinner :", " "+position);
+
             }
 
             @Override
@@ -125,9 +125,7 @@ public class AddMenu extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                int spinnerPosition2 = spr2.getSelectedItemPosition();
-
-                Toast.makeText(AddMenu.this, "" + spinnerPosition2, Toast.LENGTH_SHORT).show();
+                Log.d("Subdivision Spinner :", " "+position);
 
             }
 
@@ -148,10 +146,6 @@ public class AddMenu extends AppCompatActivity {
                 String menuTitle1 = editTextTitle.getText().toString();
                 String strLink = editTextLink.getText().toString();
 
-                System.out.println(menu1Number + ", " + menu2Number + ", " + menuTitle1 + ", " + strLink);
-
-                System.out.println(overLabCheck(menuTitle1));
-
                 insert_value(menu1Number, menu2Number, menuTitle1, strLink);
 
                 finish();
@@ -163,7 +157,7 @@ public class AddMenu extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
-                Toast.makeText(AddMenu.this, "Cancel add menu", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddMenu.this, R.string.toast_cancel, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -175,7 +169,7 @@ public class AddMenu extends AppCompatActivity {
                 String deleteDb = MySQLite.SQL_DELETE + " WHERE " + MySQLite.ICOL_NAME4 + " ='" + getExtraTitle + "'";
                 db.execSQL(deleteDb);
                 db.close();
-                Toast.makeText(AddMenu.this, "delete : " + getExtraTitle, Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddMenu.this, R.string.toast_delete, Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -240,8 +234,7 @@ public class AddMenu extends AppCompatActivity {
             long longDate = date.getTime();
 
             String insertDb = MySQLite.SQL_INSERT + "(" + longDate + ", " + menuNumber1 + ", " + menuNumber2 + ", '" + menuTitle + "', '" + strLink + "')";
-            //INSERT OR REPLACE TABLE_NAME (COLUMN1, COLUMN2, COLUMN3, COLUMN4, COLUMN5) VALUES ('DATE', NUM1, NUM2, 'TITLE', 'LINK')
-            System.out.println(insertDb);
+
             db.execSQL(insertDb);
             db.close();
 
@@ -252,8 +245,6 @@ public class AddMenu extends AppCompatActivity {
             db.execSQL(updateDb);
             db.close();
 
-            System.out.println(updateDb);
-
 
         }
 
@@ -263,7 +254,7 @@ public class AddMenu extends AppCompatActivity {
     private boolean overLabCheck(String menuTitle) {
         for (int i = 0; i < arrayListMain.size(); i++) {
             if (arrayListMain.get(i).getStrTitle().equals(menuTitle)) {
-                Toast.makeText(AddMenu.this, "같은 이름을 가진 곳이 이미 저장되어 있습니다.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddMenu.this, R.string.toast_overlab, Toast.LENGTH_SHORT).show();
                 return false;
 
             } else {
@@ -294,7 +285,7 @@ public class AddMenu extends AppCompatActivity {
         arrayList3.removeAll(arrayList3);
 
         if(spinnerValue == -1) {
-            Toast.makeText(this, "spinnerValue is -1", Toast.LENGTH_SHORT).show();
+            Log.d("Add Menu : ", "value is -1 while spinnerMenuSetter2 running");
         } else {
             if (arrayList3.size() != 0) {
                 arrayList3.remove(arrayList3);

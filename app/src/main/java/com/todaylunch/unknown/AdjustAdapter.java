@@ -2,6 +2,7 @@ package com.todaylunch.unknown;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,7 +65,9 @@ public class AdjustAdapter extends RecyclerView.Adapter<AdjustViewHolder> {
 
                 String et = holder.editText.getText().toString();
                 arrayList.get(position).setmTitle(et);
-                Toast.makeText(context, "holder EditText : " + et, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, R.string.toast_confirm, Toast.LENGTH_SHORT).show();
+
+                Log.d("MenuAdjust : ", "Confirm Button Click/"+et);
 
             }
         });

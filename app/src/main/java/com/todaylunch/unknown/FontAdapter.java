@@ -63,8 +63,6 @@ public class FontAdapter extends RecyclerView.Adapter<FontViewHolder> {
 
         View view = LayoutInflater.from(context).inflate(R.layout.checkbox_list_source, null , false);
         FontViewHolder holder = new FontViewHolder(view);
-
-        System.out.println("onCreateViewHOlder");
         return holder;
     }
 

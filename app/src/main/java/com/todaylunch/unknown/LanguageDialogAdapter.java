@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -59,8 +60,7 @@ public class LanguageDialogAdapter extends RecyclerView.Adapter<LanguageViewHold
 
                         //언어변경 코드
                         PreferencesManager.setLanguageValue(context, "LANGUAGE", "en");
-
-                        Toast.makeText(context, "영어", Toast.LENGTH_SHORT).show();
+                        Log.d("Choose language : ", "English");
                         listener.onDialogClickListener();
 
                         ((Activity) context).finishAffinity();
@@ -74,7 +74,7 @@ public class LanguageDialogAdapter extends RecyclerView.Adapter<LanguageViewHold
 
                         PreferencesManager.setLanguageValue(context, "LANGUAGE", "ko");
 
-                        Toast.makeText(context, "한국어", Toast.LENGTH_SHORT).show();
+                        Log.d("Choose language : ", "Korean");
                         listener.onDialogClickListener();
 
                         ((Activity) context).finishAffinity();
@@ -87,7 +87,7 @@ public class LanguageDialogAdapter extends RecyclerView.Adapter<LanguageViewHold
 
                         PreferencesManager.setLanguageValue(context, "LANGUAGE", "ja");
 
-                        Toast.makeText(context, "일본어", Toast.LENGTH_SHORT).show();
+                        Log.d("Choose language : ", "Japanese");
                         listener.onDialogClickListener();
 
                         ((Activity) context).finishAffinity();

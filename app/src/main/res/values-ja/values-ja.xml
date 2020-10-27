@@ -48,6 +48,12 @@
     <string name="toast_delete">Delete complete</string>
     <string name="toast_choose">Choose</string>
     <string name="toast_complete">complete</string>
+    <string name="toast_overlab">Already exist same title</string>
+    <string name="toast_cancel">Cancel</string>
+    <string name="toast_confirm">Confirm</string>
+    <string name="toast_check_list">Please add store list</string>
+    <string name="toast_check_link">Please check URL</string>
+    <string name="toast_developing">Please wait for ready</string>
 
     <string name="search">サーチ</string>
 

@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -137,32 +138,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void load_design() {
 
-
-
-        /*
-        SQLiteDatabase db = dbHelperDesign.getReadableDatabase();
-        Cursor cursor = db.rawQuery(MySQLite.SQL_SELECT3, null);
-        cursor.moveToFirst();
-
-        LANGUAGE_NUMBER = cursor.getInt(0);
-        RADIUS_NUMBER = cursor.getInt(1);
-        COLOR_NUMBER = cursor.getInt(2);
-        FONT_NUMBER = cursor.getInt(3);
-        BACKGROUND_NUMBER = cursor.getInt(4);
-        cursor.close();
-        db.close();
-
-         */
-
-        //LANGUAGE_VALUE = PreferencesManager.getLanguageValue(this, "LANGUAGE");
         COLOR_NUMBER = PreferencesManager.getThemeValue(this, "THEME");
         FONT_NUMBER = PreferencesManager.getFontValue(this, "FONT");
         BACKGROUND_NUMBER = PreferencesManager.getButtonValue(this, "BUTTON");
 
-
-        System.out.println(COLOR_NUMBER + ", " + FONT_NUMBER + ", " + BACKGROUND_NUMBER);
-
-
+        Log.d("Preference value :", COLOR_NUMBER + ", " + FONT_NUMBER + ", " + BACKGROUND_NUMBER);
 
     }
 
