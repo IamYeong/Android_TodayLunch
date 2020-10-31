@@ -18,6 +18,7 @@ public class DialogAdapter extends RecyclerView.Adapter<DialogViewHolder> {
     ArrayList<Integer> mArrayList;
     Context context;
     private AdapterClickListener listener;
+    private DialogClickListener clickListener;
 
 
 
@@ -27,6 +28,10 @@ public class DialogAdapter extends RecyclerView.Adapter<DialogViewHolder> {
         this.context = context;
         this.mArrayList = arrayList;
 
+    }
+
+    public void setDialogListener(DialogClickListener listener) {
+        this.clickListener = listener;
     }
 
     @NonNull
@@ -53,6 +58,8 @@ public class DialogAdapter extends RecyclerView.Adapter<DialogViewHolder> {
 
                 listener = (AdapterClickListener) context;
                 listener.onGridItemClickListener(imageResourceId);
+
+                clickListener.onDialogClickListener();
 
             }
         });

@@ -24,6 +24,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.accessibility.AccessibilityManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -40,19 +41,23 @@ import java.util.Locale;
 
 public class fragment2 extends Fragment {
 
-    SQLiteOpenHelperMain dbHelper = null;
-    SQLiteOpenHelperIcon dbHelperIcon = null;
-    FloatingActionButton fab;
-    MyAdapter_Fragment mAdapter;
-    ArrayList<ListObject> mArrayList, searchArrayList;
-    ArrayList<String> mArrayListIcon;
-    EditText editTextSearch;
-    Button btn_late, btn_long, btn_init;
-    ProgressDialog progressDialog;
-    CustomProgressDialog customProgressDialog;
-    int fontNumber;
-    TypefaceUtil typefaceUtil;
-    TextView tvTitle;
+    private SQLiteOpenHelperMain dbHelper = null;
+    private SQLiteOpenHelperIcon dbHelperIcon = null;
+    private FloatingActionButton fab;
+    private MyAdapter_Fragment mAdapter;
+    private ArrayList<ListObject> mArrayList;
+    private ArrayList<String> mArrayListIcon;
+    private EditText editTextSearch;
+    private Button btn_late, btn_long, btn_init;
+    private CustomProgressDialog customProgressDialog;
+    private int fontNumber;
+    private TypefaceUtil typefaceUtil;
+    private TextView tvTitle;
+
+    private RecyclerView mRecyclerView;
+    private LinearLayoutManager linearLayoutManager;
+
+    private boolean onResumeButton;
 
     public fragment2() {
         // Required empty public constructor
@@ -87,9 +92,9 @@ public class fragment2 extends Fragment {
         fab.setBackgroundTintList(ColorStateList.valueOf(MainActivity.COLOR_NUMBER));
 
 
-        final RecyclerView mRecyclerView = view.findViewById(R.id.rv_frg2);
-        LinearLayoutManager mLinearManager = new LinearLayoutManager(getActivity());
-        mRecyclerView.setLayoutManager(mLinearManager);
+        mRecyclerView = view.findViewById(R.id.rv_frg2);
+        linearLayoutManager = new LinearLayoutManager(getActivity());
+        mRecyclerView.setLayoutManager(linearLayoutManager);
         mAdapter = new MyAdapter_Fragment(mArrayList, mArrayListIcon, getActivity());
         mRecyclerView.setAdapter(mAdapter);
 
@@ -120,6 +125,8 @@ public class fragment2 extends Fragment {
             @Override
             public void onClick(View v) {
 
+                Log.d("fragment2 : ", "fab click");
+
                 Intent intent = new Intent(getActivity(), AddMenu.class);
                 intent.putExtra("TITLE", "Nothing");
                 startActivity(intent);
@@ -132,6 +139,8 @@ public class fragment2 extends Fragment {
             @Override
             public void onClick(View v) {
 
+                Log.d("fragment2 : ", "lately click");
+
                 Collections.sort(mArrayList);
                 mAdapter.notifyDataSetChanged();
 
@@ -141,6 +150,8 @@ public class fragment2 extends Fragment {
         btn_long.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Log.d("fragment2 : ", "old click");
 
                 Collections.sort(mArrayList);
                 Collections.reverse(mArrayList);
@@ -153,6 +164,9 @@ public class fragment2 extends Fragment {
         btn_init.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Log.d("fragment2 : ", "init click");
+
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.commit();
             }
@@ -217,7 +231,6 @@ public class fragment2 extends Fragment {
 
         mArrayList = new ArrayList<>();
         mArrayListIcon = new ArrayList<>();
-        searchArrayList = new ArrayList<>();
 
         fab = (FloatingActionButton) view.findViewById(R.id.fab_frg2);
         tvTitle = view.findViewById(R.id.tv_fragment2_main);
@@ -229,5 +242,28 @@ public class fragment2 extends Fragment {
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
 
+        if (onResumeButton == true) {
+
+            CustomProgressDialog dialog = new CustomProgressDialog(getContext());
+            dialog.setProgressDialog();
+
+            mArrayList.clear();
+            mArrayListIcon.clear();
+
+            load_value_icon();
+            load_value();
+
+            dialog.offProgressDialog();
+
+            mAdapter.notifyDataSetChanged();
+
+        }
+
+        onResumeButton = true;
+
+    }
 }

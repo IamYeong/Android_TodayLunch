@@ -14,10 +14,11 @@ import java.util.ArrayList;
 
 
 
-public class CustomDialog {
+public class CustomDialog implements DialogClickListener {
 
     private Context context;
     private ArrayList<Integer> arrayList;
+    private Dialog dialog;
 
 
     public CustomDialog(Context context, ArrayList arrayList) {
@@ -28,15 +29,15 @@ public class CustomDialog {
 
     public void showCustomDialog() {
 
-        final Dialog dialog = new Dialog(context);
+        dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_layout);
         dialog.show();
 
-        Button btn_confirm = (Button) dialog.findViewById(R.id.btn_dialog_confirm);
         Button btn_cancel = (Button) dialog.findViewById(R.id.btn_dialog_cancel);
         RecyclerView recyclerView = (RecyclerView) dialog.findViewById(R.id.rv_dialog);
         DialogAdapter dialogAdapter = new DialogAdapter(context, arrayList);
+        dialogAdapter.setDialogListener(this);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(context, 3);
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(dialogAdapter);
@@ -49,23 +50,12 @@ public class CustomDialog {
             }
         });
 
-        btn_confirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-
-
-                AdjustAdapter adapter = new AdjustAdapter();
-                adapter.notifyDataSetChanged();
-                dialog.dismiss();
-            }
-        });
-
     }
 
 
+    @Override
+    public void onDialogClickListener() {
 
-
-
+        dialog.dismiss();
+    }
 }

@@ -46,6 +46,10 @@ public class MySQLite {
             + TBL_ICON + " " + "(" + CCOL_NAME1 + ", " + CCOL_NAME2 + ", " + CCOL_NAME3 + ") VALUES ";
     public static final String SQL_UPDATE2 = "UPDATE " + TBL_ICON + " SET ";
     //'column name = change value, clumn nmae2 = change value, ... where table name = present value'
+    public static String SQL_INSERT2_HELPER(int id, String title, int imageNumber) {
+
+        return ("INSERT OR REPLACE INTO " + "(" + id + ", '" + title + "', " + imageNumber + ")");
+    }
 
 
     //about third table

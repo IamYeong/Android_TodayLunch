@@ -66,14 +66,17 @@ public class MyAdapter_Design extends RecyclerView.Adapter<MyViewHolder3> {
 
                 switch (position) {
                     case 0 :
+                        Log.d("MyAdapter_Design : ", "color picker");
                         openColorPicker();
                         break;
 
                     case 1 :
+                        Log.d("MyAdapter_Design : ", "font picker");
                         openFontPickerDialog();
                         break;
 
                     case 2 :
+                        Log.d("MyAdapter_Design", "button picker");
                         openButtonPickerDialog();
                         break;
 
@@ -142,13 +145,6 @@ public class MyAdapter_Design extends RecyclerView.Adapter<MyViewHolder3> {
 
                         Log.d("colors string list : ", colors.get(position) + ", " + color);
 
-                        /*
-                        SQLiteDatabase db = dbHelper.getWritableDatabase();
-                        String update = MySQLite.SQL_UPDATE3 + MySQLite.DCOL_NAME3 + " = " + color;
-                        db.execSQL(update);
-                        db.close();
-                         */
-
                         PreferencesManager.setThemeValue(mContext, "THEME", color);
 
                         cp.dismissDialog();
@@ -158,8 +154,6 @@ public class MyAdapter_Design extends RecyclerView.Adapter<MyViewHolder3> {
                         mContext.startActivity(intent);
 
                     }
-
-
 
                     @Override
                     public void onCancel() {

@@ -147,8 +147,11 @@ public class AddMenu extends AppCompatActivity {
                 String strLink = editTextLink.getText().toString();
 
                 insert_value(menu1Number, menu2Number, menuTitle1, strLink);
+                Log.d("Add Menu : ", "added, " + menu1Number + ", " + menu2Number + ", " + menuTitle1 + ", " + strLink);
 
                 finish();
+
+                Toast.makeText(AddMenu.this, R.string.toast_add, Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -156,6 +159,7 @@ public class AddMenu extends AppCompatActivity {
         btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("Add menu cancel", "Cancel");
                 finish();
                 Toast.makeText(AddMenu.this, R.string.toast_cancel, Toast.LENGTH_SHORT).show();
             }
@@ -169,6 +173,7 @@ public class AddMenu extends AppCompatActivity {
                 String deleteDb = MySQLite.SQL_DELETE + " WHERE " + MySQLite.ICOL_NAME4 + " ='" + getExtraTitle + "'";
                 db.execSQL(deleteDb);
                 db.close();
+                Log.d("Add menu : ", "delete/" + getExtraTitle);
                 Toast.makeText(AddMenu.this, R.string.toast_delete, Toast.LENGTH_SHORT).show();
 
             }

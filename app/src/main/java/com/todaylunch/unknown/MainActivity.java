@@ -1,40 +1,29 @@
 package com.todaylunch.unknown;
 
-import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
-import android.content.Intent;
+
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.Toast;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-
-import petrov.kristiyan.colorpicker.ColorPicker;
 
 public class MainActivity extends AppCompatActivity {
 
 
-    TabLayout tabLayout;
-    SQLiteOpenHelperIcon dbHelperIcon = null;
-    SQLiteOpenHelperSetting dbHelperDesign = null;
-    static ArrayList<Integer> IMAGE_ID_ARRAYLIST = new ArrayList<>();
+    private TabLayout tabLayout;
+    private SQLiteOpenHelperIcon dbHelperIcon = null;
+    private SQLiteOpenHelperSetting dbHelperDesign = null;
+    public static ArrayList<Integer> IMAGE_ID_ARRAYLIST = new ArrayList<>();
 
-    static int COLOR_NUMBER;
-    static int FONT_NUMBER;
-    static int BACKGROUND_NUMBER;
+    public static int COLOR_NUMBER;
+    public static int FONT_NUMBER;
+    public static int BACKGROUND_NUMBER;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.getTabAt(3).setIcon(R.drawable.tab_image_gear);
 
         this.getWindow().setStatusBarColor(COLOR_NUMBER);
-        //Fragmentd code
+        //Fragment code
 
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
@@ -128,7 +117,9 @@ public class MainActivity extends AppCompatActivity {
         drawableImageIdSetter(73);
 
         if (cursor2.getCount() == 0) {
-            start_value_add(cursor2);
+            cursor2.close();
+            db2.close();
+            start_value_add();
         }
 
         cursor2.close();
@@ -147,23 +138,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void start_value_add(Cursor cursor2) {
+    private void start_value_add() {
 
-
-        cursor2.close();
-        SQLiteDatabase db = dbHelperIcon.getWritableDatabase();
-        for (int i = 1; i <= 90; i++) {
-            String insertDb = MySQLite.SQL_INSERT2
-                    + "(" + i + ", '" + "-" + "', " + resourceIdConverter("drawable", "drawable_image_1") + ")";
-            db.execSQL(insertDb);
-        }
-        db.close();
-
-        SQLiteDatabase db3 = dbHelperDesign.getWritableDatabase();
-        String insertDb3 = MySQLite.SQL_INSERT3
-                + "(" + 1 + ", " + 1 + ", " + 1 + ", " + 1 + ", " + 1 + ")";
-        db3.execSQL(insertDb3);
-
+        InitializeValueSetter initValue = new InitializeValueSetter(this);
+        initValue.toSQLiteValueSetter();
 
     }
 
@@ -186,4 +164,6 @@ public class MainActivity extends AppCompatActivity {
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(LocaleManager.updateResources(newBase));
     }
+
+
 }

@@ -20,8 +20,9 @@ import java.util.ArrayList;
 
 public class AdjustAdapter extends RecyclerView.Adapter<AdjustViewHolder> {
 
-    Context context;
-    ArrayList<ListObject3> arrayList;
+    private Context context;
+    private ArrayList<ListObject3> arrayList;
+    private DialogClickListener listener;
 
 
     public AdjustAdapter() {
@@ -33,6 +34,7 @@ public class AdjustAdapter extends RecyclerView.Adapter<AdjustViewHolder> {
         this.arrayList = arrayList;
 
     }
+
 
     @NonNull
     @Override
@@ -67,11 +69,10 @@ public class AdjustAdapter extends RecyclerView.Adapter<AdjustViewHolder> {
                 arrayList.get(position).setmTitle(et);
                 Toast.makeText(context, R.string.toast_confirm, Toast.LENGTH_SHORT).show();
 
-                Log.d("MenuAdjust : ", "Confirm Button Click/"+et);
+                Log.d("MenuAdjust : ", "Confirm Button Click/" + position + ", " + et);
 
             }
         });
-
 
     }
 

@@ -1,42 +1,39 @@
 package com.todaylunch.unknown;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
 public class MenuDetail extends AppCompatActivity {
 
-    TextView tvPath;
-    FloatingActionButton fab;
-    SQLiteOpenHelperIcon dbHelper = null;
-    ArrayList<ListObject3> iconArrayList2;
-    ArrayList arrayListTextView, arrayListImageView;
-    Intent intent;
-    int clickNumber;
-    String clickTitle;
+    private TextView tvPath;
+    private FloatingActionButton fab;
+    private SQLiteOpenHelperIcon dbHelper = null;
+    private ArrayList<ListObject3> iconArrayList2;
+    public ArrayList arrayListTextView, arrayListImageView;
+    private Intent intent;
+    private int clickNumber;
+    private String clickTitle;
     private int typefaceNumber;
+    private boolean onResumeButton = false;
+
+    private RecyclerView recyclerView;
+    private DetailAdapter mAdapter;
+    private GridLayoutManager gridLayoutManager;
 
     private CustomProgressDialog customProgressDialog;
 
@@ -74,10 +71,10 @@ public class MenuDetail extends AppCompatActivity {
         tvPath.setTypeface(typefaceUtil.getTypeface(typefaceNumber));
         tvPath.setText(clickTitle);
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rv_menu_detail);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
+        recyclerView = (RecyclerView) findViewById(R.id.rv_menu_detail);
+        gridLayoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(gridLayoutManager);
-        DetailAdapter mAdapter = new DetailAdapter(this, iconArrayList2, clickNumber, clickTitle);
+        mAdapter = new DetailAdapter(this, iconArrayList2, clickNumber, clickTitle);
         recyclerView.setAdapter(mAdapter);
 
         customProgressDialog.offProgressDialog();
@@ -85,6 +82,8 @@ public class MenuDetail extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Log.d("MenuDetail : ", "fab click");
 
                 Intent intent2 = new Intent(getApplicationContext(), MenuAdjust.class);
                 intent2.putExtra("MenuAdjust", clickNumber);
@@ -124,5 +123,26 @@ public class MenuDetail extends AppCompatActivity {
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(LocaleManager.updateResources(newBase));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        CustomProgressDialog dialog = new CustomProgressDialog(this);
+        dialog.setProgressDialog();
+
+        if (onResumeButton == true) {
+
+            iconArrayList2.clear();
+
+            load_value(clickNumber);
+
+            mAdapter.notifyDataSetChanged();
+
+        }
+
+        onResumeButton = true;
+        dialog.offProgressDialog();
     }
 }

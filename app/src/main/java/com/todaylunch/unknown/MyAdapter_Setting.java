@@ -3,6 +3,7 @@ package com.todaylunch.unknown;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -55,16 +56,18 @@ public class MyAdapter_Setting extends RecyclerView.Adapter<MyViewHolder2> {
 
                 switch (position) {
                     case 0:
+                        Log.d("MyAdapter_Setting", "DesignMenu click");
                         Intent intent = new Intent(mContext, DesignMenuList.class);
                         mContext.startActivity(intent);
                         break;
 
                     case 1:
-                        //언어설정할 Dialog 구현할 것.
+                        Log.d("MyAdapter_Setting", "language setting click");
                         openLanguageDialog();
                         break;
 
                     case 2:
+                        Log.d("MyAdapter_Setting", "review click");
                         try {
                             Intent intent1 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=com.todaylunch.unknown"));
                             mContext.startActivity(intent1);
@@ -74,6 +77,7 @@ public class MyAdapter_Setting extends RecyclerView.Adapter<MyViewHolder2> {
                         break;
 
                     case 3 :
+                        Log.d("MyAdapter_Setting", "privacy click");
                         //개인정보정책 링크 Intent에 넣을 것.
                         Toast.makeText(mContext, R.string.toast_developing, Toast.LENGTH_SHORT).show();
                         break;

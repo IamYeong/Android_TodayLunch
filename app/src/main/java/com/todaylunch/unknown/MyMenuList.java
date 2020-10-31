@@ -28,25 +28,26 @@ import java.util.Locale;
 
 public class MyMenuList extends AppCompatActivity {
 
-    RecyclerView recyclerView;
-    MyAdapter_Fragment mAdapter;
-    ArrayList<ListObject> arrayList;
-    ArrayList<String> arrayListIcon;
-    ArrayList<String> arrayListName;
-    SQLiteOpenHelperIcon dbHelperIcon;
-    SQLiteOpenHelperMain dbHelper;
-    FloatingActionButton fab;
-    Intent intentDetail;
-    int clickNumber;
-    String clickTitle1, clickTitle2;
-    TextView pathText1, pathText2, right1, right2, tvMain;
-    EditText searchEditText;
-    Button btn_late, btn_long, btn_init;
-    ProgressDialog progressDialog;
+    private RecyclerView recyclerView;
+    private MyAdapter_Fragment mAdapter;
+    private ArrayList<ListObject> arrayList;
+    private ArrayList<String> arrayListIcon;
+    private SQLiteOpenHelperIcon dbHelperIcon;
+    private SQLiteOpenHelperMain dbHelper;
+    private FloatingActionButton fab;
+    private Intent intentDetail;
+    private int clickNumber;
+    private String clickTitle1, clickTitle2;
+    private TextView pathText1, pathText2, right1, right2, tvMain;
+    private EditText searchEditText;
+    private Button btn_late, btn_long, btn_init;
+    private LinearLayoutManager linearLayoutManager;
+
     private int fontNumber, btnNumber;
     private TypefaceUtil typefaceUtil;
     private ButtonDrawableUtil btnUtil;
     private CustomProgressDialog customProgressDialog;
+    private boolean onResumeButton = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +89,7 @@ public class MyMenuList extends AppCompatActivity {
         pathText2.setText(clickTitle2);
 
         recyclerView = (RecyclerView) findViewById(R.id.rv_frg2);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
         mAdapter = new MyAdapter_Fragment(arrayList, arrayListIcon, this);
         recyclerView.setAdapter(mAdapter);
@@ -98,6 +99,8 @@ public class MyMenuList extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Log.d("MyMenuList : ", "fab click");
 
                 Intent intent = new Intent(MyMenuList.this, AddMenu.class);
                 intent.putExtra("TITLE", "Nothing");
@@ -130,6 +133,8 @@ public class MyMenuList extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                Log.d("MyMenuList : ", "lately click");
+
                 Collections.sort(arrayList);
 
                 mAdapter.notifyDataSetChanged();
@@ -140,6 +145,8 @@ public class MyMenuList extends AppCompatActivity {
         btn_long.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Log.d("MyMenuList : ", "old click");
 
                 Collections.sort(arrayList);
                 Collections.reverse(arrayList);
@@ -152,6 +159,8 @@ public class MyMenuList extends AppCompatActivity {
         btn_init.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Log.d("MyMenuList : ", "init click");
 
                 Intent intent = getIntent();
                 finish();
@@ -239,5 +248,32 @@ public class MyMenuList extends AppCompatActivity {
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(LocaleManager.updateResources(newBase));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        CustomProgressDialog dialog = new CustomProgressDialog(this);
+        dialog.setProgressDialog();
+
+        if (onResumeButton == true) {
+
+            arrayListIcon.clear();
+            arrayList.clear();
+
+            load_value_icon();
+            load_value();
+
+            mAdapter.notifyDataSetChanged();
+
+        }
+
+        onResumeButton = true;
+
+        dialog.offProgressDialog();
+
+
+
     }
 }

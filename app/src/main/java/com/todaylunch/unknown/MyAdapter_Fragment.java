@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,7 +65,7 @@ public class MyAdapter_Fragment extends RecyclerView.Adapter<MyViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
 
-        long longDate = arrayList.get(position).getStrDate();
+        final long longDate = arrayList.get(position).getStrDate();
         final int Int1 = arrayList.get(position).getMenu1();
         final int Int2 = arrayList.get(position).getMenu2();
         final String strTitle = arrayList.get(position).getStrTitle();
@@ -91,6 +92,7 @@ public class MyAdapter_Fragment extends RecyclerView.Adapter<MyViewHolder> {
             public void onClick(View v) {
                 //clicked on adjust button
                 //intent / bundle
+                Log.d("MyAdapter_Fragment : ", "click edit button");
 
                 String strTitle = arrayList.get(position).getStrTitle();
                 Intent intent1 = new Intent(context, AddMenu.class);
@@ -107,6 +109,9 @@ public class MyAdapter_Fragment extends RecyclerView.Adapter<MyViewHolder> {
         holder.btn_card_choice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Log.d("MyAdapter_Fragment : ", "click choice button");
+
                 Toast.makeText(context, R.string.toast_choose, Toast.LENGTH_SHORT).show();
                 String strTitle = arrayList.get(position).getStrTitle();
                 SQLiteOpenHelperMain dbHelper = new SQLiteOpenHelperMain(context);
@@ -115,7 +120,9 @@ public class MyAdapter_Fragment extends RecyclerView.Adapter<MyViewHolder> {
                 String updateDb = MySQLite.SQL_UPDATE
                         + MySQLite.ICOL_NAME1 + " = " + date.getTime() + " WHERE " + MySQLite.ICOL_NAME4 + " = '" + strTitle + "'";
                 db.execSQL(updateDb);
-                //clicked on choice button(formatter to yyyy-MM-dd, today info save)
+
+                Log.d("MyAdapter_Fragment : ", simpleFormatter.format(longDate));
+
                 db.close();
             }
         });
@@ -124,6 +131,8 @@ public class MyAdapter_Fragment extends RecyclerView.Adapter<MyViewHolder> {
             @Override
             public void onClick(View v) {
                 //clicked on link button
+
+                Log.d("MyAdapter_Fragment : ", "click link");
 
                 try {
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(strLink));

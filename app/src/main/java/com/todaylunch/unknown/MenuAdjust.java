@@ -34,9 +34,24 @@ public class MenuAdjust extends AppCompatActivity implements AdapterClickListene
     private TypefaceUtil typefaceUtil;
     private int fontNumber, btnNumber;
     private ButtonDrawableUtil btnUtil;
-
-    private Intent intent;
+    public Intent intent;
     private int clickNumber;
+
+    private DialogClickListener listener;
+
+    /*
+    public MenuAdjust() {
+    }
+
+
+
+    public void listenerConstruct(DialogClickListener mListener) {
+        listener = mListener;
+        Log.d("MenuAdjust :", "listenerConstruct run");
+        System.out.println(listener);
+    }
+
+     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +73,7 @@ public class MenuAdjust extends AppCompatActivity implements AdapterClickListene
 
         intent = getIntent();
         clickNumber = intent.getIntExtra("MenuAdjust", -1);
+
         Log.d("CLickNumber : ", " " + clickNumber);
 
         init_value();
@@ -76,6 +92,7 @@ public class MenuAdjust extends AppCompatActivity implements AdapterClickListene
             public void onClick(View v) {
 
                 save_value(clickNumber);
+                Log.d("MenuAdjust : ", "insert from/" + clickNumber);
                 finish();
 
             }
@@ -85,6 +102,7 @@ public class MenuAdjust extends AppCompatActivity implements AdapterClickListene
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("MenuAdjust : ", "cancel");
                 finish();
             }
         });
@@ -166,6 +184,7 @@ public class MenuAdjust extends AppCompatActivity implements AdapterClickListene
 
         btnConfirm = (Button) findViewById(R.id.btn_adjust_confirm);
         btnCancel = (Button) findViewById(R.id.btn_adjust_cancel);
+
     }
 
     @Override

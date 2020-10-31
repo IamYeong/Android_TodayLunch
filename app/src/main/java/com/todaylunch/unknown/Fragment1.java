@@ -1,7 +1,9 @@
 package com.todaylunch.unknown;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.database.Cursor;
@@ -32,7 +34,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 
 
-public class Fragment1 extends Fragment {
+public class Fragment1 extends Fragment{
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -49,6 +51,11 @@ public class Fragment1 extends Fragment {
     private TypefaceUtil typefaceUtil;
     private int fontNumber;
     private ImageView imageViewQuestion;
+    private FragmentAdapter adapter = null;
+    private RecyclerView recyclerView;
+    private GridLayoutManager gridLayoutManager;
+    private boolean onResumeButton = false;
+
 
     public Fragment1() {
         // Required empty public constructor
@@ -57,6 +64,8 @@ public class Fragment1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        Log.d("Fragment1 :", "onCreateView");
         // Inflate the layout for this fragment
         init_value();
         View view = inflater.inflate(R.layout.fragment_fragment1,container, false);
@@ -78,13 +87,14 @@ public class Fragment1 extends Fragment {
 
         load_value();
 
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.rv_fragment1);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(), 3);
+        recyclerView = (RecyclerView) view.findViewById(R.id.rv_fragment1);
+        gridLayoutManager = new GridLayoutManager(getActivity(), 3);
         recyclerView.setLayoutManager(gridLayoutManager);
-        FragmentAdapter mAdapter = new FragmentAdapter(getActivity(), iconArrayList);
-        recyclerView.setAdapter(mAdapter);
+        adapter = new FragmentAdapter(getActivity(), iconArrayList);
+        recyclerView.setAdapter(adapter);
 
         customProgressDialog.offProgressDialog();
+
 
 
         fabAnimation();
@@ -93,6 +103,7 @@ public class Fragment1 extends Fragment {
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("fragment1 : ", "fab1 click");
 
                 fabAnimation();
             }
@@ -102,7 +113,7 @@ public class Fragment1 extends Fragment {
             @Override
             public void onClick(View v) {
 
-                Log.d("Click", "fab2가 클릭되었습니다");
+                Log.d("fragment1 : ", "fab2 click");
 
                 Intent intent1 = new Intent(getActivity(), AddMenu.class);
                 intent1.putExtra("AddMenu", 0);
@@ -115,7 +126,7 @@ public class Fragment1 extends Fragment {
         fab3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("Click", "fab3이 클릭되었습니다.");
+                Log.d("fragment1 : ", "fab3 click");
 
                 Intent intent2 = new Intent(getActivity(), MenuAdjust.class);
                 intent2.putExtra("MenuAdjust", 0);
@@ -127,6 +138,7 @@ public class Fragment1 extends Fragment {
         imageViewQuestion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("fragment1 : ", "question click");
                 //ViewPager Activity intent.
                 Intent intent = new Intent(getContext(), ViewPagerIntro.class);
                 startActivity(intent);
@@ -218,6 +230,31 @@ public class Fragment1 extends Fragment {
         fab_rotate_reverse = AnimationUtils.loadAnimation(getContext(), R.anim.fab_reverse_rotate);
 
         imageViewQuestion = view.findViewById(R.id.img_fragment1_question);
+
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("Fragment1 : ", "onResume");
+
+        customProgressDialog = new CustomProgressDialog(getContext());
+        customProgressDialog.setProgressDialog();
+
+
+
+        if (onResumeButton == true) {
+
+            iconArrayList.clear();
+            load_value();
+            adapter.notifyDataSetChanged();
+
+        }
+
+        onResumeButton = true;
+
+        customProgressDialog.offProgressDialog();
 
 
     }
