@@ -22,7 +22,7 @@ public class ButtonAdapter extends RecyclerView.Adapter<ButtonViewHolder> {
     private Context context;
     protected ButtonDrawableUtil btnUtil;
     protected int btnNumber;
-    private SQLiteOpenHelperSetting dbHelper;
+    //private SQLiteOpenHelperSetting dbHelper;
     private DialogClickListener listener;
 
     public ButtonAdapter(Context context) {
@@ -34,8 +34,38 @@ public class ButtonAdapter extends RecyclerView.Adapter<ButtonViewHolder> {
         arrayList = new ArrayList<>();
         arrayList.add("Style1");
         arrayList.add("Style2");
+        arrayList.add("Style3");
+        arrayList.add("Style4");
+        arrayList.add("Style5");
+        arrayList.add("Style6");
+        arrayList.add("Style7");
+        arrayList.add("Style8");
+        arrayList.add("Style9");
+        arrayList.add("Style10");
+        arrayList.add("Style11");
+        arrayList.add("Style12");
+        arrayList.add("Style13");
+        arrayList.add("Style14");
+        arrayList.add("Style15");
+        arrayList.add("Style16");
+        arrayList.add("Style17");
+        arrayList.add("Style18");
+        arrayList.add("Style19");
+        arrayList.add("Style20");
+        arrayList.add("Style21");
+        arrayList.add("Style22");
+        arrayList.add("Style23");
+        arrayList.add("Style24");
+        arrayList.add("Style25");
+        arrayList.add("Style26");
+        arrayList.add("Style27");
+        arrayList.add("Style28");
+        arrayList.add("Style29");
+        arrayList.add("Style30");
+        arrayList.add("Style31");
+        arrayList.add("Style32");
 
-        dbHelper = new SQLiteOpenHelperSetting(context);
+        //dbHelper = new SQLiteOpenHelperSetting(context);
 
 
     }

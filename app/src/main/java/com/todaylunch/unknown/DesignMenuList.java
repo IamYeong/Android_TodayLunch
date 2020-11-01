@@ -1,11 +1,13 @@
 package com.todaylunch.unknown;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -18,6 +20,8 @@ public class DesignMenuList extends AppCompatActivity {
     TextView tvTitle;
     int fontNumber;
     TypefaceUtil typefaceUtil;
+    ConstraintLayout constraintLayout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +29,9 @@ public class DesignMenuList extends AppCompatActivity {
         setContentView(R.layout.activity_design_menu_list);
 
         this.getWindow().setStatusBarColor(MainActivity.COLOR_NUMBER);
+
+        constraintLayout = findViewById(R.id.frame_design_list);
+        constraintLayout.setBackgroundColor(MainActivity.FRAMELAYOUT_NUMBER);
 
         fontNumber = MainActivity.FONT_NUMBER;
         typefaceUtil = new TypefaceUtil(this);
@@ -47,11 +54,15 @@ public class DesignMenuList extends AppCompatActivity {
         String list1 = getResources().getString(R.string.colorpicker);
         String list2 = getResources().getString(R.string.font_dialog);
         String list3 = "Button";
+        String list4 = "Background";
+        String list5 = "Apps";
+
 
         arrayList.add(new ListObject2(R.drawable.ic_filter_vintage_black_24dp, list1));
         arrayList.add(new ListObject2(R.drawable.ic_font_download_black_24dp, list2));
         arrayList.add(new ListObject2(R.drawable.ic_vignette_black_24dp, list3));
-
+        arrayList.add(new ListObject2(R.drawable.ic_vignette_black_24dp, list4));
+        arrayList.add(new ListObject2(R.drawable.ic_vignette_black_24dp, list5));
     }
 
     @Override

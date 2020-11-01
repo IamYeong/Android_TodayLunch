@@ -22,7 +22,8 @@ public class AdjustAdapter extends RecyclerView.Adapter<AdjustViewHolder> {
 
     private Context context;
     private ArrayList<ListObject3> arrayList;
-    private DialogClickListener listener;
+    private TypefaceUtil typefaceUtil;
+    private int typefaceNumber;
 
 
     public AdjustAdapter() {
@@ -32,6 +33,8 @@ public class AdjustAdapter extends RecyclerView.Adapter<AdjustViewHolder> {
 
         this.context = context;
         this.arrayList = arrayList;
+        typefaceUtil = new TypefaceUtil(context);
+        typefaceNumber = MainActivity.FONT_NUMBER;
 
     }
 
@@ -51,6 +54,8 @@ public class AdjustAdapter extends RecyclerView.Adapter<AdjustViewHolder> {
 
         holder.imageView.setImageResource(arrayList.get(position).getmImgNum());
         holder.editText.setText(arrayList.get(position).getmTitle());
+        holder.cardView.setCardBackgroundColor(MainActivity.APPS_COLOR_NUMBER);
+        holder.editText.setTypeface(typefaceUtil.getTypeface(typefaceNumber));
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override

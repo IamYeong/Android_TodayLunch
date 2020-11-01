@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import java.lang.reflect.Array;
@@ -19,12 +20,13 @@ import java.util.ArrayList;
 
 public class fragment4 extends Fragment {
 
-    ArrayList<ListObject2> arrayList;
-    RecyclerView recyclerView;
-    MyAdapter_Setting mAdapter;
-    TextView tvTitle;
-    TypefaceUtil typefaceUtil;
-    int fontNumber;
+    private ArrayList<ListObject2> arrayList;
+    private RecyclerView recyclerView;
+    private MyAdapter_Setting mAdapter;
+    private TextView tvTitle;
+    private TypefaceUtil typefaceUtil;
+    public int fontNumber;
+    private FrameLayout frameLayout;
 
     public fragment4() {
         // Required empty public constructor
@@ -36,6 +38,9 @@ public class fragment4 extends Fragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_fragment4, container, false);
+
+        frameLayout = view.findViewById(R.id.frame_fragment4);
+        frameLayout.setBackgroundColor(MainActivity.FRAMELAYOUT_NUMBER);
 
         arrayList = new ArrayList<>();
         addMenu();

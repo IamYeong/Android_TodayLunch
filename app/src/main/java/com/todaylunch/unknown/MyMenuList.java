@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +43,7 @@ public class MyMenuList extends AppCompatActivity {
     private EditText searchEditText;
     private Button btn_late, btn_long, btn_init;
     private LinearLayoutManager linearLayoutManager;
+    private FrameLayout frameLayout;
 
     private int fontNumber, btnNumber;
     private TypefaceUtil typefaceUtil;
@@ -78,10 +80,8 @@ public class MyMenuList extends AppCompatActivity {
         tvMain.setTypeface(typefaceUtil.getTypeface(fontNumber));
         pathText1.setTypeface(typefaceUtil.getTypeface(fontNumber));
         pathText2.setTypeface(typefaceUtil.getTypeface(fontNumber));
-        btn_init.setBackground(btnUtil.getDrawable(btnNumber));
-        btn_long.setBackground(btnUtil.getDrawable(btnNumber));
-        btn_late.setBackground(btnUtil.getDrawable(btnNumber));
         fab.setBackgroundTintList(ColorStateList.valueOf(MainActivity.COLOR_NUMBER));
+        frameLayout.setBackgroundColor(MainActivity.FRAMELAYOUT_NUMBER);
 
         right1.setText(" > ");
         pathText1.setText(clickTitle1);
@@ -242,6 +242,7 @@ public class MyMenuList extends AppCompatActivity {
         btn_long = (Button) findViewById(R.id.btn_frg2_long);
         btn_init = (Button) findViewById(R.id.btn_init);
         fab = (FloatingActionButton) findViewById(R.id.fab_frg2);
+        frameLayout = findViewById(R.id.frame_fragment2);
 
     }
 

@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,6 +56,7 @@ public class Fragment1 extends Fragment{
     private RecyclerView recyclerView;
     private GridLayoutManager gridLayoutManager;
     private boolean onResumeButton = false;
+    private FrameLayout frameLayout;
 
 
     public Fragment1() {
@@ -80,6 +82,8 @@ public class Fragment1 extends Fragment{
         typefaceUtil = new TypefaceUtil(getContext());
         tvTitle = view.findViewById(R.id.tv_fragment1_main);
         tvTitle.setTypeface(typefaceUtil.getTypeface(fontNumber));
+
+        frameLayout.setBackgroundColor(MainActivity.FRAMELAYOUT_NUMBER);
 
         fab1.setBackgroundTintList(ColorStateList.valueOf(MainActivity.COLOR_NUMBER));
         fab2.setBackgroundTintList(ColorStateList.valueOf(MainActivity.COLOR_NUMBER));
@@ -230,6 +234,8 @@ public class Fragment1 extends Fragment{
         fab_rotate_reverse = AnimationUtils.loadAnimation(getContext(), R.anim.fab_reverse_rotate);
 
         imageViewQuestion = view.findViewById(R.id.img_fragment1_question);
+
+        frameLayout = view.findViewById(R.id.frame_fragment1);
 
 
     }

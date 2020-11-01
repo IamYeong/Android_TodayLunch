@@ -52,6 +52,7 @@ public class FragmentAdapter extends RecyclerView.Adapter<FragmentViewHolder> {
         holder.imageView.setImageResource(arrayList.get(position).getmImgNum());
         holder.textView.setTypeface(typefaceUtil.getTypeface(typefaceNumber));
         holder.textView.setText(title);
+        holder.cardView.setCardBackgroundColor(MainActivity.APPS_COLOR_NUMBER);
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override

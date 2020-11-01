@@ -12,6 +12,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -35,6 +36,10 @@ public class MenuDetail extends AppCompatActivity {
     private DetailAdapter mAdapter;
     private GridLayoutManager gridLayoutManager;
 
+    private TypefaceUtil typefaceUtil;
+
+    private FrameLayout frameLayout;
+
     private CustomProgressDialog customProgressDialog;
 
     @Override
@@ -47,7 +52,9 @@ public class MenuDetail extends AppCompatActivity {
         customProgressDialog = new CustomProgressDialog(this);
         customProgressDialog.setProgressDialog();
 
-        TypefaceUtil typefaceUtil = new TypefaceUtil(this);
+        init();
+
+        frameLayout.setBackgroundColor(MainActivity.FRAMELAYOUT_NUMBER);
         typefaceNumber = MainActivity.FONT_NUMBER;
 
         intent = getIntent();
@@ -56,18 +63,13 @@ public class MenuDetail extends AppCompatActivity {
         Log.d("main menu number : ", "" + clickNumber);
 
         init_value();
-        fab = (FloatingActionButton) findViewById(R.id.fab_detail);
 
         fab.setBackgroundTintList(ColorStateList.valueOf(MainActivity.COLOR_NUMBER));
 
-        iconArrayList2 = new ArrayList<>();
-        arrayListTextView = new ArrayList();
-        arrayListImageView = new ArrayList();
 
         load_value(clickNumber);
         //tvPath.setText(getIntent().getStringExtra("TEXT_VIEW"));
 
-        tvPath = (TextView) findViewById(R.id.tvPath);
         tvPath.setTypeface(typefaceUtil.getTypeface(typefaceNumber));
         tvPath.setText(clickTitle);
 
@@ -144,5 +146,19 @@ public class MenuDetail extends AppCompatActivity {
 
         onResumeButton = true;
         dialog.offProgressDialog();
+    }
+
+    private void init() {
+
+        frameLayout = findViewById(R.id.frame_detail);
+        fab = (FloatingActionButton) findViewById(R.id.fab_detail);
+        tvPath = (TextView) findViewById(R.id.tvPath);
+
+        typefaceUtil = new TypefaceUtil(this);
+
+        iconArrayList2 = new ArrayList<>();
+        arrayListTextView = new ArrayList();
+        arrayListImageView = new ArrayList();
+
     }
 }

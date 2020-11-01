@@ -24,12 +24,13 @@ import java.util.Random;
 
 public class fragment3 extends Fragment {
 
-    Button button_start;
-    FrameLayout frameLayout;
-    SQLiteOpenHelperMain dbHelper;
-    ArrayList<String> arrayList;
+    private Button button_start;
+    private FrameLayout frameLayout;
+    private FrameLayout backgroundFrameLayout;
+    private SQLiteOpenHelperMain dbHelper;
+    private ArrayList<String> arrayList;
     private TextView tvRandom;
-    Animation frame_open, frame_close;
+    private Animation frame_open, frame_close;
     private TypefaceUtil typefaceUtil;
     private int fontNumber, btnNumber;
 
@@ -60,13 +61,12 @@ public class fragment3 extends Fragment {
         btnNumber = MainActivity.BACKGROUND_NUMBER;
 
         tvRandom.setTypeface(typefaceUtil.getTypeface(fontNumber));
+        button_start.setBackground(btnUtil.getDrawable(btnNumber));
 
+        backgroundFrameLayout.setBackgroundColor(MainActivity.FRAMELAYOUT_NUMBER);
 
         init_value();
         load_value();
-
-
-        button_start.setBackground(btnUtil.getDrawable(btnNumber));
 
         customProgressDialog.offProgressDialog();
 
@@ -79,7 +79,7 @@ public class fragment3 extends Fragment {
 
                 frameLayout.startAnimation(frame_open);
 
-                //start add view
+                //START ADD!!!!!!
 
 
                 if (arrayList.size() == 0) {
@@ -141,6 +141,8 @@ public class fragment3 extends Fragment {
         frame_close = AnimationUtils.loadAnimation(getContext(), R.anim.frame_opacity_reverse);
 
         button_start = (Button) view.findViewById(R.id.btn_start);
+
+        backgroundFrameLayout = view.findViewById(R.id.frame_fragment3);
     }
 
 }

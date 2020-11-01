@@ -6,8 +6,10 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
 
+import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import com.google.android.material.tabs.TabLayout;
@@ -18,12 +20,14 @@ public class MainActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
     private SQLiteOpenHelperIcon dbHelperIcon = null;
-    private SQLiteOpenHelperSetting dbHelperDesign = null;
+    //private SQLiteOpenHelperSetting dbHelperDesign = null;
     public static ArrayList<Integer> IMAGE_ID_ARRAYLIST = new ArrayList<>();
 
     public static int COLOR_NUMBER;
     public static int FONT_NUMBER;
     public static int BACKGROUND_NUMBER;
+    public static int FRAMELAYOUT_NUMBER;
+    public static int APPS_COLOR_NUMBER;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,9 +47,31 @@ public class MainActivity extends AppCompatActivity {
 
 
         tabLayout.getTabAt(0).setIcon(R.drawable.tab_image_menu);
+
+
         tabLayout.getTabAt(1).setIcon(R.drawable.tab_image_list);
         tabLayout.getTabAt(2).setIcon(R.drawable.tab_image_random);
         tabLayout.getTabAt(3).setIcon(R.drawable.tab_image_gear);
+
+        //icon color
+        tabLayout.setTabIconTint(ColorStateList.valueOf(MainActivity.APPS_COLOR_NUMBER));
+
+
+        //choose tab color
+        tabLayout.setTabRippleColor(ColorStateList.valueOf(MainActivity.FRAMELAYOUT_NUMBER));
+
+        //indicator color
+        tabLayout.setSelectedTabIndicatorColor(MainActivity.COLOR_NUMBER);
+
+        //text color
+        tabLayout.setTabTextColors(MainActivity.APPS_COLOR_NUMBER, MainActivity.COLOR_NUMBER);
+
+        //background color
+        tabLayout.setBackgroundColor(MainActivity.FRAMELAYOUT_NUMBER);
+
+        //choose icon color
+        tabLayout.getTabAt(0).getIcon().setTint(MainActivity.COLOR_NUMBER);
+
 
         this.getWindow().setStatusBarColor(COLOR_NUMBER);
         //Fragment code
@@ -59,17 +85,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
 
+                tab.getIcon().setTint(MainActivity.COLOR_NUMBER);
                 switchFragment(tab.getPosition());
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
 
+                tab.getIcon().setTint(MainActivity.APPS_COLOR_NUMBER);
+
             }
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
 
+                tab.getIcon().setTint(MainActivity.COLOR_NUMBER);
             }
         });
 
@@ -106,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void init_value() {
         dbHelperIcon = new SQLiteOpenHelperIcon(this);
-        dbHelperDesign = new SQLiteOpenHelperSetting(this);
+        //dbHelperDesign = new SQLiteOpenHelperSetting(this);
 
     }
 
@@ -132,8 +162,10 @@ public class MainActivity extends AppCompatActivity {
         COLOR_NUMBER = PreferencesManager.getThemeValue(this, "THEME");
         FONT_NUMBER = PreferencesManager.getFontValue(this, "FONT");
         BACKGROUND_NUMBER = PreferencesManager.getButtonValue(this, "BUTTON");
+        FRAMELAYOUT_NUMBER = PreferencesManager.getBackgroundValue(this, "BACKGROUND");
+        APPS_COLOR_NUMBER = PreferencesManager.getAppsColorValue(this, "APPS");
 
-        Log.d("Preference value :", COLOR_NUMBER + ", " + FONT_NUMBER + ", " + BACKGROUND_NUMBER);
+        Log.d("Preference value :", COLOR_NUMBER + ", " + FONT_NUMBER + ", " + BACKGROUND_NUMBER + ", " + FRAMELAYOUT_NUMBER + ", " + APPS_COLOR_NUMBER);
 
     }
 
@@ -165,5 +197,12 @@ public class MainActivity extends AppCompatActivity {
         super.attachBaseContext(LocaleManager.updateResources(newBase));
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
 
+
+
+
+    }
 }

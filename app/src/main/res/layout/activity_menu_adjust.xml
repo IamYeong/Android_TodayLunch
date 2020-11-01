@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/frame_menu_adjust"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -19,8 +21,8 @@
         >
 
         <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:src="@drawable/tab_image_menu"
 
             />
@@ -31,7 +33,7 @@
             android:layout_height="wrap_content"
             android:text="@string/menu_adjust"
             android:textColor="@color/colorBlack"
-            android:layout_marginTop="5dp"
+
             android:layout_marginLeft="10dp"
             />
 
@@ -82,6 +84,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/negative"
+            android:layout_margin="5dp"
             />
 
         <Button
@@ -90,6 +93,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/positive"
+            android:layout_margin="5dp"
             />
 
     </LinearLayout>

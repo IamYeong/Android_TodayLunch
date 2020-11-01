@@ -19,6 +19,7 @@ public class MySQLite {
     public static final String CCOL_NAME3 = "ICON_NUM";
 
     //third table and column
+    /*
     public static final String TBL_DESIGN = "DESIGN_T";
     public static final String DCOL_NAME1 = "LANGUAGE";
     public static final String DCOL_NAME2 = "MENU_RADIUS";
@@ -26,6 +27,8 @@ public class MySQLite {
     public static final String DCOL_NAME4 = "FONT";
     public static final String DCOL_NAME5 = "BACKGROUND_COLOR";
 
+
+     */
     //about first table
     public static final String SQL_CREATE_TABLE = "CREATE TABLE IF NOT EXISTS "
             + TBL_INFO + " " + "(" + ICOL_NAME1 + " INTEGER" + ", " + ICOL_NAME2 + " INTEGER" + ", " + ICOL_NAME3 + " INTEGER" + ", " + ICOL_NAME4 + " TEXT" + ", " + ICOL_NAME5 + " TEXT" + ")";
@@ -48,9 +51,11 @@ public class MySQLite {
     //'column name = change value, clumn nmae2 = change value, ... where table name = present value'
     public static String SQL_INSERT2_HELPER(int id, String title, int imageNumber) {
 
-        return ("INSERT OR REPLACE INTO " + "(" + id + ", '" + title + "', " + imageNumber + ")");
+        return ("INSERT OR REPLACE INTO " + TBL_ICON + " " + "(" + CCOL_NAME1 + ", " + CCOL_NAME2 + ", " + CCOL_NAME3 + ") VALUES "
+                + "(" + id + ", '" + title + "', " + imageNumber + ")");
     }
 
+    /*
 
     //about third table
     public static final String SQL_CREATE_TABLE3 = "CREATE TABLE IF NOT EXISTS "
@@ -61,6 +66,8 @@ public class MySQLite {
             + TBL_DESIGN + " " + "(" + DCOL_NAME1 + ", " + DCOL_NAME2 + ", " + DCOL_NAME3 + ", " + DCOL_NAME4 + ", " + DCOL_NAME5 + ") VALUES ";
     public static final String SQL_UPDATE3 = "UPDATE " + TBL_DESIGN + " SET ";
 
+
+     */
 
     /*
     public static final String SQL_INSERT(String db1, String db2 ...) {

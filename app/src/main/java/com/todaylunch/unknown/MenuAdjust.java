@@ -2,6 +2,7 @@ package com.todaylunch.unknown;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,7 +29,7 @@ public class MenuAdjust extends AppCompatActivity implements AdapterClickListene
     static int CLICK_NUMBER;
 
     private ArrayList<ListObject3> arrayList = new ArrayList<>();
-    private AdjustAdapter mAdapter = new AdjustAdapter(this, arrayList);
+    private AdjustAdapter mAdapter;
     private Button btnConfirm, btnCancel;
     private TextView adjustTitle;
     private TypefaceUtil typefaceUtil;
@@ -36,6 +37,7 @@ public class MenuAdjust extends AppCompatActivity implements AdapterClickListene
     private ButtonDrawableUtil btnUtil;
     public Intent intent;
     private int clickNumber;
+    private ConstraintLayout constraintLayout;
 
     private DialogClickListener listener;
 
@@ -71,6 +73,8 @@ public class MenuAdjust extends AppCompatActivity implements AdapterClickListene
         btnCancel.setBackground(btnUtil.getDrawable(btnNumber));
         btnConfirm.setBackground(btnUtil.getDrawable(btnNumber));
 
+        constraintLayout.setBackgroundColor(MainActivity.FRAMELAYOUT_NUMBER);
+
         intent = getIntent();
         clickNumber = intent.getIntExtra("MenuAdjust", -1);
 
@@ -80,6 +84,7 @@ public class MenuAdjust extends AppCompatActivity implements AdapterClickListene
         load_value(clickNumber);
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rv_adjust);
+        mAdapter = new AdjustAdapter(this, arrayList);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
         recyclerView.setLayoutManager(gridLayoutManager);
 
@@ -185,6 +190,7 @@ public class MenuAdjust extends AppCompatActivity implements AdapterClickListene
         btnConfirm = (Button) findViewById(R.id.btn_adjust_confirm);
         btnCancel = (Button) findViewById(R.id.btn_adjust_cancel);
 
+        constraintLayout = findViewById(R.id.frame_menu_adjust);
     }
 
     @Override

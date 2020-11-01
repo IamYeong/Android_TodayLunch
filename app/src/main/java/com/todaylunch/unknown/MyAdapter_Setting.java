@@ -82,6 +82,8 @@ public class MyAdapter_Setting extends RecyclerView.Adapter<MyViewHolder2> {
                         Toast.makeText(mContext, R.string.toast_developing, Toast.LENGTH_SHORT).show();
                         break;
 
+
+
                 }
             }
         });

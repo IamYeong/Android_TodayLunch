@@ -1,6 +1,7 @@
 package com.todaylunch.unknown;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Context;
 import android.content.Intent;
@@ -24,22 +25,23 @@ import java.util.Date;
 
 public class AddMenu extends AppCompatActivity {
 
-    Button btn_cancel, btn_add, btn_delete;
-    Spinner spr1, spr2;
-    SQLiteOpenHelperIcon dbHelper = null;
-    SQLiteOpenHelperMain dbHelperMain = null;
-    ArrayList<ListObject3> arrayList;
-    ArrayList<ListObject> arrayListMain;
-    ArrayList arrayList2, arrayList3;
-    int number;
-    EditText editTextTitle, editTextLink;
-    Intent intent;
-    Date date = new Date();
+    private Button btn_cancel, btn_add, btn_delete;
+    private Spinner spr1, spr2;
+    private SQLiteOpenHelperIcon dbHelper = null;
+    private SQLiteOpenHelperMain dbHelperMain = null;
+    private ArrayList<ListObject3> arrayList;
+    private ArrayList<ListObject> arrayListMain;
+    private ArrayList arrayList2, arrayList3;
+    public int number;
+    private EditText editTextTitle, editTextLink;
+    public Intent intent;
+    private Date date = new Date();
     private TextView tvTitle, tvLargeGroup, tvSub, tvName, tvUrl;
     private TypefaceUtil typefaceUtil;
     private int fontNumber, btnNumber;
     private ButtonDrawableUtil btnUtil;
     private CustomProgressDialog customProgressDialog;
+    private ConstraintLayout constraintLayout;
 
     String getExtraTitle, getExtraLink;
     int getExtraMainMenu, getExtraDetailMenu;
@@ -86,6 +88,8 @@ public class AddMenu extends AppCompatActivity {
         btn_delete.setBackground(btnUtil.getDrawable(btnNumber));
         btn_cancel.setBackground(btnUtil.getDrawable(btnNumber));
         btn_add.setBackground(btnUtil.getDrawable(btnNumber));
+
+        constraintLayout.setBackgroundColor(MainActivity.FRAMELAYOUT_NUMBER);
 
         spinnerMenuSetter();
 
@@ -358,6 +362,8 @@ public class AddMenu extends AppCompatActivity {
 
         spr1 = (Spinner) findViewById(R.id.spr_add1);
         spr2 = (Spinner) findViewById(R.id.spr_add2);
+
+        constraintLayout = findViewById(R.id.frame_add_menu);
     }
 
 

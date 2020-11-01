@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.lang.reflect.Array;
@@ -70,6 +71,8 @@ public class MyAdapter_Fragment extends RecyclerView.Adapter<MyViewHolder> {
         final int Int2 = arrayList.get(position).getMenu2();
         final String strTitle = arrayList.get(position).getStrTitle();
         final String strLink = arrayList.get(position).getStrLink();
+
+        holder.cardView_list.setCardBackgroundColor(MainActivity.APPS_COLOR_NUMBER);
 
         holder.strDate.setTypeface(typefaceUtil.getTypeface(typefaceNumber));
         holder.menu1.setTypeface(typefaceUtil.getTypeface(typefaceNumber));
@@ -188,11 +191,12 @@ class MyViewHolder extends RecyclerView.ViewHolder {
     protected TextView menu2;
     protected TextView strTitle;
     protected Button btn_card_link, btn_card_choice, btn_card_adjust;
-
+    protected CardView cardView_list;
 
     public MyViewHolder(@NonNull View itemView) {
         super(itemView);
 
+        this.cardView_list = itemView.findViewById(R.id.card_fragment2);
         this.strDate = (TextView)itemView.findViewById(R.id.tv_card_date);
         this.menu1 = (TextView)itemView.findViewById(R.id.tv_card_bigmenu);
         this.menu2 = (TextView)itemView.findViewById(R.id.tv_card_smallmenu);

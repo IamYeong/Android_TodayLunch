@@ -1,20 +1,15 @@
 package com.todaylunch.unknown;
 
 
-import android.app.ProgressDialog;
+
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-
-import android.graphics.Typeface;
-import android.media.Image;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,12 +19,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.accessibility.AccessibilityManager;
+
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
+
+import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -56,6 +52,8 @@ public class fragment2 extends Fragment {
 
     private RecyclerView mRecyclerView;
     private LinearLayoutManager linearLayoutManager;
+
+    private FrameLayout frameLayout;
 
     private boolean onResumeButton;
 
@@ -90,6 +88,7 @@ public class fragment2 extends Fragment {
         btn_long.setTypeface(typefaceUtil.getTypeface(fontNumber));
         btn_init.setTypeface(typefaceUtil.getTypeface(fontNumber));
         fab.setBackgroundTintList(ColorStateList.valueOf(MainActivity.COLOR_NUMBER));
+        frameLayout.setBackgroundColor(MainActivity.FRAMELAYOUT_NUMBER);
 
 
         mRecyclerView = view.findViewById(R.id.rv_frg2);
@@ -167,8 +166,20 @@ public class fragment2 extends Fragment {
 
                 Log.d("fragment2 : ", "init click");
 
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.commit();
+                CustomProgressDialog dialog = new CustomProgressDialog(getContext());
+                dialog.setProgressDialog();
+
+                mArrayList.clear();
+                mArrayListIcon.clear();
+
+                load_value_icon();
+                load_value();
+
+                dialog.offProgressDialog();
+
+                mAdapter.notifyDataSetChanged();
+
+
             }
         });
 
@@ -239,6 +250,8 @@ public class fragment2 extends Fragment {
         btn_late = (Button) view.findViewById(R.id.btn_frg2_late);
         btn_long = (Button) view.findViewById(R.id.btn_frg2_long);
         btn_init = (Button) view.findViewById(R.id.btn_init);
+
+        frameLayout = view.findViewById(R.id.frame_fragment2);
 
     }
 

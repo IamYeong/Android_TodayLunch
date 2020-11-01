@@ -24,7 +24,7 @@ public class FontAdapter extends RecyclerView.Adapter<FontViewHolder> {
     Context context;
     ArrayList<String> arrayList = new ArrayList<>();
     private TypefaceUtil typefaceUtil;
-    private SQLiteOpenHelperSetting dbHelper = null;
+    //private SQLiteOpenHelperSetting dbHelper = null;
     private DialogClickListener listener;
 
 
@@ -47,7 +47,7 @@ public class FontAdapter extends RecyclerView.Adapter<FontViewHolder> {
         arrayList.add(list6);
 
         typefaceUtil = new TypefaceUtil(context);
-        dbHelper = new SQLiteOpenHelperSetting(context);
+        //dbHelper = new SQLiteOpenHelperSetting(context);
 
 
     }
