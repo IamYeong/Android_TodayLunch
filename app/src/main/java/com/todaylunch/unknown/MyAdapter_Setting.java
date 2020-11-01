@@ -82,7 +82,10 @@ public class MyAdapter_Setting extends RecyclerView.Adapter<MyViewHolder2> {
                         Toast.makeText(mContext, R.string.toast_developing, Toast.LENGTH_SHORT).show();
                         break;
 
-
+                    case 4 :
+                        Log.d("MyAdapter_Setting :", "license click");
+                        openLicenseDialog();
+                        break;
 
                 }
             }
@@ -99,6 +102,13 @@ public class MyAdapter_Setting extends RecyclerView.Adapter<MyViewHolder2> {
 
         LanguageDialog dialog = new LanguageDialog(mContext);
         dialog.callDialog();
+    }
+
+    private void openLicenseDialog() {
+
+        LicenseDialog dialog = new LicenseDialog(mContext);
+        dialog.callLicenseDialog();
+
     }
 
 }

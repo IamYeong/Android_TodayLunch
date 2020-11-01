@@ -12,6 +12,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
+
 import com.google.android.material.tabs.TabLayout;
 import java.util.ArrayList;
 
@@ -197,12 +199,17 @@ public class MainActivity extends AppCompatActivity {
         super.attachBaseContext(LocaleManager.updateResources(newBase));
     }
 
+
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
 
+        Log.d("MainActivity :", "onBackPressed");
 
+        BackPressedDialog dialog = new BackPressedDialog(this);
+        dialog.callBackPressDialog();
 
 
     }
+
+
 }

@@ -1,6 +1,5 @@
 package com.todaylunch.unknown;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.view.View;
@@ -8,56 +7,54 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class BackPressedDialog {
+public class LicenseDialog {
 
     public Context context;
     public Dialog dialog;
     private ButtonDrawableUtil buttonUtil;
     public int buttonNumber, fontNumber;
-    public Button btn_ok, btn_cancel;
-    private TextView tv_title;
-    private TypefaceUtil typefaceUtil;
+    public Button btn_ok;
+    protected TextView tv_title, tv_license;
+    public TypefaceUtil typefaceUtil;
 
-
-    public BackPressedDialog(Context context) {
+    public LicenseDialog(Context context) {
         this.context = context;
         buttonUtil = new ButtonDrawableUtil(context);
         typefaceUtil = new TypefaceUtil(context);
         buttonNumber = MainActivity.BACKGROUND_NUMBER;
         fontNumber = MainActivity.FONT_NUMBER;
-
     }
 
-    public void callBackPressDialog() {
+    public void callLicenseDialog() {
 
         dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.backpressed_dialog);
+        dialog.setContentView(R.layout.license_dialog);
         dialog.show();
 
-        btn_ok = dialog.findViewById(R.id.btn_backpressed_positive);
-        btn_cancel = dialog.findViewById(R.id.btn_backpressed_negative);
-        tv_title = dialog.findViewById(R.id.tv_backpress);
+        tv_title = dialog.findViewById(R.id.tv_license_title);
+        tv_license = dialog.findViewById(R.id.tv_license);
+        btn_ok = dialog.findViewById(R.id.btn_license_dialog);
 
-        btn_ok.setBackground(buttonUtil.getDrawable(buttonNumber));
-        btn_cancel.setBackground(buttonUtil.getDrawable(buttonNumber));
+        tv_license.setText(
+                "License"
+
+        );
+
         tv_title.setTypeface(typefaceUtil.getTypeface(fontNumber));
+        tv_license.setTypeface(typefaceUtil.getTypeface(fontNumber));
+        btn_ok.setBackground(buttonUtil.getDrawable(buttonNumber));
 
         btn_ok.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 dialog.dismiss();
-                ((Activity) context ).finish();
             }
         });
 
-        btn_cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
+
 
     }
+
 
 }
