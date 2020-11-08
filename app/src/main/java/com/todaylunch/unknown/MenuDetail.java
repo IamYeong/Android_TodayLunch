@@ -79,6 +79,7 @@ public class MenuDetail extends AppCompatActivity {
         mAdapter = new DetailAdapter(this, iconArrayList2, clickNumber, clickTitle);
         recyclerView.setAdapter(mAdapter);
 
+
         customProgressDialog.offProgressDialog();
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -145,6 +146,9 @@ public class MenuDetail extends AppCompatActivity {
         }
 
         onResumeButton = true;
+
+
+
         dialog.offProgressDialog();
     }
 

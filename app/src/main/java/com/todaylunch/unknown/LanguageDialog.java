@@ -36,7 +36,7 @@ public class LanguageDialog implements DialogClickListener {
         dialog.setContentView(view);
 
         tvTitle = view.findViewById(R.id.tv_font_dialog_title);
-        tvTitle.setText("언어설정");
+        tvTitle.setText(context.getResources().getString(R.string.setting_language));
         tvTitle.setTypeface(typefaceUtil.getTypeface(fontNumber));
 
         RecyclerView rv = (RecyclerView) view.findViewById(R.id.rv_font_dialog);

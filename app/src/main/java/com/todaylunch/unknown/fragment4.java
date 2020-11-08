@@ -65,13 +65,13 @@ public class fragment4 extends Fragment {
         String list2 = getResources().getString(R.string.setting_language);
         String list3 = getResources().getString(R.string.review);
         String list4 = getResources().getString(R.string.privacy);
-        String list5 = "Licence / Copyright";
+        String list5 = getResources().getString(R.string.licence);
 
         arrayList.add(new ListObject2(R.drawable.ic_layers_black_24dp, list1));
         arrayList.add(new ListObject2(R.drawable.ic_language_black_24dp, list2));
         arrayList.add(new ListObject2(R.drawable.ic_forum_grey_24dp, list3));
         arrayList.add(new ListObject2(R.drawable.ic_people_black_24dp, list4));
-        arrayList.add(new ListObject2(R.drawable.ic_vignette_black_24dp, list5));
+        arrayList.add(new ListObject2(R.drawable.ic_copyright_black_24dp, list5));
 
     }
 

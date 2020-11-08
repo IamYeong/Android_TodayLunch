@@ -45,7 +45,7 @@ public class ButtonPickerDialog implements DialogClickListener {
         dialog.setContentView(view);
 
         tvTitle = view.findViewById(R.id.tv_font_dialog_title);
-        tvTitle.setText("Buttons");
+        tvTitle.setText(context.getResources().getString(R.string.button));
         tvTitle.setTypeface(typefaceUtil.getTypeface(fontNumber));
 
         RecyclerView rv = (RecyclerView) dialog.findViewById(R.id.rv_font_dialog);

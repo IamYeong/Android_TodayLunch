@@ -67,7 +67,7 @@ public class MyAdapter_Design extends RecyclerView.Adapter<MyViewHolder3> {
                 switch (position) {
                     case 0 :
                         Log.d("MyAdapter_Design : ", "color picker");
-                        openColorPicker(position);
+                        openColorPicker(position, mContext.getResources().getString(R.string.colorpicker));
                         break;
 
                     case 1 :
@@ -82,12 +82,12 @@ public class MyAdapter_Design extends RecyclerView.Adapter<MyViewHolder3> {
 
                     case 3 :
                         Log.d("MyAdapter_Design", "background picker");
-                        openColorPicker(position);
+                        openColorPicker(position, mContext.getResources().getString(R.string.background));
                         break;
 
                     case 4 :
                         Log.d("MyAdapter_Design", "Apps color picker");
-                        openColorPicker(position);
+                        openColorPicker(position, mContext.getResources().getString(R.string.apps));
                         break;
 
 
@@ -120,12 +120,12 @@ public class MyAdapter_Design extends RecyclerView.Adapter<MyViewHolder3> {
     }
 
 
-    public void openColorPicker(final int mPosition) {
+    public void openColorPicker(final int mPosition, String mTitle) {
 
         Activity activity = (Activity) mContext;
 
         final ColorPicker cp = new ColorPicker(activity);
-        String title = mContext.getResources().getString(R.string.colorpicker);
+        String title = mTitle;
         cp.setTitle(title);
 
         final ArrayList<String> colors = new ArrayList<>();

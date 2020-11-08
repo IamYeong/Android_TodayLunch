@@ -53,16 +53,16 @@ public class DesignMenuList extends AppCompatActivity {
 
         String list1 = getResources().getString(R.string.colorpicker);
         String list2 = getResources().getString(R.string.font_dialog);
-        String list3 = "Button";
-        String list4 = "Background";
-        String list5 = "Apps";
+        String list3 = getResources().getString(R.string.button);
+        String list4 = getResources().getString(R.string.background);
+        String list5 = getResources().getString(R.string.apps);
 
 
         arrayList.add(new ListObject2(R.drawable.ic_filter_vintage_black_24dp, list1));
         arrayList.add(new ListObject2(R.drawable.ic_font_download_black_24dp, list2));
         arrayList.add(new ListObject2(R.drawable.ic_vignette_black_24dp, list3));
-        arrayList.add(new ListObject2(R.drawable.ic_vignette_black_24dp, list4));
-        arrayList.add(new ListObject2(R.drawable.ic_vignette_black_24dp, list5));
+        arrayList.add(new ListObject2(R.drawable.ic_insert_background_black_24dp, list4));
+        arrayList.add(new ListObject2(R.drawable.ic_view_module_black_24dp, list5));
     }
 
     @Override

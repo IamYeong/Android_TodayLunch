@@ -20,7 +20,11 @@
     <string name="setting_language">言語</string>
     <string name="review">レビュー</string>
     <string name="privacy">個人情報保護約款</string>
+    <string name="licence">licence / copyright</string>
 
+    <string name="button">Button style</string>
+    <string name="background">Background color</string>
+    <string name="apps">Apps color</string>
     <string name="colorpicker">テーマ</string>
     <string name="positive">セーブ</string>
     <string name="negative">キャンセル</string>

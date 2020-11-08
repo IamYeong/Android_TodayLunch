@@ -20,12 +20,19 @@
     <string name="setting_language">Language</string>
     <string name="review">Feedback</string>
     <string name="privacy">Privacy</string>
+    <string name="licence">licence / copyright</string>
 
     <string name="colorpicker">Theme</string>
+
     <string name="positive">Save</string>
     <string name="negative">Cancel</string>
 
     <string name="font_dialog">Fonts</string>
+    <string name="button">Button style</string>
+    <string name="background">Background color</string>
+    <string name="apps">Apps color</string>
+    
+    
     <string name="bmdohyeon">Baemin Dohyeon</string>
     <string name="bmeuljiro">Baemin Euljiro</string>
     <string name="bmhannaair">Baemin Hanna air</string>
@@ -34,7 +41,7 @@
     <string name="bmjua">Baemin Jua</string>
 
     <string name="menu_adjust">Menu setting</string>
-    <string name="confirm">OK</string>
+    <string name="confirm">Confirm</string>
 
     <string name="add_menu">Add restaurant information</string>
     <string name="delete">Delete</string>

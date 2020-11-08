@@ -20,10 +20,15 @@
     <string name="setting_language">언어 설정</string>
     <string name="review">리뷰 남기기</string>
     <string name="privacy">개인정보보호 약관</string>
+    <string name="licence">저작권 표기</string>
 
     <string name="colorpicker">테마 색상</string>
     <string name="positive">확인</string>
     <string name="negative">취소</string>
+
+    <string name="button">버튼 디자인</string>
+    <string name="background">배경 색상</string>
+    <string name="apps">메뉴 카드 색상</string>
 
     <string name="font_dialog">폰트 선택</string>
     <string name="bmdohyeon">배달의 민족 도현</string>

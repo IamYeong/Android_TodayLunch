@@ -29,7 +29,7 @@ public class LanguageDialogAdapter extends RecyclerView.Adapter<LanguageViewHold
 
         arrayList.add("English");
         arrayList.add("한국어");
-        arrayList.add("일본어");
+        //arrayList.add("일본어");
     }
 
     public void customFontClickListener(DialogClickListener listener) {
@@ -83,6 +83,7 @@ public class LanguageDialogAdapter extends RecyclerView.Adapter<LanguageViewHold
 
                         break;
 
+                        /*
                     case 2 :
 
                         PreferencesManager.setLanguageValue(context, "LANGUAGE", "ja");
@@ -96,6 +97,8 @@ public class LanguageDialogAdapter extends RecyclerView.Adapter<LanguageViewHold
 
                         break;
 
+
+                         */
                 }
 
             }

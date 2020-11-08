@@ -97,6 +97,8 @@ public class Fragment1 extends Fragment{
         adapter = new FragmentAdapter(getActivity(), iconArrayList);
         recyclerView.setAdapter(adapter);
 
+
+
         customProgressDialog.offProgressDialog();
 
 
