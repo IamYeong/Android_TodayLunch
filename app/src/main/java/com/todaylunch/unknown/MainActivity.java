@@ -36,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        CustomProgressDialog dialog = new CustomProgressDialog(this);
+        dialog.setProgressDialog();
+
 
         init_value();
 
@@ -82,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction ft = fm.beginTransaction();
         ft.add(R.id.frame_main, new Fragment1());
         ft.commit();
+
+        dialog.offProgressDialog();
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -146,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
 
         SQLiteDatabase db2 = dbHelperIcon.getReadableDatabase();
         Cursor cursor2 = db2.rawQuery(MySQLite.SQL_SELECT2, null);
-        drawableImageIdSetter(73);
+        drawableImageIdSetter(191);
 
         if (cursor2.getCount() == 0) {
             cursor2.close();
