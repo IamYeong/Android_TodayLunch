@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
@@ -67,9 +68,15 @@ public class ViewPagerIntro extends AppCompatActivity {
 
     private void addValue() {
 
-        arrayList.add(new ViewPagerObject(R.color.color1, R.drawable.drawable_image_1, "가나다"));
-        arrayList.add(new ViewPagerObject(R.color.color2, R.drawable.drawable_image_2, "라마바"));
-        arrayList.add(new ViewPagerObject(R.color.color3, R.drawable.drawable_image_3, "사아자"));
+        arrayList.add(new ViewPagerObject(R.color.colorNaturalGrey, R.drawable.viewpager_1, getResources().getString(R.string.viewpager_0)));
+        arrayList.add(new ViewPagerObject(R.color.colorNaturalGrey, R.drawable.viewpager_1, getResources().getString(R.string.viewpager_1)));
+        arrayList.add(new ViewPagerObject(R.color.colorNaturalGrey, R.drawable.viewpager_2, getResources().getString(R.string.viewpager_2)));
+        arrayList.add(new ViewPagerObject(R.color.colorNaturalGrey, R.drawable.viewpager_3, getResources().getString(R.string.viewpager_3)));
+        arrayList.add(new ViewPagerObject(R.color.colorNaturalGrey, R.drawable.viewpager_4, getResources().getString(R.string.viewpager_4)));
+        arrayList.add(new ViewPagerObject(R.color.colorNaturalGrey, R.drawable.viewpager_5, getResources().getString(R.string.viewpager_5)));
+        arrayList.add(new ViewPagerObject(R.color.colorNaturalGrey, R.drawable.viewpager_6, getResources().getString(R.string.viewpager_6)));
+        arrayList.add(new ViewPagerObject(R.color.colorNaturalGrey, R.drawable.viewpager_7, getResources().getString(R.string.viewpager_7)));
+        arrayList.add(new ViewPagerObject(R.color.colorNaturalGrey, R.drawable.viewpager_1, getResources().getString(R.string.viewpager_8)));
 
     }
 

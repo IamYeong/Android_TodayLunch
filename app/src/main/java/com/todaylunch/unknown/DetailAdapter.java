@@ -62,6 +62,7 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailViewHolder> {
             public void onClick(View v) {
 
                 Intent intent = new Intent(context, MyMenuList.class);
+                intent.putExtra("ClickMainNumber", clickNumber);
                 intent.putExtra("ClickNumber", (clickNumber * 9) + (position + 1));
                 intent.putExtra("title", clickTitle);
                 intent.putExtra("title2", mTitle);

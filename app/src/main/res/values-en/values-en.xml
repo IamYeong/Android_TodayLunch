@@ -29,6 +29,7 @@
     <string name="button">Button style</string>
     <string name="background">Background color</string>
     <string name="apps">Apps color</string>
+    <string name="icon_dialog">Select icon</string>
 
     <string name="font_dialog">Fonts</string>
     <string name="bmdohyeon">Baemin Dohyeon</string>
@@ -59,6 +60,16 @@
     <string name="toast_check_list">Please add store list</string>
     <string name="toast_check_link">Please check URL</string>
     <string name="toast_developing">Please wait for ready</string>
+
+    <string name="viewpager_0">오점무에 오신 것을 환영합니다~ \n 이제 점심메뉴는 쉽게 고르도록 도와줄게요!</string>
+    <string name="viewpager_1">알고 있었거나 새로 알게 된 음식점을 \n 목록에 추가하세요!</string>
+    <string name="viewpager_2">메인메뉴에서 대분류를 먼저 골라보세요! \n (수정도 가능해요)</string>
+    <string name="viewpager_3">이제 상세메뉴에서 어떤 메뉴를 고를지 정해보세요!</string>
+    <string name="viewpager_4">해당 경로에 해당하는 메뉴들이 \n 목록으로 표기됩니다!</string>
+    <string name="viewpager_5">"리스트" 탭에서 전체메뉴를 \n 최신순 / 오래된순으로 정렬하거나 검색도 가능!</string>
+    <string name="viewpager_6">이래도 뭘 먹을지 모르겠다면..! \n 랜덤으로 정해보세요! \n (광고 팝업 후 결과가 표기됩니다)</string>
+    <string name="viewpager_7">다양하게 준비해둔 디자인 메뉴를 활용하여 \n 앱을 자유롭게 꾸며볼 수도 있답니다~</string>
+    <string name="viewpager_8">자자, 이제 준비는 끝났으니 \n 바로 시작해볼까요?</string>
 
     <string name="search">Search</string>
 

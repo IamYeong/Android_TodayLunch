@@ -37,7 +37,7 @@ public class MyMenuList extends AppCompatActivity {
     private SQLiteOpenHelperMain dbHelper;
     private FloatingActionButton fab;
     private Intent intentDetail;
-    private int clickNumber;
+    protected int clickNumber, clickMainNumber;
     private String clickTitle1, clickTitle2;
     private TextView pathText1, pathText2, right1, right2, tvMain;
     private EditText searchEditText;
@@ -64,11 +64,12 @@ public class MyMenuList extends AppCompatActivity {
         init();
 
         intentDetail = getIntent();
+        clickMainNumber = intentDetail.getIntExtra("ClickMainNumber", 0);
         clickNumber = intentDetail.getIntExtra("ClickNumber", 0);
         clickTitle1 = intentDetail.getStringExtra("title");
         clickTitle2 = intentDetail.getStringExtra("title2");
 
-        Log.d("Click menu number : ", "" + clickNumber);
+        Log.d("Click menu number : ",  clickMainNumber + ", " + clickNumber);
 
         init_value();
         load_value();
@@ -103,7 +104,11 @@ public class MyMenuList extends AppCompatActivity {
                 Log.d("MyMenuList : ", "fab click");
 
                 Intent intent = new Intent(MyMenuList.this, AddMenu.class);
-                intent.putExtra("TITLE", "Nothing");
+
+                intent.putExtra("TITLE", "");
+                intent.putExtra("MENU1", clickMainNumber);
+                intent.putExtra("MENU2", clickNumber);
+
                 startActivity(intent);
 
             }

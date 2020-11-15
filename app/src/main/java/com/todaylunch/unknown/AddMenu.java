@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,7 +26,8 @@ import java.util.Date;
 
 public class AddMenu extends AppCompatActivity {
 
-    private Button btn_cancel, btn_add, btn_delete;
+    private Button btn_cancel, btn_add;
+    private ImageView img_delete;
     private Spinner spr1, spr2;
     private SQLiteOpenHelperIcon dbHelper = null;
     private SQLiteOpenHelperMain dbHelperMain = null;
@@ -85,7 +87,7 @@ public class AddMenu extends AppCompatActivity {
         editTextLink.setBackgroundColor(MainActivity.COLOR_NUMBER);
         editTextTitle.setBackgroundColor(MainActivity.COLOR_NUMBER);
 
-        btn_delete.setBackground(btnUtil.getDrawable(btnNumber));
+        //btn_delete.setBackground(btnUtil.getDrawable(btnNumber));
         btn_cancel.setBackground(btnUtil.getDrawable(btnNumber));
         btn_add.setBackground(btnUtil.getDrawable(btnNumber));
 
@@ -169,9 +171,11 @@ public class AddMenu extends AppCompatActivity {
             }
         });
 
-        btn_delete.setOnClickListener(new View.OnClickListener() {
+        img_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                //얼럿 다이얼로그 "정말로 해당 메뉴를 삭제하시겠습니까?" 띄운 후 확인 누르면 아래 명령 진행.
 
                 SQLiteDatabase db = dbHelperMain.getWritableDatabase();
                 String deleteDb = MySQLite.SQL_DELETE + " WHERE " + MySQLite.ICOL_NAME4 + " ='" + getExtraTitle + "'";
@@ -312,7 +316,7 @@ public class AddMenu extends AppCompatActivity {
         if (getExtraTitle.equals("Nothing") == false) {
 
             String mainMenu = arrayList.get(getExtraMainMenu - 1).getmTitle();
-            String subMenu = arrayList.get(getExtraDetailMenu).getmTitle();
+            String subMenu = arrayList.get(getExtraDetailMenu - 1).getmTitle();
 
             int indexArray = (arrayList2.indexOf(mainMenu));
 
@@ -321,7 +325,9 @@ public class AddMenu extends AppCompatActivity {
             arrayAdapter.notifyDataSetChanged();
 
             int indexArray2 = (arrayList3.indexOf(subMenu));
-            spr2.setSelection(indexArray2 - 1);
+            spr2.setSelection(indexArray2 + 1);
+
+            System.out.println(mainMenu + ", " + subMenu + ", " + indexArray + ", " + indexArray2);
 
         }
 
@@ -358,7 +364,7 @@ public class AddMenu extends AppCompatActivity {
 
         btn_cancel = (Button) findViewById(R.id.btn_add_cancel);
         btn_add = (Button) findViewById(R.id.btn_add_add);
-        btn_delete = (Button) findViewById(R.id.btn_menu_delete);
+        img_delete = (ImageView) findViewById(R.id.btn_menu_delete);
 
         spr1 = (Spinner) findViewById(R.id.spr_add1);
         spr2 = (Spinner) findViewById(R.id.spr_add2);

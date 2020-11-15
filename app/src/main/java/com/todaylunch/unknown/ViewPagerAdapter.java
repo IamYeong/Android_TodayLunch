@@ -12,14 +12,18 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerHolder> {
 
     private ArrayList<ViewPagerObject> arrayList;
     private Context context;
+    private ButtonDrawableUtil buttonDrawableUtil;
+    private TypefaceUtil textTypefaceUtil;
 
     public ViewPagerAdapter() {
     }
@@ -28,12 +32,16 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerHolder> {
 
         this.arrayList = arrayList;
         this.context = context;
+        buttonDrawableUtil = new ButtonDrawableUtil(context);
+        textTypefaceUtil = new TypefaceUtil(context);
 
     }
 
     @NonNull
     @Override
     public ViewPagerHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+
+        System.out.println("CreateViewHolder");
 
         View view = LayoutInflater.from(context).inflate(R.layout.viewpager_1, parent, false);
         ViewPagerHolder viewHolder = new ViewPagerHolder(view);
@@ -45,14 +53,15 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewPagerHolder holder, int position) {
 
+        System.out.println("BIndViewHolder");
+
         holder.layout.setBackgroundResource(arrayList.get(position).getPagerColor());
         //holder.layout.setBackground (arrayList.get(position).getPagerColor());
         holder.imageView.setImageResource(arrayList.get(position).getImgResource());
         holder.textView.setText(arrayList.get(position).getAppText());
+        holder.textView.setTypeface(textTypefaceUtil.getTypeface(0));
 
-        if (position != 2) {
-            holder.btn.setVisibility(View.INVISIBLE);
-        }
+        holder.btn.setBackground(buttonDrawableUtil.getDrawable(6));
 
         holder.btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -75,7 +84,7 @@ public class ViewPagerAdapter extends RecyclerView.Adapter<ViewPagerHolder> {
 
 class ViewPagerHolder extends RecyclerView.ViewHolder {
 
-    public LinearLayout layout;
+    public ConstraintLayout layout;
     public ImageView imageView;
     public TextView textView;
     public Button btn;

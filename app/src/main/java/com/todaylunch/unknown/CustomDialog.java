@@ -19,11 +19,15 @@ public class CustomDialog implements DialogClickListener {
     private Context context;
     private ArrayList<Integer> arrayList;
     private Dialog dialog;
+    protected ButtonDrawableUtil buttonDrawableUtil;
+    protected int buttonNumber;
 
 
     public CustomDialog(Context context, ArrayList arrayList) {
         this.context = context;
         this.arrayList = arrayList;
+        buttonDrawableUtil = new ButtonDrawableUtil(context);
+        buttonNumber = MainActivity.BACKGROUND_NUMBER;
 
     }
 
@@ -42,6 +46,8 @@ public class CustomDialog implements DialogClickListener {
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(dialogAdapter);
 
+        btn_cancel.setBackground(buttonDrawableUtil.getDrawable(buttonNumber));
+        btn_cancel.setText(context.getResources().getString(R.string.toast_confirm));
 
         btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override

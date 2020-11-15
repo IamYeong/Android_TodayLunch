@@ -68,7 +68,11 @@ public class fragment3 extends Fragment {
         init_value();
         load_value();
 
+        final Random random = new Random();
+
         customProgressDialog.offProgressDialog();
+
+
 
         frameLayout.startAnimation(frame_close);
 
@@ -79,13 +83,15 @@ public class fragment3 extends Fragment {
 
                 frameLayout.startAnimation(frame_open);
 
-                //START ADD!!!!!!
-
+                int randomNumber = random.nextInt(10);
+                if (randomNumber == 1) {
+                    //광고 송출
+                }
 
                 if (arrayList.size() == 0) {
                     Toast.makeText(getActivity(), R.string.toast_check_list, Toast.LENGTH_SHORT).show();
                 } else {
-                    Random random = new Random();
+
                     int n = random.nextInt(arrayList.size());
                     String strRandom = arrayList.get(n);
                     tvRandom.setText(strRandom);

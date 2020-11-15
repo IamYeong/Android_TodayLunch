@@ -10,7 +10,7 @@
         android:id="@+id/tv_dialog_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="아이콘 고르기"
+        android:text="@string/icon_dialog"
         android:textStyle="bold"
         android:textSize="20dp"
         android:layout_margin="20dp"
@@ -42,6 +42,8 @@
             android:id="@+id/btn_dialog_cancel"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
+            android:layout_margin="10dp"
 
             />
 
