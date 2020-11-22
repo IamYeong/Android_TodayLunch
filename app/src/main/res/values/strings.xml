@@ -62,6 +62,8 @@
     <string name="toast_check_link">Please check URL</string>
     <string name="toast_developing">Please wait for ready</string>
 
+    <string name="dialog_delete">Delete this menu?</string>
+
     <string name="viewpager_0">오점무에 오신 것을 환영합니다~ \n 이제 점심메뉴는 쉽게 고르도록 도와줄게요!</string>
     <string name="viewpager_1">알고 있었거나 새로 알게 된 음식점을 \n 목록에 추가하세요!</string>
     <string name="viewpager_2">메인메뉴에서 대분류를 먼저 골라보세요! \n (수정도 가능해요)</string>
@@ -73,7 +75,7 @@
     <string name="viewpager_8">자자, 이제 준비는 끝났으니 \n 바로 시작해볼까요?</string>
 
 
-    <string name="search">   Search</string>
+    <string name="search">Search</string>
 
     <string name="late">Latest</string>
     <string name="old">Old</string>

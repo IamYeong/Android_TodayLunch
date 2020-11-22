@@ -13,8 +13,14 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.crashlytics.FirebaseCrashlytics;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -39,21 +45,12 @@ public class MainActivity extends AppCompatActivity {
         CustomProgressDialog dialog = new CustomProgressDialog(this);
         dialog.setProgressDialog();
 
-
         init_value();
-
         load_value();
-
         load_design();
 
-
-
         tabLayout = (TabLayout) findViewById(R.id.tab_main);
-
-
         tabLayout.getTabAt(0).setIcon(R.drawable.tab_image_menu);
-
-
         tabLayout.getTabAt(1).setIcon(R.drawable.tab_image_list);
         tabLayout.getTabAt(2).setIcon(R.drawable.tab_image_random);
         tabLayout.getTabAt(3).setIcon(R.drawable.tab_image_gear);
@@ -109,8 +106,6 @@ public class MainActivity extends AppCompatActivity {
                 tab.getIcon().setTint(MainActivity.COLOR_NUMBER);
             }
         });
-
-
 
 
     }//onCreate

@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -84,8 +85,9 @@ public class fragment3 extends Fragment {
                 frameLayout.startAnimation(frame_open);
 
                 int randomNumber = random.nextInt(10);
-                if (randomNumber == 1) {
+                if (randomNumber % 3 == 0) {
                     //광고 송출
+                    Log.d("AdRandom", "!");
                 }
 
                 if (arrayList.size() == 0) {

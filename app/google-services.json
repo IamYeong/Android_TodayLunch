@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "357366551864",
+    "firebase_url": "https://todaylunch-8b337.firebaseio.com",
+    "project_id": "todaylunch-8b337",
+    "storage_bucket": "todaylunch-8b337.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:357366551864:android:2bbaabf7fc30fc596d5dcd",
+        "android_client_info": {
+          "package_name": "com.todaylunch.unknown"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "357366551864-t4n4vqpc1kd8ln9tghbeee983ct985af.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.todaylunch.unknown",
+            "certificate_hash": "e7ea9b4730d4599b79aa1600e62948f14c92b4c5"
+          }
+        },
+        {
+          "client_id": "357366551864-rp3juk1p14e30mlb7t3sidfkssaphbsv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9aVkTm9VbC8ff3QWZPTcfdHXf1ts-Buw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "357366551864-rp3juk1p14e30mlb7t3sidfkssaphbsv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

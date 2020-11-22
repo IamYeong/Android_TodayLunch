@@ -176,13 +176,32 @@ public class AddMenu extends AppCompatActivity {
             public void onClick(View v) {
 
                 //얼럿 다이얼로그 "정말로 해당 메뉴를 삭제하시겠습니까?" 띄운 후 확인 누르면 아래 명령 진행.
+                final MessageCustomDialog msgDialog = new MessageCustomDialog(AddMenu.this, getResources().getString(R.string.dialog_delete));
+                msgDialog.btn_ok_msg_dialog.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        SQLiteDatabase db = dbHelperMain.getWritableDatabase();
+                        String deleteDb = MySQLite.SQL_DELETE + " WHERE " + MySQLite.ICOL_NAME4 + " ='" + getExtraTitle + "'";
+                        db.execSQL(deleteDb);
+                        db.close();
 
-                SQLiteDatabase db = dbHelperMain.getWritableDatabase();
-                String deleteDb = MySQLite.SQL_DELETE + " WHERE " + MySQLite.ICOL_NAME4 + " ='" + getExtraTitle + "'";
-                db.execSQL(deleteDb);
-                db.close();
-                Log.d("Add menu : ", "delete/" + getExtraTitle);
-                Toast.makeText(AddMenu.this, R.string.toast_delete, Toast.LENGTH_SHORT).show();
+                        msgDialog.msgDialogVar.dismiss();
+
+                        finish();
+
+                        Log.d("Add menu : ", "delete/" + getExtraTitle);
+                        Toast.makeText(AddMenu.this, R.string.toast_delete, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                msgDialog.btn_cancel_msg_dialog.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        msgDialog.msgDialogVar.dismiss();
+                    }
+                });
+
+
 
             }
         });
