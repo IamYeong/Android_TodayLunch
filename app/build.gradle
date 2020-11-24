@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 apply plugin: 'com.google.firebase.crashlytics'
+apply plugin: 'com.google.firebase.firebase-perf'
 
 android {
     compileSdkVersion 29
@@ -35,11 +36,13 @@ dependencies {
     implementation 'petrov.kristiyan:colorpicker-library:1.1.10'
     implementation "androidx.viewpager2:viewpager2:1.0.0"
     implementation 'com.tbuonomo.andrui:viewpagerdotsindicator:4.1.2'
-    implementation project(':nativetemplates')
+
     implementation 'com.google.android.gms:play-services-ads:19.0.0'
     implementation platform('com.google.firebase:firebase-bom:26.1.0')
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-crashlytics'
+    implementation 'com.google.firebase:firebase-perf'
+    implementation project(path: ':nativetemplates')
 
 
 }

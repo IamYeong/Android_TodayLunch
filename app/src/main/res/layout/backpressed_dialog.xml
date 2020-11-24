@@ -4,7 +4,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:ads="http://schemas.android.com/tools">
 
     <TextView
         android:id="@+id/tv_backpress"
@@ -30,14 +31,25 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_backpress"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/ll_btn_back"
         >
+
+        <com.google.android.ads.nativetemplates.TemplateView
+
+            android:id="@+id/native_template"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            app:gnt_template_type="@layout/gnt_medium_template_view"
+
+            />
 
 
     </FrameLayout>
 
 
     <LinearLayout
+        android:id="@+id/ll_btn_back"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 

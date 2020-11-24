@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.crashlytics.FirebaseCrashlytics;
@@ -44,6 +45,10 @@ public class MainActivity extends AppCompatActivity {
 
         CustomProgressDialog dialog = new CustomProgressDialog(this);
         dialog.setProgressDialog();
+
+        //ad initialize from app ID
+        MobileAds.initialize(this, "ca-app-pub-8489601855107344~4865112043");
+
 
         init_value();
         load_value();

@@ -28,6 +28,10 @@
         <activity android:name=".MyMenuList" />
         <activity android:name=".MainActivity"/>
 
+        <meta-data
+            android:name="com.google.android.gms.ads.AD_MANAGER_APP"
+            android:value="true"
+            />
 
         <!-- Sample AdMob App ID: ca-app-pub-3940256099942544~3347511713 -->
         <meta-data

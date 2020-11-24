@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -18,6 +19,12 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.doubleclick.PublisherAdRequest;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -39,6 +46,11 @@ public class fragment3 extends Fragment {
 
     private CustomProgressDialog customProgressDialog;
 
+    private InterstitialAd interstitialAd;
+    //app id : ca-app-pub-8489601855107344~4865112043
+    //test ad id : ca-app-pub-3940256099942544/1033173712
+    //ad id : ca-app-pub-8489601855107344/4953398494
+
 
     public fragment3() {
         // Required empty public constructor
@@ -46,7 +58,7 @@ public class fragment3 extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_fragment3, container, false);
@@ -55,6 +67,8 @@ public class fragment3 extends Fragment {
         customProgressDialog.setProgressDialog();
 
         init(view);
+        loadInterstitialAd();
+
 
         typefaceUtil = new TypefaceUtil(getContext());
         btnUtil = new ButtonDrawableUtil(getContext());
@@ -73,8 +87,6 @@ public class fragment3 extends Fragment {
 
         customProgressDialog.offProgressDialog();
 
-
-
         frameLayout.startAnimation(frame_close);
 
         button_start.setOnClickListener(new View.OnClickListener() {
@@ -87,7 +99,12 @@ public class fragment3 extends Fragment {
                 int randomNumber = random.nextInt(10);
                 if (randomNumber % 3 == 0) {
                     //광고 송출
-                    Log.d("AdRandom", "!");
+                    if (interstitialAd.isLoaded()) {
+                        interstitialAd.show();
+                    } else {
+                        Log.d("TAG", "The interstitial wasn't loaded yet.");
+                    }
+
                 }
 
                 if (arrayList.size() == 0) {
@@ -151,6 +168,22 @@ public class fragment3 extends Fragment {
         button_start = (Button) view.findViewById(R.id.btn_start);
 
         backgroundFrameLayout = view.findViewById(R.id.frame_fragment3);
+    }
+
+    private void loadInterstitialAd() {
+
+
+        interstitialAd = new InterstitialAd(getContext());
+        interstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        interstitialAd.loadAd(new AdRequest.Builder().build());
+
+        interstitialAd.setAdListener(new AdListener() {
+
+            @Override
+            public void onAdClosed() {
+                interstitialAd.loadAd(new AdRequest.Builder().build());
+            }
+        });
     }
 
 }
