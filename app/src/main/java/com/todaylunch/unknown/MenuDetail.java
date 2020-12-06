@@ -43,7 +43,7 @@ public class MenuDetail extends AppCompatActivity {
 
     private FrameLayout frameLayout;
 
-    private CustomProgressDialog customProgressDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +52,6 @@ public class MenuDetail extends AppCompatActivity {
 
         this.getWindow().setStatusBarColor(MainActivity.COLOR_NUMBER);
 
-        customProgressDialog = new CustomProgressDialog(this);
-        customProgressDialog.setProgressDialog();
 
         init();
 
@@ -83,7 +81,7 @@ public class MenuDetail extends AppCompatActivity {
         recyclerView.setAdapter(mAdapter);
 
 
-        customProgressDialog.offProgressDialog();
+
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,8 +133,7 @@ public class MenuDetail extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        CustomProgressDialog dialog = new CustomProgressDialog(this);
-        dialog.setProgressDialog();
+
 
         if (onResumeButton == true) {
 
@@ -152,7 +149,7 @@ public class MenuDetail extends AppCompatActivity {
 
 
 
-        dialog.offProgressDialog();
+
     }
 
     private void init() {

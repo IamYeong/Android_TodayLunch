@@ -7,16 +7,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <Button
-        android:id="@+id/btn_skip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:text="Skip"
 
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        />
 
     <TextView
         android:id="@+id/tv_viewpager"
@@ -26,11 +17,12 @@
 
         android:text="설명"
 
-        app:layout_constraintTop_toBottomOf="@id/btn_skip"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
 
         android:layout_margin="20dp"
+        android:layout_marginTop="20dp"
         android:textColor="@color/colorBlack"
 
         />
@@ -41,9 +33,12 @@
         android:layout_height="400dp"
 
         app:layout_constraintTop_toBottomOf="@id/tv_viewpager"
+        app:layout_constraintBottom_toBottomOf="parent"
 
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
+
+        android:layout_marginBottom="40dp"
 
         />
 

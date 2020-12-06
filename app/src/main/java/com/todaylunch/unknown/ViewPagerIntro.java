@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -23,6 +26,9 @@ public class ViewPagerIntro extends AppCompatActivity {
     private ViewPagerAdapter adapter;
     private DotsIndicator indicator;
     private ImageView previousButton, nextButton;
+    private Button btn;
+    private ButtonDrawableUtil buttonDrawableUtil;
+
 
 
     @Override
@@ -33,8 +39,13 @@ public class ViewPagerIntro extends AppCompatActivity {
 
         setContentView(R.layout.activity_view_pager_intro);
 
+        buttonDrawableUtil = new ButtonDrawableUtil(this);
+
+
         previousButton = findViewById(R.id.img_viewpager_previous);
         nextButton = findViewById(R.id.img_viewpager_next);
+        btn = findViewById(R.id.btn_skip);
+        btn.setBackground(buttonDrawableUtil.getDrawable(6));
 
         arrayList = new ArrayList<>();
         addValue();
@@ -46,10 +57,42 @@ public class ViewPagerIntro extends AppCompatActivity {
         vp.setAdapter(adapter);
         indicator.setViewPager2(vp);
 
+        vp.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+
+                Log.d("ViewPager selected : ", "" + position);
+
+                if (position == arrayList.size() - 1) {
+
+                    btn.setVisibility(View.VISIBLE);
+
+                } else {
+                    btn.setVisibility(View.INVISIBLE);
+                }
+
+            }
+        });
+
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(ViewPagerIntro.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+
+            }
+        });
+
 
         previousButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                vp.setCurrentItem(vp.getCurrentItem() - 1);
 
             }
         });
@@ -58,11 +101,18 @@ public class ViewPagerIntro extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                if (vp.getCurrentItem() == arrayList.size() - 1) {
+
+                    Intent intent = new Intent(ViewPagerIntro.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+
+                }
+
+                vp.setCurrentItem(vp.getCurrentItem() + 1);
+
             }
         });
-
-
-
 
     }//onCreate
 

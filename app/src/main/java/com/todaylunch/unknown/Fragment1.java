@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,6 +18,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 
@@ -47,7 +49,7 @@ public class Fragment1 extends Fragment{
     private ArrayList arrayListTextView, arrayListImageView;
     protected boolean fabSwitch = true;
     private Animation fab_open, fab_close, fab_rotate, fab_rotate_reverse;
-    private CustomProgressDialog customProgressDialog;
+
     private TextView tvTitle;
     private TypefaceUtil typefaceUtil;
     private int fontNumber;
@@ -69,13 +71,10 @@ public class Fragment1 extends Fragment{
 
         Log.d("Fragment1 :", "onCreateView");
         // Inflate the layout for this fragment
-        init_value();
         View view = inflater.inflate(R.layout.fragment_fragment1,container, false);
 
-        customProgressDialog = new CustomProgressDialog(getContext());
-        customProgressDialog.setProgressDialog();
-
         init(view);
+        init_value();
 
         fontNumber = MainActivity.FONT_NUMBER;
 
@@ -89,19 +88,16 @@ public class Fragment1 extends Fragment{
         fab2.setBackgroundTintList(ColorStateList.valueOf(MainActivity.COLOR_NUMBER));
         fab3.setBackgroundTintList(ColorStateList.valueOf(MainActivity.COLOR_NUMBER));
 
-        load_value();
+        //load_value();
+        NewThread nt = new NewThread(view);
+        Thread t = new Thread(nt);
+        t.start();
 
         recyclerView = (RecyclerView) view.findViewById(R.id.rv_fragment1);
         gridLayoutManager = new GridLayoutManager(getActivity(), 3);
         recyclerView.setLayoutManager(gridLayoutManager);
         adapter = new FragmentAdapter(getActivity(), iconArrayList);
         recyclerView.setAdapter(adapter);
-
-
-
-        customProgressDialog.offProgressDialog();
-
-
 
         fabAnimation();
 
@@ -114,6 +110,7 @@ public class Fragment1 extends Fragment{
                 fabAnimation();
             }
         });
+
 
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,11 +154,63 @@ public class Fragment1 extends Fragment{
 
     }
 
+    private class NewThread implements Runnable {
+
+        protected Handler handler;
+        protected int totalCount;
+        protected int counting;
+        protected View view;
+
+
+        public NewThread(View mView) {
+            handler = new Handler();
+            this.view = mView;
+
+        }
+
+        @Override
+        public void run() {
+
+            SQLiteDatabase db = dbHelper.getReadableDatabase();
+            Cursor cursor = db.rawQuery(MySQLite.SQL_SELECT2, null);
+
+            totalCount = cursor.getCount();
+            System.out.println(cursor.getCount());
+
+            cursor.moveToFirst();
+
+            for (int i=0; i < 9; i++) {
+
+                int menuNumber = cursor.getInt(0);
+                String menuTitle = cursor.getString(1);
+                int menuImageNumber = cursor.getInt(2);
+
+                ListObject3 menuObject = new ListObject3(menuNumber, menuTitle, menuImageNumber);
+
+                iconArrayList.add(menuObject);
+
+                cursor.moveToNext();
+                counting = cursor.getColumnCount();
+                System.out.println(cursor.getColumnCount());
+                System.out.println((int) (cursor.getColumnCount() / cursor.getCount()) * 100 + "%");
+
+            }
+            cursor.close();
+            db.close();
+            Log.d("close", "fragment1 db closed");
+
+        }
+    }
+
+    /*
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
     }
+
+     */
 
     private void fabAnimation() {
 
@@ -247,11 +296,6 @@ public class Fragment1 extends Fragment{
         super.onResume();
         Log.d("Fragment1 : ", "onResume");
 
-        customProgressDialog = new CustomProgressDialog(getContext());
-        customProgressDialog.setProgressDialog();
-
-
-
         if (onResumeButton == true) {
 
             iconArrayList.clear();
@@ -262,7 +306,7 @@ public class Fragment1 extends Fragment{
 
         onResumeButton = true;
 
-        customProgressDialog.offProgressDialog();
+
 
 
     }

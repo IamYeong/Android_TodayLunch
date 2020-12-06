@@ -45,7 +45,7 @@ public class fragment2 extends Fragment {
     private ArrayList<String> mArrayListIcon;
     private EditText editTextSearch;
     private Button btn_late, btn_long, btn_init;
-    private CustomProgressDialog customProgressDialog;
+
     private int fontNumber;
     private TypefaceUtil typefaceUtil;
     private TextView tvTitle;
@@ -68,8 +68,7 @@ public class fragment2 extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fragment2, container, false);
 
-        customProgressDialog = new CustomProgressDialog(getContext());
-        customProgressDialog.setProgressDialog();
+
 
         init(view);
 
@@ -98,7 +97,7 @@ public class fragment2 extends Fragment {
         mRecyclerView.setAdapter(mAdapter);
 
 
-        customProgressDialog.offProgressDialog();
+
 
 
         editTextSearch.addTextChangedListener(new TextWatcher() {
@@ -166,16 +165,13 @@ public class fragment2 extends Fragment {
 
                 Log.d("fragment2 : ", "init click");
 
-                CustomProgressDialog dialog = new CustomProgressDialog(getContext());
-                dialog.setProgressDialog();
+
 
                 mArrayList.clear();
                 mArrayListIcon.clear();
 
                 load_value_icon();
                 load_value();
-
-                dialog.offProgressDialog();
 
                 mAdapter.notifyDataSetChanged();
 
@@ -261,16 +257,13 @@ public class fragment2 extends Fragment {
 
         if (onResumeButton == true) {
 
-            CustomProgressDialog dialog = new CustomProgressDialog(getContext());
-            dialog.setProgressDialog();
+
 
             mArrayList.clear();
             mArrayListIcon.clear();
 
             load_value_icon();
             load_value();
-
-            dialog.offProgressDialog();
 
             mAdapter.notifyDataSetChanged();
 

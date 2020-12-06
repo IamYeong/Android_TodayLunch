@@ -7,15 +7,25 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+
 public class LicenseDialog {
 
-    public Context context;
-    public Dialog dialog;
+    private Context context;
+    private Dialog dialog;
     private ButtonDrawableUtil buttonUtil;
-    public int buttonNumber, fontNumber;
-    public Button btn_ok;
-    protected TextView tv_title, tv_license;
-    public TypefaceUtil typefaceUtil;
+    private int buttonNumber, fontNumber;
+    private Button btn_ok;
+    private TextView tv_title;
+    private TypefaceUtil typefaceUtil;
+    private RecyclerView recyclerView;
+    private LinearLayoutManager layoutManager;
+    private CopyrightAdapter adapter;
+    private ArrayList<String> arrayLIst;
+
 
     public LicenseDialog(Context context) {
         this.context = context;
@@ -33,16 +43,18 @@ public class LicenseDialog {
         dialog.show();
 
         tv_title = dialog.findViewById(R.id.tv_license_title);
-        tv_license = dialog.findViewById(R.id.tv_license);
         btn_ok = dialog.findViewById(R.id.btn_license_dialog);
 
-        tv_license.setText(
-                "License"
+        addCopyrightList();
 
-        );
+        recyclerView = (RecyclerView) dialog.findViewById(R.id.rv_license);
+        layoutManager = new LinearLayoutManager(context);
+        adapter = new CopyrightAdapter(context, arrayLIst);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(adapter);
+
 
         tv_title.setTypeface(typefaceUtil.getTypeface(fontNumber));
-        tv_license.setTypeface(typefaceUtil.getTypeface(fontNumber));
         btn_ok.setBackground(buttonUtil.getDrawable(buttonNumber));
 
         btn_ok.setOnClickListener(new View.OnClickListener() {
@@ -52,6 +64,17 @@ public class LicenseDialog {
             }
         });
 
+
+
+    }
+
+    private void addCopyrightList() {
+
+        arrayLIst = new ArrayList<>();
+
+        arrayLIst.add("made flaticon");
+        arrayLIst.add("made fleepick");
+        arrayLIst.add("dddd");
 
 
     }

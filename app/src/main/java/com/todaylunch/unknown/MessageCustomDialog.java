@@ -22,6 +22,7 @@ public class MessageCustomDialog {
     public MessageCustomDialog(Context context, String titleValue) {
         buttonUtil = new ButtonDrawableUtil(context);
         typefaceUtil = new TypefaceUtil(context);
+
         buttonNumber = MainActivity.BACKGROUND_NUMBER;
         fontNumber = MainActivity.FONT_NUMBER;
 
@@ -33,24 +34,16 @@ public class MessageCustomDialog {
         btn_cancel_msg_dialog = msgDialogVar.findViewById(R.id.btn_msg_custom_negative);
         tv_title = msgDialogVar.findViewById(R.id.tv_message_custom_dialog);
 
-        msgDialogVar.show();
+        btn_ok_msg_dialog.setBackground(buttonUtil.getDrawable(buttonNumber));
+        btn_cancel_msg_dialog.setBackground(buttonUtil.getDrawable(buttonNumber));
+        tv_title.setTypeface(typefaceUtil.getTypeface(fontNumber));
+        tv_title.setText(titleValue);
 
-        startDialog(titleValue);
+        msgDialogVar.show();
 
     }
 
     //implementation
-
-    private void startDialog(String titleId) {
-
-
-        msgDialogVar.setTitle(titleId);
-
-        btn_ok_msg_dialog.setBackground(buttonUtil.getDrawable(buttonNumber));
-        btn_cancel_msg_dialog.setBackground(buttonUtil.getDrawable(buttonNumber));
-        tv_title.setTypeface(typefaceUtil.getTypeface(fontNumber));
-
-    }
 
 
 }

@@ -63,8 +63,7 @@ public class fragment3 extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_fragment3, container, false);
 
-        customProgressDialog = new CustomProgressDialog(getContext());
-        customProgressDialog.setProgressDialog();
+
 
         init(view);
         loadInterstitialAd();
@@ -84,8 +83,6 @@ public class fragment3 extends Fragment {
         load_value();
 
         final Random random = new Random();
-
-        customProgressDialog.offProgressDialog();
 
         frameLayout.startAnimation(frame_close);
 

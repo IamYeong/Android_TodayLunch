@@ -34,9 +34,9 @@ public class AddMenu extends AppCompatActivity {
     private ArrayList<ListObject3> arrayList;
     private ArrayList<ListObject> arrayListMain;
     private ArrayList arrayList2, arrayList3;
-    public int number;
+    protected int number;
     private EditText editTextTitle, editTextLink;
-    public Intent intent;
+    private Intent intent;
     private Date date = new Date();
     private TextView tvTitle, tvLargeGroup, tvSub, tvName, tvUrl;
     private TypefaceUtil typefaceUtil;
@@ -45,8 +45,8 @@ public class AddMenu extends AppCompatActivity {
     private CustomProgressDialog customProgressDialog;
     private ConstraintLayout constraintLayout;
 
-    String getExtraTitle, getExtraLink;
-    int getExtraMainMenu, getExtraDetailMenu;
+    private String getExtraTitle, getExtraLink;
+    private int getExtraMainMenu, getExtraDetailMenu;
 
     //Intent -> value intent -> value choice -> confirm -> insert value
 
@@ -57,12 +57,10 @@ public class AddMenu extends AppCompatActivity {
 
         this.getWindow().setStatusBarColor(MainActivity.COLOR_NUMBER);
 
-        customProgressDialog = new CustomProgressDialog(this);
-        customProgressDialog.setProgressDialog();
-
         init();
 
         intent = getIntent();
+
         number = intent.getIntExtra("AddMenu", 0);
 
         init_value();
@@ -105,7 +103,6 @@ public class AddMenu extends AppCompatActivity {
 
         spinnerAutoSetter(arrayAdapter2);
 
-        customProgressDialog.offProgressDialog();
         //spinnerAutoSetter();
 
         spr1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -201,8 +198,6 @@ public class AddMenu extends AppCompatActivity {
                     }
                 });
 
-
-
             }
         });
 
@@ -272,12 +267,10 @@ public class AddMenu extends AppCompatActivity {
 
         } else {
 
-            String updateDb = MySQLite.SQL_UPDATE + MySQLite.ICOL_NAME2 + " = " + menuNumber1 + ", '" + MySQLite.ICOL_NAME3 + "' = " + menuNumber2 + ", "
-                     + MySQLite.ICOL_NAME4 + " = '" + menuTitle + "', " + MySQLite.ICOL_NAME5 + " = '" + strLink + "'" + " WHERE " + MySQLite.ICOL_NAME4 + " = '" + getExtraTitle + "'";
-            db.execSQL(updateDb);
-            db.close();
-
-
+                String updateDb = MySQLite.SQL_UPDATE + MySQLite.ICOL_NAME2 + " = " + menuNumber1 + ", '" + MySQLite.ICOL_NAME3 + "' = " + menuNumber2 + ", "
+                        + MySQLite.ICOL_NAME4 + " = '" + menuTitle + "', " + MySQLite.ICOL_NAME5 + " = '" + strLink + "'" + " WHERE " + MySQLite.ICOL_NAME4 + " = '" + getExtraTitle + "'";
+                db.execSQL(updateDb);
+                db.close();
         }
 
     }
@@ -332,7 +325,7 @@ public class AddMenu extends AppCompatActivity {
 
     private void spinnerAutoSetter(ArrayAdapter<String> arrayAdapter) {
 
-        if (getExtraTitle.equals("Nothing") == false) {
+        if (getExtraMainMenu != 0) {
 
             String mainMenu = arrayList.get(getExtraMainMenu - 1).getmTitle();
             String subMenu = arrayList.get(getExtraDetailMenu - 1).getmTitle();
@@ -344,7 +337,7 @@ public class AddMenu extends AppCompatActivity {
             arrayAdapter.notifyDataSetChanged();
 
             int indexArray2 = (arrayList3.indexOf(subMenu));
-            spr2.setSelection(indexArray2 + 1);
+            spr2.setSelection(indexArray2);
 
             System.out.println(mainMenu + ", " + subMenu + ", " + indexArray + ", " + indexArray2);
 

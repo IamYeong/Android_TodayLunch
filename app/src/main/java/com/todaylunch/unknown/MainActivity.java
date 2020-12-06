@@ -3,25 +3,15 @@ package com.todaylunch.unknown;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
 import android.content.Context;
-
 import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.tabs.TabLayout;
-import com.google.firebase.analytics.FirebaseAnalytics;
-import com.google.firebase.crashlytics.FirebaseCrashlytics;
-
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -43,16 +33,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        CustomProgressDialog dialog = new CustomProgressDialog(this);
-        dialog.setProgressDialog();
 
         //ad initialize from app ID
         MobileAds.initialize(this, "ca-app-pub-8489601855107344~4865112043");
 
 
         init_value();
-        load_value();
-        load_design();
+
+        LoadingRunner loadingRunner = new LoadingRunner();
+        Thread thread = new Thread(loadingRunner);
+        thread.start();
 
         tabLayout = (TabLayout) findViewById(R.id.tab_main);
         tabLayout.getTabAt(0).setIcon(R.drawable.tab_image_menu);
@@ -88,8 +78,6 @@ public class MainActivity extends AppCompatActivity {
         ft.add(R.id.frame_main, new Fragment1());
         ft.commit();
 
-        dialog.offProgressDialog();
-
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -113,7 +101,35 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+
+
+
     }//onCreate
+
+
+    private class LoadingRunner implements Runnable {
+
+        @Override
+        public void run() {
+
+
+
+            load_value();
+            load_design();
+
+            try {
+
+                Thread.sleep(10000);
+
+            } catch(InterruptedException e) {
+
+                System.out.println(e);
+
+            }
+
+        }
+    }
 
     //Change fragment for Tablayout
     private void switchFragment(int pos) {
@@ -153,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
         Cursor cursor2 = db2.rawQuery(MySQLite.SQL_SELECT2, null);
         drawableImageIdSetter(191);
 
-        if (cursor2.getCount() == 0) {
+        if (cursor2.getColumnCount() == 0) {
             cursor2.close();
             db2.close();
             start_value_add();
@@ -215,6 +231,5 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-
 
 }

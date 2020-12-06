@@ -62,8 +62,6 @@ public class MenuAdjust extends AppCompatActivity implements AdapterClickListene
 
         this.getWindow().setStatusBarColor(MainActivity.COLOR_NUMBER);
 
-        CustomProgressDialog progressDialog = new CustomProgressDialog(this);
-        progressDialog.setProgressDialog();
 
         init();
 
@@ -90,7 +88,7 @@ public class MenuAdjust extends AppCompatActivity implements AdapterClickListene
 
         recyclerView.setAdapter(mAdapter);
 
-        progressDialog.offProgressDialog();
+
 
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override

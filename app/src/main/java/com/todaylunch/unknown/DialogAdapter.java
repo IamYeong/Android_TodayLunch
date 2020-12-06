@@ -15,12 +15,10 @@ import java.util.ArrayList;
 
 public class DialogAdapter extends RecyclerView.Adapter<DialogViewHolder> {
 
-    ArrayList<Integer> mArrayList;
-    Context context;
+    private ArrayList<Integer> mArrayList;
+    private Context context;
     private AdapterClickListener listener;
     private DialogClickListener clickListener;
-
-
 
     public DialogAdapter() {}
 

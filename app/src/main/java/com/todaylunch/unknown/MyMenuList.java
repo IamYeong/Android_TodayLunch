@@ -48,7 +48,7 @@ public class MyMenuList extends AppCompatActivity {
     private int fontNumber, btnNumber;
     private TypefaceUtil typefaceUtil;
     private ButtonDrawableUtil btnUtil;
-    private CustomProgressDialog customProgressDialog;
+
     private boolean onResumeButton = false;
 
     @Override
@@ -58,8 +58,7 @@ public class MyMenuList extends AppCompatActivity {
 
         this.getWindow().setStatusBarColor(MainActivity.COLOR_NUMBER);
 
-        customProgressDialog = new CustomProgressDialog(this);
-        customProgressDialog.setProgressDialog();
+
 
         init();
 
@@ -95,7 +94,7 @@ public class MyMenuList extends AppCompatActivity {
         mAdapter = new MyAdapter_Fragment(arrayList, arrayListIcon, this);
         recyclerView.setAdapter(mAdapter);
 
-        customProgressDialog.offProgressDialog();
+
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,7 +104,7 @@ public class MyMenuList extends AppCompatActivity {
 
                 Intent intent = new Intent(MyMenuList.this, AddMenu.class);
 
-                intent.putExtra("TITLE", "");
+                intent.putExtra("TITLE", "Nothing");
                 intent.putExtra("MENU1", clickMainNumber);
                 intent.putExtra("MENU2", clickNumber);
 
@@ -260,8 +259,7 @@ public class MyMenuList extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-        CustomProgressDialog dialog = new CustomProgressDialog(this);
-        dialog.setProgressDialog();
+
 
         if (onResumeButton == true) {
 
@@ -277,7 +275,7 @@ public class MyMenuList extends AppCompatActivity {
 
         onResumeButton = true;
 
-        dialog.offProgressDialog();
+
 
 
 
