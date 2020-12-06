@@ -49,7 +49,6 @@ public class Fragment1 extends Fragment{
     private ArrayList arrayListTextView, arrayListImageView;
     protected boolean fabSwitch = true;
     private Animation fab_open, fab_close, fab_rotate, fab_rotate_reverse;
-
     private TextView tvTitle;
     private TypefaceUtil typefaceUtil;
     private int fontNumber;
@@ -59,6 +58,7 @@ public class Fragment1 extends Fragment{
     private GridLayoutManager gridLayoutManager;
     private boolean onResumeButton = false;
     private FrameLayout frameLayout;
+    private static Handler handler;
 
 
     public Fragment1() {
@@ -74,7 +74,10 @@ public class Fragment1 extends Fragment{
         View view = inflater.inflate(R.layout.fragment_fragment1,container, false);
 
         init(view);
-        init_value();
+
+        NewThread nt = new NewThread(getContext(), view);
+        nt.execute();
+        //init_value();
 
         fontNumber = MainActivity.FONT_NUMBER;
 
@@ -89,18 +92,6 @@ public class Fragment1 extends Fragment{
         fab3.setBackgroundTintList(ColorStateList.valueOf(MainActivity.COLOR_NUMBER));
 
         //load_value();
-        NewThread nt = new NewThread(view);
-        Thread t = new Thread(nt);
-        t.start();
-
-        recyclerView = (RecyclerView) view.findViewById(R.id.rv_fragment1);
-        gridLayoutManager = new GridLayoutManager(getActivity(), 3);
-        recyclerView.setLayoutManager(gridLayoutManager);
-        adapter = new FragmentAdapter(getActivity(), iconArrayList);
-        recyclerView.setAdapter(adapter);
-
-        fabAnimation();
-
 
         fab1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -154,31 +145,52 @@ public class Fragment1 extends Fragment{
 
     }
 
-    private class NewThread implements Runnable {
+    private class NewThread extends AsyncTask<Integer, Integer, String> {
 
-        protected Handler handler;
-        protected int totalCount;
-        protected int counting;
-        protected View view;
+        private CustomProgressDialog dialog;
+        private Context context;
+        private View view;
 
+        public NewThread(Context context, View view) {
+            this.context = context;
+            this.view = view;
+        }
 
-        public NewThread(View mView) {
-            handler = new Handler();
-            this.view = mView;
+        @Override
+        protected void onPreExecute() {
+           init_value();
+           dialog = new CustomProgressDialog(context);
+           dialog.settingCustomProgressDialog();
 
         }
 
         @Override
-        public void run() {
+        protected void onPostExecute(String s) {
+
+            recyclerView = (RecyclerView) view.findViewById(R.id.rv_fragment1);
+            gridLayoutManager = new GridLayoutManager(getActivity(), 3);
+            recyclerView.setLayoutManager(gridLayoutManager);
+            adapter = new FragmentAdapter(getActivity(), iconArrayList);
+            recyclerView.setAdapter(adapter);
+
+            fabAnimation();
+
+            dialog.dismiss();
+
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+
+        }
+
+        @Override
+        protected String doInBackground(Integer... values) {
 
             SQLiteDatabase db = dbHelper.getReadableDatabase();
             Cursor cursor = db.rawQuery(MySQLite.SQL_SELECT2, null);
 
-            totalCount = cursor.getCount();
-            System.out.println(cursor.getCount());
-
             cursor.moveToFirst();
-
             for (int i=0; i < 9; i++) {
 
                 int menuNumber = cursor.getInt(0);
@@ -190,15 +202,15 @@ public class Fragment1 extends Fragment{
                 iconArrayList.add(menuObject);
 
                 cursor.moveToNext();
-                counting = cursor.getColumnCount();
-                System.out.println(cursor.getColumnCount());
-                System.out.println((int) (cursor.getColumnCount() / cursor.getCount()) * 100 + "%");
 
             }
             cursor.close();
             db.close();
             Log.d("close", "fragment1 db closed");
 
+
+
+            return null;
         }
     }
 
@@ -275,6 +287,7 @@ public class Fragment1 extends Fragment{
         arrayListTextView = new ArrayList();
         arrayListImageView = new ArrayList();
         iconArrayList = new ArrayList<>();
+
 
         fab1 = (FloatingActionButton) view.findViewById(R.id.fab_frg1);
         fab2 = (FloatingActionButton) view.findViewById(R.id.fab_frg2);

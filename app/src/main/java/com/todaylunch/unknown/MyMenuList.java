@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -70,9 +71,12 @@ public class MyMenuList extends AppCompatActivity {
 
         Log.d("Click menu number : ",  clickMainNumber + ", " + clickNumber);
 
-        init_value();
-        load_value();
-        load_value_icon();
+        //init_value();
+        //load_value();
+        //load_value_icon();
+
+        NewThread nt = new NewThread(MyMenuList.this);
+        nt.execute();
 
         fontNumber = MainActivity.FONT_NUMBER;
         btnNumber = MainActivity.BACKGROUND_NUMBER;
@@ -87,13 +91,6 @@ public class MyMenuList extends AppCompatActivity {
         pathText1.setText(clickTitle1);
         right2.setText(" > ");
         pathText2.setText(clickTitle2);
-
-        recyclerView = (RecyclerView) findViewById(R.id.rv_frg2);
-        linearLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        mAdapter = new MyAdapter_Fragment(arrayList, arrayListIcon, this);
-        recyclerView.setAdapter(mAdapter);
-
 
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -175,6 +172,52 @@ public class MyMenuList extends AppCompatActivity {
 
     }//onCreate()
 
+    private class NewThread extends AsyncTask<Integer, Integer, Boolean> {
+
+        private Context context;
+        private CustomProgressDialog dialog;
+
+        private NewThread(Context context) {
+            this.context = context;
+
+        }
+
+        @Override
+        protected void onPreExecute() {
+
+            init_value();
+            dialog = new CustomProgressDialog(context);
+            dialog.settingCustomProgressDialog();
+
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+
+            recyclerView = (RecyclerView) findViewById(R.id.rv_frg2);
+            linearLayoutManager = new LinearLayoutManager(context);
+            recyclerView.setLayoutManager(linearLayoutManager);
+            mAdapter = new MyAdapter_Fragment(arrayList, arrayListIcon, context);
+            recyclerView.setAdapter(mAdapter);
+
+            dialog.dismiss();
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+
+        }
+
+        @Override
+        protected Boolean doInBackground(Integer... integers) {
+
+            load_value();
+            load_value_icon();
+
+            return null;
+        }
+    }
+
     private void init_value() {
         dbHelper = new SQLiteOpenHelperMain(this);
         dbHelperIcon = new SQLiteOpenHelperIcon(this);
@@ -184,12 +227,15 @@ public class MyMenuList extends AppCompatActivity {
 
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery(MySQLite.SQL_SELECT + " WHERE " + MySQLite.ICOL_NAME3 + "=" + clickNumber, null);
-        cursor.moveToFirst();
+
 
         if(cursor.getCount() == 0) {
-            Toast.makeText(this, R.string.toast_check_list, Toast.LENGTH_SHORT).show();
+            cursor.close();
+            db.close();
 
         } else {
+
+            cursor.moveToFirst();
 
             for (int i = 0; i < cursor.getCount(); i++) {
 

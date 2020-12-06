@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -52,7 +53,6 @@ public class MenuDetail extends AppCompatActivity {
 
         this.getWindow().setStatusBarColor(MainActivity.COLOR_NUMBER);
 
-
         init();
 
         frameLayout.setBackgroundColor(MainActivity.FRAMELAYOUT_NUMBER);
@@ -63,24 +63,16 @@ public class MenuDetail extends AppCompatActivity {
         clickTitle = intent.getStringExtra("title");
         Log.d("main menu number : ", "" + clickNumber);
 
-        init_value();
+        //init_value();
+        //load_value(clickNumber);
+        //tvPath.setText(getIntent().getStringExtra("TEXT_VIEW"));
+        NewThread nt = new NewThread(this);
+        nt.execute(clickNumber);
 
         fab.setBackgroundTintList(ColorStateList.valueOf(MainActivity.COLOR_NUMBER));
 
-
-        load_value(clickNumber);
-        //tvPath.setText(getIntent().getStringExtra("TEXT_VIEW"));
-
         tvPath.setTypeface(typefaceUtil.getTypeface(typefaceNumber));
         tvPath.setText(clickTitle);
-
-        recyclerView = (RecyclerView) findViewById(R.id.rv_menu_detail);
-        gridLayoutManager = new GridLayoutManager(this, 3);
-        recyclerView.setLayoutManager(gridLayoutManager);
-        mAdapter = new DetailAdapter(this, iconArrayList2, clickNumber, clickTitle);
-        recyclerView.setAdapter(mAdapter);
-
-
 
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -96,6 +88,52 @@ public class MenuDetail extends AppCompatActivity {
             }
         });
 
+    }
+
+    private class NewThread extends AsyncTask<Integer, Integer, Boolean> {
+
+        private Context context;
+        private CustomProgressDialog dialog;
+
+        private NewThread(Context context) {
+
+            this.context = context;
+
+        }
+
+        @Override
+        protected void onPreExecute() {
+            init_value();
+            dialog = new CustomProgressDialog(context);
+            dialog.settingCustomProgressDialog();
+
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+
+            recyclerView = (RecyclerView) findViewById(R.id.rv_menu_detail);
+            gridLayoutManager = new GridLayoutManager(context, 3);
+            recyclerView.setLayoutManager(gridLayoutManager);
+            mAdapter = new DetailAdapter(context, iconArrayList2, clickNumber, clickTitle);
+            recyclerView.setAdapter(mAdapter);
+
+            dialog.dismiss();
+
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+
+        }
+
+        @Override
+        protected Boolean doInBackground(Integer... integers) {
+
+            load_value(integers[0]);
+
+            return null;
+        }
     }
 
     private void load_value(int intExtra) {
@@ -146,9 +184,6 @@ public class MenuDetail extends AppCompatActivity {
         }
 
         onResumeButton = true;
-
-
-
 
     }
 

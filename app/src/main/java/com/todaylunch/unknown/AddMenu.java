@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -33,7 +34,7 @@ public class AddMenu extends AppCompatActivity {
     private SQLiteOpenHelperMain dbHelperMain = null;
     private ArrayList<ListObject3> arrayList;
     private ArrayList<ListObject> arrayListMain;
-    private ArrayList arrayList2, arrayList3;
+    private ArrayList<String> arrayList2, arrayList3;
     protected int number;
     private EditText editTextTitle, editTextLink;
     private Intent intent;
@@ -47,6 +48,9 @@ public class AddMenu extends AppCompatActivity {
 
     private String getExtraTitle, getExtraLink;
     private int getExtraMainMenu, getExtraDetailMenu;
+
+    private ArrayAdapter<String> arrayAdapter;
+    private ArrayAdapter<String> arrayAdapter2;
 
     //Intent -> value intent -> value choice -> confirm -> insert value
 
@@ -63,7 +67,7 @@ public class AddMenu extends AppCompatActivity {
 
         number = intent.getIntExtra("AddMenu", 0);
 
-        init_value();
+        //init_value();
 
         getExtraTitle = intent.getStringExtra("TITLE");
         getExtraMainMenu = intent.getIntExtra("MENU1", 0);
@@ -73,8 +77,11 @@ public class AddMenu extends AppCompatActivity {
         fontNumber = MainActivity.FONT_NUMBER;
         btnNumber = MainActivity.BACKGROUND_NUMBER;
 
-        load_value();
-        load_menu_value();
+        NewThread nt = new NewThread(this);
+        nt.execute();
+
+        //load_value();
+        //load_menu_value();
 
         tvTitle.setTypeface(typefaceUtil.getTypeface(fontNumber));
         tvLargeGroup.setTypeface(typefaceUtil.getTypeface(fontNumber));
@@ -91,17 +98,11 @@ public class AddMenu extends AppCompatActivity {
 
         constraintLayout.setBackgroundColor(MainActivity.FRAMELAYOUT_NUMBER);
 
-        spinnerMenuSetter();
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, arrayList2);
-        spr1.setAdapter(arrayAdapter);
-
-        final ArrayAdapter<String> arrayAdapter2 = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, arrayList3);
-        spr2.setAdapter(arrayAdapter2);
-
+        arrayAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, arrayList2);
         editTextSetter();
 
-        spinnerAutoSetter(arrayAdapter2);
+
 
         //spinnerAutoSetter();
 
@@ -203,6 +204,58 @@ public class AddMenu extends AppCompatActivity {
 
 
     }//onCreate*************************
+
+    private class NewThread extends AsyncTask<Integer, Integer, Boolean> {
+
+        private Context context;
+        private CustomProgressDialog dialog;
+
+        private NewThread(Context context) {
+
+            this.context = context;
+
+        }
+
+        @Override
+        protected void onPreExecute() {
+
+            init_value();
+            dialog = new CustomProgressDialog(context);
+            dialog.settingCustomProgressDialog();
+
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+
+            spinnerMenuSetter();
+
+            arrayAdapter = new ArrayAdapter<>(context, R.layout.support_simple_spinner_dropdown_item, arrayList2);
+            spr1.setAdapter(arrayAdapter);
+
+            arrayAdapter2 = new ArrayAdapter<>(context, R.layout.support_simple_spinner_dropdown_item, arrayList3);
+            spr2.setAdapter(arrayAdapter2);
+
+            spinnerAutoSetter(arrayAdapter2);
+
+            dialog.dismiss();
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+
+        }
+
+        @Override
+        protected Boolean doInBackground(Integer... integers) {
+
+            load_value();
+            load_menu_value();
+
+
+            return null;
+        }
+    }
 
     //init_value
     private void init_value() {

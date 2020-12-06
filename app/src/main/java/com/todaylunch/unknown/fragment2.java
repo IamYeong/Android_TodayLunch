@@ -2,11 +2,13 @@ package com.todaylunch.unknown;
 
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -68,14 +70,15 @@ public class fragment2 extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fragment2, container, false);
 
-
-
         init(view);
 
-        init_value();
+        //init_value();
 
-        load_value();
-        load_value_icon();
+        //load_value();
+        //load_value_icon();
+
+        NewThread nt = new NewThread(getContext(), view);
+        nt.execute();
 
         typefaceUtil = new TypefaceUtil(getContext());
         fontNumber = MainActivity.FONT_NUMBER;
@@ -88,16 +91,6 @@ public class fragment2 extends Fragment {
         btn_init.setTypeface(typefaceUtil.getTypeface(fontNumber));
         fab.setBackgroundTintList(ColorStateList.valueOf(MainActivity.COLOR_NUMBER));
         frameLayout.setBackgroundColor(MainActivity.FRAMELAYOUT_NUMBER);
-
-
-        mRecyclerView = view.findViewById(R.id.rv_frg2);
-        linearLayoutManager = new LinearLayoutManager(getActivity());
-        mRecyclerView.setLayoutManager(linearLayoutManager);
-        mAdapter = new MyAdapter_Fragment(mArrayList, mArrayListIcon, getActivity());
-        mRecyclerView.setAdapter(mAdapter);
-
-
-
 
 
         editTextSearch.addTextChangedListener(new TextWatcher() {
@@ -179,9 +172,57 @@ public class fragment2 extends Fragment {
             }
         });
 
-
-
         return view;
+    }
+
+    private class NewThread extends AsyncTask<String, Integer, Boolean> {
+
+        private CustomProgressDialog dialog;
+        private Context context;
+        private View view;
+
+        private NewThread(Context context, View view) {
+            this.context = context;
+            this.view = view;
+
+        }
+
+        @Override
+        protected void onPreExecute() {
+
+            dialog = new CustomProgressDialog(context);
+            dialog.settingCustomProgressDialog();
+            init_value();
+
+
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+
+            mRecyclerView = view.findViewById(R.id.rv_frg2);
+            linearLayoutManager = new LinearLayoutManager(getActivity());
+            mRecyclerView.setLayoutManager(linearLayoutManager);
+            mAdapter = new MyAdapter_Fragment(mArrayList, mArrayListIcon, context);
+            mRecyclerView.setAdapter(mAdapter);
+
+            dialog.dismiss();
+
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+
+        }
+
+        @Override
+        protected Boolean doInBackground(String... strings) {
+
+            load_value();
+            load_value_icon();
+
+            return null;
+        }
     }
 
     private void init_value() {
@@ -238,6 +279,7 @@ public class fragment2 extends Fragment {
 
         mArrayList = new ArrayList<>();
         mArrayListIcon = new ArrayList<>();
+
 
         fab = (FloatingActionButton) view.findViewById(R.id.fab_frg2);
         tvTitle = view.findViewById(R.id.tv_fragment2_main);

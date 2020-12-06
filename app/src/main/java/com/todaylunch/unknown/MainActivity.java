@@ -38,11 +38,12 @@ public class MainActivity extends AppCompatActivity {
         MobileAds.initialize(this, "ca-app-pub-8489601855107344~4865112043");
 
 
-        init_value();
+        //init_value();
+        NewThread nt = new NewThread(this);
+        nt.execute();
 
-        LoadingRunner loadingRunner = new LoadingRunner();
-        Thread thread = new Thread(loadingRunner);
-        thread.start();
+        load_design();
+
 
         tabLayout = (TabLayout) findViewById(R.id.tab_main);
         tabLayout.getTabAt(0).setIcon(R.drawable.tab_image_menu);
@@ -108,27 +109,46 @@ public class MainActivity extends AppCompatActivity {
     }//onCreate
 
 
-    private class LoadingRunner implements Runnable {
+    private class NewThread extends AsyncTask<String, Integer, Boolean> {
 
-        @Override
-        public void run() {
+        private Context context;
+        private CustomProgressDialog dialog;
 
+        private NewThread(Context context) {
+            this.context = context;
 
-
-            load_value();
-            load_design();
-
-            try {
-
-                Thread.sleep(10000);
-
-            } catch(InterruptedException e) {
-
-                System.out.println(e);
-
-            }
 
         }
+
+        @Override
+        protected void onPreExecute() {
+
+            init_value();
+            dialog = new CustomProgressDialog(context);
+            dialog.settingCustomProgressDialog();
+
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+
+            dialog.dismiss();
+
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+
+        }
+
+        @Override
+        protected Boolean doInBackground(String... strings) {
+
+            load_value();
+
+            return null;
+        }
+
     }
 
     //Change fragment for Tablayout

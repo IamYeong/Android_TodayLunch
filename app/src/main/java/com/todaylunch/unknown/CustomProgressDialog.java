@@ -1,58 +1,46 @@
 package com.todaylunch.unknown;
 
-import android.app.AlertDialog;
+
 import android.app.Dialog;
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.os.Handler;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.view.Window;
 import android.widget.ProgressBar;
-import android.widget.TextView;
+import androidx.annotation.NonNull;
 
-import java.util.logging.LogRecord;
+public class CustomProgressDialog extends Dialog {
 
-public class CustomProgressDialog {
+    protected ProgressBar progressBar;
 
-    private Context context;
-    private Dialog dialog;
-    private int maxCount;
-    private ProgressBar progressBar;
-    private TextView textViewPercent;
+    public CustomProgressDialog(@NonNull Context context) {
+        super(context);
+    }
 
+    public void settingCustomProgressDialog() {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        setContentView(R.layout.progress_dialog);
 
-    public CustomProgressDialog() {}
+        progressBar = findViewById(R.id.progress_bar);
 
-    public CustomProgressDialog(Context mContext) {
+        setCancelable(false);
 
-        this.context = mContext;
-        dialog = new Dialog(context);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.backpressed_dialog);
-
-        progressBar = dialog.findViewById(R.id.progress_bar);
-        textViewPercent = dialog.findViewById(R.id.tv_loading_percent);
-
-
-        dialog.show();
-
+        show();
 
     }
 
-    public void setProgrssCount(int number) {
+    public void setProgressCount(int number) {
 
-        int resultNumber = (number / maxCount) * 100;
-        String stringResult = Integer.toString(resultNumber);
-        textViewPercent.setText(stringResult);
+        /*
+        counting = number;
+        int resultNumber = (counting / maxCount) * 100;
+        String strResult = Integer.toString(resultNumber);
+        textViewPercent.setText(strResult);
 
+         */
     }
 
-    private void setProgressBar() {
+    public void setProgressBar(int maxNumber) {
 
+        //progressBar.setMax(maxNumber);
     }
-
-
-
 
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -68,6 +69,9 @@ public class fragment3 extends Fragment {
         init(view);
         loadInterstitialAd();
 
+        NewThread nt = new NewThread(getContext());
+        nt.execute();
+
 
         typefaceUtil = new TypefaceUtil(getContext());
         btnUtil = new ButtonDrawableUtil(getContext());
@@ -79,8 +83,8 @@ public class fragment3 extends Fragment {
 
         backgroundFrameLayout.setBackgroundColor(MainActivity.FRAMELAYOUT_NUMBER);
 
-        init_value();
-        load_value();
+        //init_value();
+        //load_value();
 
         final Random random = new Random();
 
@@ -120,6 +124,45 @@ public class fragment3 extends Fragment {
 
         return view;
 
+    }
+
+    private class NewThread extends AsyncTask<String, Integer, Boolean> {
+
+        private CustomProgressDialog dialog;
+        private Context context;
+
+        private NewThread(Context context) {
+            this.context = context;
+
+        }
+
+        @Override
+        protected void onPreExecute() {
+            init_value();
+            dialog = new CustomProgressDialog(context);
+            dialog.settingCustomProgressDialog();
+
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+
+            dialog.dismiss();
+
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+
+        }
+
+        @Override
+        protected Boolean doInBackground(String... strings) {
+
+            load_value();
+
+            return null;
+        }
     }
 
     private void init_value() {

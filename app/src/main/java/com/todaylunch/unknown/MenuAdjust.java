@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -78,17 +79,10 @@ public class MenuAdjust extends AppCompatActivity implements AdapterClickListene
 
         Log.d("CLickNumber : ", " " + clickNumber);
 
-        init_value();
-        load_value(clickNumber);
-
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rv_adjust);
-        mAdapter = new AdjustAdapter(this, arrayList);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
-        recyclerView.setLayoutManager(gridLayoutManager);
-
-        recyclerView.setAdapter(mAdapter);
-
-
+        //init_value();
+        //load_value(clickNumber);
+        NewThread nt = new NewThread(this);
+        nt.execute(clickNumber);
 
         btnConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,6 +107,55 @@ public class MenuAdjust extends AppCompatActivity implements AdapterClickListene
 
 
     }//onCreate()
+
+    private class NewThread extends AsyncTask<Integer, Integer, Boolean> {
+
+        private Context context;
+        private CustomProgressDialog dialog;
+
+        private NewThread(Context context) {
+
+            this.context = context;
+
+        }
+
+        @Override
+        protected void onPreExecute() {
+
+            init_value();
+            dialog = new CustomProgressDialog(context);
+            dialog.settingCustomProgressDialog();
+
+
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+
+            RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rv_adjust);
+            mAdapter = new AdjustAdapter(context, arrayList);
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(context, 3);
+            recyclerView.setLayoutManager(gridLayoutManager);
+
+            recyclerView.setAdapter(mAdapter);
+
+            dialog.dismiss();
+
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+
+        }
+
+        @Override
+        protected Boolean doInBackground(Integer... integers) {
+
+            load_value(integers[0]);
+
+            return null;
+        }
+    }
 
     private void init_value() {
         dbHelper = new SQLiteOpenHelperIcon(this);
