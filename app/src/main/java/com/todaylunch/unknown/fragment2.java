@@ -77,6 +77,12 @@ public class fragment2 extends Fragment {
         //load_value();
         //load_value_icon();
 
+        mRecyclerView = view.findViewById(R.id.rv_frg2);
+        linearLayoutManager = new LinearLayoutManager(getContext());
+        mRecyclerView.setLayoutManager(linearLayoutManager);
+        mAdapter = new MyAdapter_Fragment(mArrayList, mArrayListIcon, getContext());
+        mRecyclerView.setAdapter(mAdapter);
+
         NewThread nt = new NewThread(getContext(), view);
         nt.execute();
 
@@ -200,11 +206,7 @@ public class fragment2 extends Fragment {
         @Override
         protected void onPostExecute(Boolean aBoolean) {
 
-            mRecyclerView = view.findViewById(R.id.rv_frg2);
-            linearLayoutManager = new LinearLayoutManager(getActivity());
-            mRecyclerView.setLayoutManager(linearLayoutManager);
-            mAdapter = new MyAdapter_Fragment(mArrayList, mArrayListIcon, context);
-            mRecyclerView.setAdapter(mAdapter);
+            mAdapter.notifyDataSetChanged();
 
             dialog.dismiss();
 

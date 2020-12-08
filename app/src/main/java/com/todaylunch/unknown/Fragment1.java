@@ -75,7 +75,13 @@ public class Fragment1 extends Fragment{
 
         init(view);
 
-        NewThread nt = new NewThread(getContext(), view);
+        recyclerView = (RecyclerView) view.findViewById(R.id.rv_fragment1);
+        gridLayoutManager = new GridLayoutManager(getContext(), 3);
+        recyclerView.setLayoutManager(gridLayoutManager);
+        adapter = new FragmentAdapter(getContext(), iconArrayList);
+        recyclerView.setAdapter(adapter);
+
+        NewThread nt = new NewThread(getContext());
         nt.execute();
         //init_value();
 
@@ -149,11 +155,11 @@ public class Fragment1 extends Fragment{
 
         private CustomProgressDialog dialog;
         private Context context;
-        private View view;
 
-        public NewThread(Context context, View view) {
+
+        public NewThread(Context context) {
             this.context = context;
-            this.view = view;
+
         }
 
         @Override
@@ -167,11 +173,7 @@ public class Fragment1 extends Fragment{
         @Override
         protected void onPostExecute(String s) {
 
-            recyclerView = (RecyclerView) view.findViewById(R.id.rv_fragment1);
-            gridLayoutManager = new GridLayoutManager(getActivity(), 3);
-            recyclerView.setLayoutManager(gridLayoutManager);
-            adapter = new FragmentAdapter(getActivity(), iconArrayList);
-            recyclerView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
 
             fabAnimation();
 
@@ -187,19 +189,23 @@ public class Fragment1 extends Fragment{
         @Override
         protected String doInBackground(Integer... values) {
 
+
+            load_value();
+
+            /*
             SQLiteDatabase db = dbHelper.getReadableDatabase();
             Cursor cursor = db.rawQuery(MySQLite.SQL_SELECT2, null);
 
             cursor.moveToFirst();
             for (int i=0; i < 9; i++) {
 
-                int menuNumber = cursor.getInt(0);
+                 int menuNumber = cursor.getInt(0);
                 String menuTitle = cursor.getString(1);
                 int menuImageNumber = cursor.getInt(2);
 
                 ListObject3 menuObject = new ListObject3(menuNumber, menuTitle, menuImageNumber);
 
-                iconArrayList.add(menuObject);
+                iconArrayList.add( menuObject);
 
                 cursor.moveToNext();
 
@@ -207,6 +213,8 @@ public class Fragment1 extends Fragment{
             cursor.close();
             db.close();
             Log.d("close", "fragment1 db closed");
+
+             */
 
 
 
@@ -262,6 +270,8 @@ public class Fragment1 extends Fragment{
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery(MySQLite.SQL_SELECT2, null);
 
+        System.out.println("Cursor Count : " + cursor.getCount());
+
         cursor.moveToFirst();
         for (int i=0; i < 9; i++) {
 
@@ -308,8 +318,9 @@ public class Fragment1 extends Fragment{
     public void onResume() {
         super.onResume();
         Log.d("Fragment1 : ", "onResume");
+        System.out.println(onResumeButton);
 
-        if (onResumeButton == true) {
+        if (onResumeButton) {
 
             iconArrayList.clear();
             load_value();
@@ -318,9 +329,6 @@ public class Fragment1 extends Fragment{
         }
 
         onResumeButton = true;
-
-
-
 
     }
 

@@ -81,6 +81,14 @@ public class MenuAdjust extends AppCompatActivity implements AdapterClickListene
 
         //init_value();
         //load_value(clickNumber);
+
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rv_adjust);
+        mAdapter = new AdjustAdapter(this, arrayList);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
+        recyclerView.setLayoutManager(gridLayoutManager);
+
+        recyclerView.setAdapter(mAdapter);
+
         NewThread nt = new NewThread(this);
         nt.execute(clickNumber);
 
@@ -132,12 +140,7 @@ public class MenuAdjust extends AppCompatActivity implements AdapterClickListene
         @Override
         protected void onPostExecute(Boolean aBoolean) {
 
-            RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rv_adjust);
-            mAdapter = new AdjustAdapter(context, arrayList);
-            GridLayoutManager gridLayoutManager = new GridLayoutManager(context, 3);
-            recyclerView.setLayoutManager(gridLayoutManager);
-
-            recyclerView.setAdapter(mAdapter);
+            mAdapter.notifyDataSetChanged();
 
             dialog.dismiss();
 

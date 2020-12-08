@@ -75,6 +75,12 @@ public class MyMenuList extends AppCompatActivity {
         //load_value();
         //load_value_icon();
 
+        recyclerView = (RecyclerView) findViewById(R.id.rv_frg2);
+        linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        mAdapter = new MyAdapter_Fragment(arrayList, arrayListIcon, this);
+        recyclerView.setAdapter(mAdapter);
+
         NewThread nt = new NewThread(MyMenuList.this);
         nt.execute();
 
@@ -194,11 +200,7 @@ public class MyMenuList extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean aBoolean) {
 
-            recyclerView = (RecyclerView) findViewById(R.id.rv_frg2);
-            linearLayoutManager = new LinearLayoutManager(context);
-            recyclerView.setLayoutManager(linearLayoutManager);
-            mAdapter = new MyAdapter_Fragment(arrayList, arrayListIcon, context);
-            recyclerView.setAdapter(mAdapter);
+            mAdapter.notifyDataSetChanged();
 
             dialog.dismiss();
         }

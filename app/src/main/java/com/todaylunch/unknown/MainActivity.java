@@ -37,11 +37,6 @@ public class MainActivity extends AppCompatActivity {
         //ad initialize from app ID
         MobileAds.initialize(this, "ca-app-pub-8489601855107344~4865112043");
 
-
-        //init_value();
-        NewThread nt = new NewThread(this);
-        nt.execute();
-
         load_design();
 
 
@@ -79,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
         ft.add(R.id.frame_main, new Fragment1());
         ft.commit();
 
+
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -109,48 +105,6 @@ public class MainActivity extends AppCompatActivity {
     }//onCreate
 
 
-    private class NewThread extends AsyncTask<String, Integer, Boolean> {
-
-        private Context context;
-        private CustomProgressDialog dialog;
-
-        private NewThread(Context context) {
-            this.context = context;
-
-
-        }
-
-        @Override
-        protected void onPreExecute() {
-
-            init_value();
-            dialog = new CustomProgressDialog(context);
-            dialog.settingCustomProgressDialog();
-
-        }
-
-        @Override
-        protected void onPostExecute(Boolean aBoolean) {
-
-            dialog.dismiss();
-
-        }
-
-        @Override
-        protected void onProgressUpdate(Integer... values) {
-
-        }
-
-        @Override
-        protected Boolean doInBackground(String... strings) {
-
-            load_value();
-
-            return null;
-        }
-
-    }
-
     //Change fragment for Tablayout
     private void switchFragment(int pos) {
 
@@ -177,28 +131,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void init_value() {
-        dbHelperIcon = new SQLiteOpenHelperIcon(this);
-        //dbHelperDesign = new SQLiteOpenHelperSetting(this);
-
-    }
-
-    private void load_value() {
-
-        SQLiteDatabase db2 = dbHelperIcon.getReadableDatabase();
-        Cursor cursor2 = db2.rawQuery(MySQLite.SQL_SELECT2, null);
-        drawableImageIdSetter(191);
-
-        if (cursor2.getColumnCount() == 0) {
-            cursor2.close();
-            db2.close();
-            start_value_add();
-        }
-
-        cursor2.close();
-        db2.close();
-
-    }
 
     private void load_design() {
 
@@ -212,28 +144,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-    private void start_value_add() {
-
-        InitializeValueSetter initValue = new InitializeValueSetter(this);
-        initValue.toSQLiteValueSetter();
-
-    }
-
-    private void drawableImageIdSetter(int image_volume) {
-
-        for (int i = 1; i <= image_volume; i++) {
-            IMAGE_ID_ARRAYLIST.add(resourceIdConverter("drawable", "drawable_image_" + i));
-        }
-
-
-    }
-    private int resourceIdConverter(String file, String name) {
-
-        int tempId = getResources().getIdentifier("com.todaylunch.unknown:" + file + "/" + name,null,null);
-
-        return tempId;
-    }
 
     @Override
     protected void attachBaseContext(Context newBase) {

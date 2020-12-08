@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -34,8 +36,9 @@ public class MyAdapter_Fragment extends RecyclerView.Adapter<MyViewHolder> {
     private SimpleDateFormat simpleFormatter = new SimpleDateFormat("yyyy-MM-dd");
     private Date date = new Date();
     private TypefaceUtil typefaceUtil;
-    private int typefaceNumber, btnNumber;
     private ButtonDrawableUtil btnUtil;
+    private Drawable buttonDrawable;
+    private Typeface typeface;
 
 
     public MyAdapter_Fragment() {}
@@ -47,9 +50,9 @@ public class MyAdapter_Fragment extends RecyclerView.Adapter<MyViewHolder> {
         filterArrayList = new ArrayList<>();
         filterArrayList.addAll(arrayList);
         typefaceUtil = new TypefaceUtil(mContext);
-        typefaceNumber = MainActivity.FONT_NUMBER;
         btnUtil = new ButtonDrawableUtil(mContext);
-        btnNumber = MainActivity.BACKGROUND_NUMBER;
+        typeface = typefaceUtil.getTypeface(MainActivity.FONT_NUMBER);
+        buttonDrawable = btnUtil.getDrawable(MainActivity.BACKGROUND_NUMBER);
     }
 
     @NonNull
@@ -74,16 +77,16 @@ public class MyAdapter_Fragment extends RecyclerView.Adapter<MyViewHolder> {
 
         holder.cardView_list.setCardBackgroundColor(MainActivity.APPS_COLOR_NUMBER);
 
-        holder.strDate.setTypeface(typefaceUtil.getTypeface(typefaceNumber));
-        holder.menu1.setTypeface(typefaceUtil.getTypeface(typefaceNumber));
-        holder.menu2.setTypeface(typefaceUtil.getTypeface(typefaceNumber));
-        holder.strTitle.setTypeface(typefaceUtil.getTypeface(typefaceNumber));
-        holder.btn_card_adjust.setTypeface(typefaceUtil.getTypeface(typefaceNumber));
-        holder.btn_card_link.setTypeface(typefaceUtil.getTypeface(typefaceNumber));
-        holder.btn_card_choice.setTypeface(typefaceUtil.getTypeface(typefaceNumber));
+        holder.strDate.setTypeface(typeface);
+        holder.menu1.setTypeface(typeface);
+        holder.menu2.setTypeface(typeface);
+        holder.strTitle.setTypeface(typeface);
+        holder.btn_card_adjust.setTypeface(typeface);
+        holder.btn_card_link.setTypeface(typeface);
+        holder.btn_card_choice.setTypeface(typeface);
 
-        holder.btn_card_choice.setBackground(btnUtil.getDrawable(btnNumber));
-        holder.btn_card_link.setBackground(btnUtil.getDrawable(btnNumber));
+        holder.btn_card_choice.setBackground(buttonDrawable);
+        holder.btn_card_link.setBackground(buttonDrawable);
 
         holder.strDate.setText(simpleFormatter.format(longDate));
         holder.menu1.setText(arrayListIcon.get(Int1 - 1));

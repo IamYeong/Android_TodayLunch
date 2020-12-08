@@ -66,6 +66,13 @@ public class MenuDetail extends AppCompatActivity {
         //init_value();
         //load_value(clickNumber);
         //tvPath.setText(getIntent().getStringExtra("TEXT_VIEW"));
+
+        recyclerView = (RecyclerView) findViewById(R.id.rv_menu_detail);
+        gridLayoutManager = new GridLayoutManager(this, 3);
+        recyclerView.setLayoutManager(gridLayoutManager);
+        mAdapter = new DetailAdapter(this, iconArrayList2, clickNumber, clickTitle);
+        recyclerView.setAdapter(mAdapter);
+
         NewThread nt = new NewThread(this);
         nt.execute(clickNumber);
 
@@ -112,11 +119,7 @@ public class MenuDetail extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean aBoolean) {
 
-            recyclerView = (RecyclerView) findViewById(R.id.rv_menu_detail);
-            gridLayoutManager = new GridLayoutManager(context, 3);
-            recyclerView.setLayoutManager(gridLayoutManager);
-            mAdapter = new DetailAdapter(context, iconArrayList2, clickNumber, clickTitle);
-            recyclerView.setAdapter(mAdapter);
+            mAdapter.notifyDataSetChanged();
 
             dialog.dismiss();
 
@@ -173,7 +176,7 @@ public class MenuDetail extends AppCompatActivity {
 
 
 
-        if (onResumeButton == true) {
+        if (onResumeButton) {
 
             iconArrayList2.clear();
 
