@@ -36,9 +36,10 @@ public class MenuAdjust extends AppCompatActivity implements AdapterClickListene
     private TypefaceUtil typefaceUtil;
     private int fontNumber, btnNumber;
     private ButtonDrawableUtil btnUtil;
-    public Intent intent;
+    private Intent intent;
     private int clickNumber;
     private ConstraintLayout constraintLayout;
+    private RecyclerView recyclerView;
 
     private DialogClickListener listener;
 
@@ -74,11 +75,19 @@ public class MenuAdjust extends AppCompatActivity implements AdapterClickListene
 
         constraintLayout.setBackgroundColor(MainActivity.FRAMELAYOUT_NUMBER);
 
+
+
         intent = getIntent();
         clickNumber = intent.getIntExtra("MenuAdjust", -1);
 
         Log.d("CLickNumber : ", " " + clickNumber);
 
+        recyclerView = (RecyclerView) findViewById(R.id.rv_adjust);
+        mAdapter = new AdjustAdapter(this, arrayList);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
+        recyclerView.setLayoutManager(gridLayoutManager);
+
+        recyclerView.setAdapter(mAdapter);
         //init_value();
         //load_value(clickNumber);
         NewThread nt = new NewThread(this);
@@ -132,12 +141,7 @@ public class MenuAdjust extends AppCompatActivity implements AdapterClickListene
         @Override
         protected void onPostExecute(Boolean aBoolean) {
 
-            RecyclerView recyclerView = (RecyclerView) findViewById(R.id.rv_adjust);
-            mAdapter = new AdjustAdapter(context, arrayList);
-            GridLayoutManager gridLayoutManager = new GridLayoutManager(context, 3);
-            recyclerView.setLayoutManager(gridLayoutManager);
-
-            recyclerView.setAdapter(mAdapter);
+            mAdapter.notifyDataSetChanged();
 
             dialog.dismiss();
 
@@ -185,7 +189,33 @@ public class MenuAdjust extends AppCompatActivity implements AdapterClickListene
 
     }
 
+    private void setEditTextArrayList() {
+
+        if (recyclerView != null) {
+
+            for (int i = 0; i < arrayList.size(); i++) {
+
+                //AdjustViewHolder viewHolder = (RecyclerView.ViewHolder) recyclerView.findViewHolderForLayoutPosition(i);
+                //View v = recyclerView.getLayoutManager().findViewByPosition(i);
+
+                View view = recyclerView.getChildAt(i);
+                EditText et = (EditText) view.findViewById(R.id.et_adjust_grid);
+                String title = et.getText().toString();
+
+                arrayList.get(i).setmTitle(title);
+
+            }
+
+        }
+
+
+
+    }
+
     private void save_value(int intExtra) {
+
+
+        setEditTextArrayList();
         //arrayList -> db
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 

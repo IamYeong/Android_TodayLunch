@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
@@ -46,9 +47,8 @@ public class MyMenuList extends AppCompatActivity {
     private LinearLayoutManager linearLayoutManager;
     private FrameLayout frameLayout;
 
-    private int fontNumber, btnNumber;
     private TypefaceUtil typefaceUtil;
-    private ButtonDrawableUtil btnUtil;
+    private Typeface typeface;
 
     private boolean onResumeButton = false;
 
@@ -62,6 +62,8 @@ public class MyMenuList extends AppCompatActivity {
 
 
         init();
+
+        typeface = typefaceUtil.getTypeface(MainActivity.FONT_NUMBER);
 
         intentDetail = getIntent();
         clickMainNumber = intentDetail.getIntExtra("ClickMainNumber", 0);
@@ -78,12 +80,9 @@ public class MyMenuList extends AppCompatActivity {
         NewThread nt = new NewThread(MyMenuList.this);
         nt.execute();
 
-        fontNumber = MainActivity.FONT_NUMBER;
-        btnNumber = MainActivity.BACKGROUND_NUMBER;
-
-        tvMain.setTypeface(typefaceUtil.getTypeface(fontNumber));
-        pathText1.setTypeface(typefaceUtil.getTypeface(fontNumber));
-        pathText2.setTypeface(typefaceUtil.getTypeface(fontNumber));
+        tvMain.setTypeface(typeface);
+        pathText1.setTypeface(typeface);
+        pathText2.setTypeface(typeface);
         fab.setBackgroundTintList(ColorStateList.valueOf(MainActivity.COLOR_NUMBER));
         frameLayout.setBackgroundColor(MainActivity.FRAMELAYOUT_NUMBER);
 
@@ -91,6 +90,12 @@ public class MyMenuList extends AppCompatActivity {
         pathText1.setText(clickTitle1);
         right2.setText(" > ");
         pathText2.setText(clickTitle2);
+
+
+        linearLayoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        mAdapter = new MyAdapter_Fragment();
+        recyclerView.setAdapter(mAdapter);
 
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -194,7 +199,8 @@ public class MyMenuList extends AppCompatActivity {
         @Override
         protected void onPostExecute(Boolean aBoolean) {
 
-            recyclerView = (RecyclerView) findViewById(R.id.rv_frg2);
+            //mAdapter.notifyDataSetChanged();
+
             linearLayoutManager = new LinearLayoutManager(context);
             recyclerView.setLayoutManager(linearLayoutManager);
             mAdapter = new MyAdapter_Fragment(arrayList, arrayListIcon, context);
@@ -278,7 +284,7 @@ public class MyMenuList extends AppCompatActivity {
     private void init() {
 
         typefaceUtil = new TypefaceUtil(this);
-        btnUtil = new ButtonDrawableUtil(this);
+
         arrayList = new ArrayList<>();
         arrayListIcon = new ArrayList<>();
 
@@ -293,6 +299,8 @@ public class MyMenuList extends AppCompatActivity {
         btn_init = (Button) findViewById(R.id.btn_init);
         fab = (FloatingActionButton) findViewById(R.id.fab_frg2);
         frameLayout = findViewById(R.id.frame_fragment2);
+
+        recyclerView = (RecyclerView) findViewById(R.id.rv_frg2);
 
     }
 

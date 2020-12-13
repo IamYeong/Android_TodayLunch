@@ -91,6 +91,12 @@ public class Fragment1 extends Fragment{
         fab2.setBackgroundTintList(ColorStateList.valueOf(MainActivity.COLOR_NUMBER));
         fab3.setBackgroundTintList(ColorStateList.valueOf(MainActivity.COLOR_NUMBER));
 
+        recyclerView = (RecyclerView) view.findViewById(R.id.rv_fragment1);
+        gridLayoutManager = new GridLayoutManager(getActivity(), 3);
+        recyclerView.setLayoutManager(gridLayoutManager);
+        adapter = new FragmentAdapter(getActivity(), iconArrayList);
+        recyclerView.setAdapter(adapter);
+
         //load_value();
 
         fab1.setOnClickListener(new View.OnClickListener() {
@@ -167,11 +173,7 @@ public class Fragment1 extends Fragment{
         @Override
         protected void onPostExecute(String s) {
 
-            recyclerView = (RecyclerView) view.findViewById(R.id.rv_fragment1);
-            gridLayoutManager = new GridLayoutManager(getActivity(), 3);
-            recyclerView.setLayoutManager(gridLayoutManager);
-            adapter = new FragmentAdapter(getActivity(), iconArrayList);
-            recyclerView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
 
             fabAnimation();
 

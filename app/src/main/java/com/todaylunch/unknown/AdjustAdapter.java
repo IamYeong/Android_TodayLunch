@@ -24,6 +24,7 @@ public class AdjustAdapter extends RecyclerView.Adapter<AdjustViewHolder> {
     private ArrayList<ListObject3> arrayList;
     private TypefaceUtil typefaceUtil;
     private int typefaceNumber;
+    private AdjustViewHolder viewHolder;
 
 
     public AdjustAdapter() {
@@ -44,7 +45,7 @@ public class AdjustAdapter extends RecyclerView.Adapter<AdjustViewHolder> {
     public AdjustViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(context).inflate(R.layout.adjust_grid_resource_edit, parent, false);
-        AdjustViewHolder viewHolder = new AdjustViewHolder(view);
+        viewHolder = new AdjustViewHolder(view);
 
         return viewHolder;
     }
@@ -66,33 +67,24 @@ public class AdjustAdapter extends RecyclerView.Adapter<AdjustViewHolder> {
             }
         });
 
-        holder.btnConfirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                String et = holder.editText.getText().toString();
-                arrayList.get(position).setmTitle(et);
-                Toast.makeText(context, R.string.toast_confirm, Toast.LENGTH_SHORT).show();
-
-                Log.d("MenuAdjust : ", "Confirm Button Click/" + position + ", " + et);
-
-            }
-        });
-
     }
 
     @Override
     public int getItemCount() {
         return (arrayList != null ? arrayList.size() : 0);
     }
+
+
+
+
+
 }
 
 class AdjustViewHolder extends RecyclerView.ViewHolder {
 
-    CardView cardView;
-    ImageView imageView;
-    EditText editText;
-    Button btnConfirm;
+    protected CardView cardView;
+    protected ImageView imageView;
+    protected EditText editText;
 
     public AdjustViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -100,7 +92,7 @@ class AdjustViewHolder extends RecyclerView.ViewHolder {
         cardView = (CardView) itemView.findViewById(R.id.cardView_adjust_edit);
         imageView = (ImageView) itemView.findViewById(R.id.img_adjust_grid);
         editText = (EditText) itemView.findViewById(R.id.et_adjust_grid);
-        btnConfirm = (Button) itemView.findViewById(R.id.btn_adjust_grid);
+
 
     }
 }

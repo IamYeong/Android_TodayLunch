@@ -8,6 +8,7 @@ import android.content.res.ColorStateList;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
@@ -48,8 +49,8 @@ public class fragment2 extends Fragment {
     private EditText editTextSearch;
     private Button btn_late, btn_long, btn_init;
 
-    private int fontNumber;
     private TypefaceUtil typefaceUtil;
+    private Typeface typeface;
     private TextView tvTitle;
 
     private RecyclerView mRecyclerView;
@@ -80,18 +81,24 @@ public class fragment2 extends Fragment {
         NewThread nt = new NewThread(getContext(), view);
         nt.execute();
 
+
+        linearLayoutManager = new LinearLayoutManager(getActivity());
+        mRecyclerView.setLayoutManager(linearLayoutManager);
+        mAdapter = new MyAdapter_Fragment();
+        mRecyclerView.setAdapter(mAdapter);
+        //connecting empty adapter
+
         typefaceUtil = new TypefaceUtil(getContext());
-        fontNumber = MainActivity.FONT_NUMBER;
+        typeface = typefaceUtil.getTypeface(MainActivity.FONT_NUMBER);
 
-        editTextSearch.setTypeface(typefaceUtil.getTypeface(fontNumber));
+        editTextSearch.setTypeface(typeface);
 
-        tvTitle.setTypeface(typefaceUtil.getTypeface(fontNumber));
-        btn_late.setTypeface(typefaceUtil.getTypeface(fontNumber));
-        btn_long.setTypeface(typefaceUtil.getTypeface(fontNumber));
-        btn_init.setTypeface(typefaceUtil.getTypeface(fontNumber));
+        tvTitle.setTypeface(typeface);
+        btn_late.setTypeface(typeface);
+        btn_long.setTypeface(typeface);
+        btn_init.setTypeface(typeface);
         fab.setBackgroundTintList(ColorStateList.valueOf(MainActivity.COLOR_NUMBER));
         frameLayout.setBackgroundColor(MainActivity.FRAMELAYOUT_NUMBER);
-
 
         editTextSearch.addTextChangedListener(new TextWatcher() {
             @Override
@@ -158,8 +165,6 @@ public class fragment2 extends Fragment {
 
                 Log.d("fragment2 : ", "init click");
 
-
-
                 mArrayList.clear();
                 mArrayListIcon.clear();
 
@@ -200,10 +205,11 @@ public class fragment2 extends Fragment {
         @Override
         protected void onPostExecute(Boolean aBoolean) {
 
-            mRecyclerView = view.findViewById(R.id.rv_frg2);
+            //mAdapter.notifyDataSetChanged();
+
             linearLayoutManager = new LinearLayoutManager(getActivity());
             mRecyclerView.setLayoutManager(linearLayoutManager);
-            mAdapter = new MyAdapter_Fragment(mArrayList, mArrayListIcon, context);
+            mAdapter = new MyAdapter_Fragment(mArrayList, mArrayListIcon, getContext());
             mRecyclerView.setAdapter(mAdapter);
 
             dialog.dismiss();
@@ -291,6 +297,8 @@ public class fragment2 extends Fragment {
 
         frameLayout = view.findViewById(R.id.frame_fragment2);
 
+        mRecyclerView = view.findViewById(R.id.rv_frg2);
+
     }
 
     @Override
@@ -298,8 +306,6 @@ public class fragment2 extends Fragment {
         super.onResume();
 
         if (onResumeButton == true) {
-
-
 
             mArrayList.clear();
             mArrayListIcon.clear();
@@ -310,8 +316,6 @@ public class fragment2 extends Fragment {
             mAdapter.notifyDataSetChanged();
 
         }
-
         onResumeButton = true;
-
     }
 }

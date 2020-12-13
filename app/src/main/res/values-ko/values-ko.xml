@@ -21,6 +21,8 @@
     <string name="review">리뷰 남기기</string>
     <string name="privacy">개인정보보호 약관</string>
     <string name="licence">저작권 표기</string>
+    <string name="email">개발자 이메일</string>
+    <string name="kakao">카카오톡 상담/건의</string>
 
     <string name="colorpicker">테마 색상</string>
     <string name="positive">확인</string>

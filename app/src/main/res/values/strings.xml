@@ -21,6 +21,8 @@
     <string name="review">Feedback</string>
     <string name="privacy">Privacy</string>
     <string name="licence">licence / copyright</string>
+    <string name="email">Send E-mail to developer</string>
+    <string name="kakao">Talk with KAKAO TALK</string>
 
     <string name="colorpicker">Theme</string>
 
@@ -54,7 +56,7 @@
     <string name="toast_adjust">Edit complete</string>
     <string name="toast_delete">Delete complete</string>
     <string name="toast_choose">Choose</string>
-    <string name="toast_complete">Done!</string>g
+    <string name="toast_complete">Done!</string>
     <string name="toast_overlab">Already exist same title</string>
     <string name="toast_cancel">Cancel</string>
     <string name="toast_confirm">Confirm</string>

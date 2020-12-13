@@ -21,6 +21,8 @@
     <string name="review">Feedback</string>
     <string name="privacy">Privacy</string>
     <string name="licence">licence / copyright</string>
+    <string name="email">Send E-mail to developer</string>
+    <string name="kakao">Talk with KAKAO TALK</string>
 
     <string name="colorpicker">Theme</string>
     <string name="positive">Save</string>

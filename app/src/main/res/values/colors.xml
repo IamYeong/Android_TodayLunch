@@ -9,5 +9,7 @@
     <color name="colorNaturalGrey">#EBECED</color>
     <color name="colorNaturalNavy">#4C586F</color>
     <color name="colorNaturalWhite">#CBC5C1</color>
+    <color name="redSplashBackground">#e81c1c</color>
+    <color name="link">#0000ff</color>
 
 </resources>

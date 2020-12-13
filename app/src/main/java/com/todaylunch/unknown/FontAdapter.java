@@ -21,8 +21,8 @@ import java.util.ArrayList;
 
 public class FontAdapter extends RecyclerView.Adapter<FontViewHolder> {
 
-    Context context;
-    ArrayList<String> arrayList = new ArrayList<>();
+    private Context context;
+    private ArrayList<String> arrayList = new ArrayList<>();
     private TypefaceUtil typefaceUtil;
     //private SQLiteOpenHelperSetting dbHelper = null;
     private DialogClickListener listener;
@@ -61,7 +61,7 @@ public class FontAdapter extends RecyclerView.Adapter<FontViewHolder> {
     @Override
     public FontViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(context).inflate(R.layout.checkbox_list_source, null , false);
+        View view = LayoutInflater.from(context).inflate(R.layout.checkbox_list_source, parent , false);
         FontViewHolder holder = new FontViewHolder(view);
         return holder;
     }
@@ -75,13 +75,6 @@ public class FontAdapter extends RecyclerView.Adapter<FontViewHolder> {
         holder.btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                /*
-                SQLiteDatabase db = dbHelper.getWritableDatabase();
-                String update = MySQLite.SQL_UPDATE3 + MySQLite.DCOL_NAME4 + " = " + position;
-                db.execSQL(update);
-                db.close();
-                 */
 
                 PreferencesManager.setFontValue(context, "FONT", position);
 
@@ -106,7 +99,7 @@ class FontViewHolder extends RecyclerView.ViewHolder {
 
     Button btn;
 
-    public FontViewHolder(@NonNull View itemView) {
+    protected FontViewHolder(@NonNull View itemView) {
 
         super(itemView);
 

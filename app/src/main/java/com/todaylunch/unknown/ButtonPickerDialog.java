@@ -40,15 +40,15 @@ public class ButtonPickerDialog implements DialogClickListener {
         dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        View view = LayoutInflater.from(context).inflate(R.layout.font_dialog_layout, null, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.button_dialog_layout, null, false);
 
         dialog.setContentView(view);
 
-        tvTitle = view.findViewById(R.id.tv_font_dialog_title);
+        tvTitle = view.findViewById(R.id.tv_button_dialog);
         tvTitle.setText(context.getResources().getString(R.string.button));
         tvTitle.setTypeface(typefaceUtil.getTypeface(fontNumber));
 
-        RecyclerView rv = (RecyclerView) dialog.findViewById(R.id.rv_font_dialog);
+        RecyclerView rv = (RecyclerView) dialog.findViewById(R.id.rv_button_dialog);
         LinearLayoutManager lm = new LinearLayoutManager(context);
         ButtonAdapter adapter = new ButtonAdapter(context);
         rv.setLayoutManager(lm);

@@ -78,7 +78,7 @@ public class ButtonAdapter extends RecyclerView.Adapter<ButtonViewHolder> {
     @Override
     public ButtonViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(context).inflate(R.layout.checkbox_list_source , null, false);
+        View view = LayoutInflater.from(context).inflate(R.layout.checkbox_list_source , parent, false);
         ButtonViewHolder viewHolder = new ButtonViewHolder(view);
 
         return viewHolder;
@@ -93,15 +93,6 @@ public class ButtonAdapter extends RecyclerView.Adapter<ButtonViewHolder> {
         holder.btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                /*
-                SQLiteDatabase db = dbHelper.getWritableDatabase();
-                String update = MySQLite.SQL_UPDATE3 + MySQLite.DCOL_NAME5 + " = " + position;
-                db.execSQL(update);
-                db.close();
-
-
-                 */
 
                 PreferencesManager.setButtonValue(context, "BUTTON", position);
 

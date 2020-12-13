@@ -79,12 +79,30 @@ public class MyAdapter_Setting extends RecyclerView.Adapter<MyViewHolder2> {
                     case 3 :
                         Log.d("MyAdapter_Setting", "privacy click");
                         //개인정보정책 링크 Intent에 넣을 것.
-                        Toast.makeText(mContext, R.string.toast_developing, Toast.LENGTH_SHORT).show();
+                        //https://unknown-alchemist.tistory.com/2
+
+                        Intent intent1 = new Intent(Intent.ACTION_VIEW, Uri.parse("https://unknown-alchemist.tistory.com/2"));
+                        mContext.startActivity(intent1);
+                        //Toast.makeText(mContext, R.string.toast_developing, Toast.LENGTH_SHORT).show();
                         break;
 
                     case 4 :
                         Log.d("MyAdapter_Setting :", "license click");
                         openLicenseDialog();
+                        break;
+
+                    case 5 :
+
+                        Log.d("MyAdapter_Setting :", "email click");
+                        startMail();
+
+                        break;
+
+                    case 6 :
+
+                        Log.d("MyAdapter_Setting :", "kakao click");
+                        startKakao();
+
                         break;
 
                 }
@@ -108,6 +126,37 @@ public class MyAdapter_Setting extends RecyclerView.Adapter<MyViewHolder2> {
 
         LicenseDialog dialog = new LicenseDialog(mContext);
         dialog.callLicenseDialog();
+
+    }
+
+    private void startMail() {
+
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+
+        try {
+            emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"wjdrhkddud2@gmail.com"});
+
+            emailIntent.setType("text/html");
+            emailIntent.setPackage("com.google.android.gm");
+            if(emailIntent.resolveActivity(mContext.getPackageManager())!=null)
+                mContext.startActivity(emailIntent);
+
+            mContext.startActivity(emailIntent);
+        } catch (Exception e) {
+            e.printStackTrace();
+
+            emailIntent.setType("text/html");
+            emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{"wjdrhkddud2@gmail.com"});
+
+            mContext.startActivity(Intent.createChooser(emailIntent, "Send Email"));
+        }
+
+    }
+
+    private void startKakao() {
+
+        Intent intent1 = new Intent(Intent.ACTION_VIEW, Uri.parse("http://pf.kakao.com/_nwQiK"));
+        mContext.startActivity(intent1);
 
     }
 

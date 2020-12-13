@@ -9,17 +9,16 @@ import java.util.ArrayList;
 
 public class InitializeValueSetter {
 
-    private SQLiteOpenHelperIcon dbHelper = null;
+    private SQLiteOpenHelperIcon dbHelper;
     private Context context;
     private ArrayList<String> arrayList;
     private Resources res;
 
 
-
-    public InitializeValueSetter(Context context) {
+    public InitializeValueSetter(Context context, SQLiteOpenHelperIcon dbHelper) {
 
         this.context = context;
-        dbHelper = new SQLiteOpenHelperIcon(context);
+        this.dbHelper = dbHelper;
         res = context.getResources();
 
         arrayList = new ArrayList<>();
