@@ -61,6 +61,7 @@
     <string name="toast_check_list">飲食店リストを追加してください</string>
     <string name="toast_check_link">URLをご確認の上、お試しください。</string>
     <string name="toast_developing">準備が終わるまでお待ちください。</string>
+    <string name="toast_retry">Please make the right choice</string>
 
     <string name="dialog_delete">Delete this menu?</string>
 

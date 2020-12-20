@@ -76,7 +76,7 @@ public class BackPressedDialog {
 
     private void loadNativeAd() {
 
-        AdLoader.Builder builder = new AdLoader.Builder(context, "ca-app-pub-3940256099942544/2247696110");
+        AdLoader.Builder builder = new AdLoader.Builder(context, "ca-app-pub-8489601855107344/3448745136");
         builder.forUnifiedNativeAd(new UnifiedNativeAd.OnUnifiedNativeAdLoadedListener() {
             @Override
             public void onUnifiedNativeAdLoaded(UnifiedNativeAd unifiedNativeAd) {

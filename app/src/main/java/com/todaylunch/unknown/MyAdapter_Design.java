@@ -122,7 +122,7 @@ public class MyAdapter_Design extends RecyclerView.Adapter<MyViewHolder3> {
 
     public void openColorPicker(final int mPosition, String mTitle) {
 
-        Activity activity = (Activity) mContext;
+        final Activity activity = (Activity) mContext;
 
         final ColorPicker cp = new ColorPicker(activity);
         String title = mTitle;
@@ -166,6 +166,12 @@ public class MyAdapter_Design extends RecyclerView.Adapter<MyViewHolder3> {
         colors.add("#2A93D5");
         colors.add("#135589");
 
+        colors.add("#F12B6B");
+        colors.add("#FF467E");
+        colors.add("#45EBA5");
+        colors.add("#21ABA5");
+        colors.add("#FFBD39");
+
 
         cp.setColors(colors)
                 .setColumns(5)
@@ -174,18 +180,20 @@ public class MyAdapter_Design extends RecyclerView.Adapter<MyViewHolder3> {
                     @Override
                     public void onChooseColor(int position, int color) {
 
-
-                        Log.d("colors string list : ", colors.get(position) + ", " + color);
+                        if (position == -1) {
+                            Toast.makeText(activity, R.string.toast_retry, Toast.LENGTH_SHORT).show();
+                            return;
+                        }
 
                         if (mPosition == 0) {
                             PreferencesManager.setThemeValue(mContext, "THEME", color);
                         } else if(mPosition == 3) {
                             PreferencesManager.setBackgroundValue(mContext, "BACKGROUND", color);
-                        } else {
+                        } else if(mPosition == 4) {
                             PreferencesManager.setAppsColorValue(mContext, "APPS", color);
                         }
 
-
+                        Log.d("colors string list : ", colors.get(position) + ", " + color);
 
                         cp.dismissDialog();
 

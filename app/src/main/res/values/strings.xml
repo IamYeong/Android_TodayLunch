@@ -63,6 +63,7 @@
     <string name="toast_check_list">Please add store list</string>
     <string name="toast_check_link">Please check URL</string>
     <string name="toast_developing">Please wait for ready</string>
+    <string name="toast_retry">Please make the right choice</string>
 
     <string name="dialog_delete">Delete this menu?</string>
 

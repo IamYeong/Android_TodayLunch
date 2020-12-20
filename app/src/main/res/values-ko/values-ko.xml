@@ -62,6 +62,7 @@
     <string name="toast_check_list">목록을 추가해주세요</string>
     <string name="toast_check_link">URL이 올바른지 확인해주세요.</string>
     <string name="toast_developing">준비 중입니다</string>
+    <string name="toast_retry">다시 올바르게 선택해주세요</string>
 
     <string name="dialog_delete">정말로 삭제하시겠습니까?</string>
 
