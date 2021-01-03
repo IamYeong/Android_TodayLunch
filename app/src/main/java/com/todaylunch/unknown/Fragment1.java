@@ -32,6 +32,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
@@ -58,7 +61,11 @@ public class Fragment1 extends Fragment{
     private GridLayoutManager gridLayoutManager;
     private boolean onResumeButton = false;
     private FrameLayout frameLayout;
-    private static Handler handler;
+    private boolean adLoad = true;
+    private InterstitialAd interstitialAd;
+    //app id : ca-app-pub-8489601855107344~4865112043
+    //test ad id : ca-app-pub-3940256099942544/1033173712
+    //ad id : ca-app-pub-8489601855107344/4953398494
 
 
     public Fragment1() {
@@ -72,6 +79,7 @@ public class Fragment1 extends Fragment{
         Log.d("Fragment1 :", "onCreateView");
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fragment1,container, false);
+
 
         init(view);
 
@@ -321,8 +329,26 @@ public class Fragment1 extends Fragment{
 
         onResumeButton = true;
 
+    }
+
+    private void loadInterstitialAd() {
+
+        adLoad = false;
+
+        interstitialAd = new InterstitialAd(getContext());
+        interstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        interstitialAd.loadAd(new AdRequest.Builder().build());
+
+        interstitialAd.setAdListener(new AdListener() {
+
+            @Override
+            public void onAdClosed() {
+
+                interstitialAd.loadAd(new AdRequest.Builder().build());
 
 
+            }
+        });
 
     }
 

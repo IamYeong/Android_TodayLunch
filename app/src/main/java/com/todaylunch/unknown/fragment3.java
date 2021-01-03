@@ -1,6 +1,7 @@
 package com.todaylunch.unknown;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
@@ -97,16 +98,13 @@ public class fragment3 extends Fragment {
 
                 frameLayout.startAnimation(frame_open);
 
-                int randomNumber = random.nextInt(10);
-                if (randomNumber % 3 == 0) {
-                    //광고 송출
-                    if (interstitialAd.isLoaded()) {
-                        interstitialAd.show();
-                    } else {
-                        Log.d("TAG", "The interstitial wasn't loaded yet.");
-                    }
 
+                if (interstitialAd.isLoaded()) {
+                    interstitialAd.show();
+                } else {
+                    Log.d("TAG", "The interstitial wasn't loaded yet.");
                 }
+
 
                 if (arrayList.size() == 0) {
                     Toast.makeText(getActivity(), R.string.toast_check_list, Toast.LENGTH_SHORT).show();
@@ -225,5 +223,6 @@ public class fragment3 extends Fragment {
             }
         });
     }
+
 
 }

@@ -4,12 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.ColorStateList;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.os.AsyncTask;
+
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.material.tabs.TabLayout;
 import java.util.ArrayList;
@@ -28,13 +34,17 @@ public class MainActivity extends AppCompatActivity {
     public static int FRAMELAYOUT_NUMBER;
     public static int APPS_COLOR_NUMBER;
 
+    //private boolean adLoad = true;
+    //private InterstitialAd interstitialAd;
+    //app id : ca-app-pub-8489601855107344~4865112043
+    //test ad id : ca-app-pub-3940256099942544/1033173712
+    //ad id : ca-app-pub-8489601855107344/4953398494
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        //ad initialize from app ID
         MobileAds.initialize(this, "ca-app-pub-8489601855107344~4865112043");
 
         load_design();
@@ -98,10 +108,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
-
-
     }//onCreate
 
 
@@ -161,5 +167,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
 
 }

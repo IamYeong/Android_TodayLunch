@@ -11,8 +11,10 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 
 import java.util.Locale;
 
@@ -21,17 +23,22 @@ import static com.todaylunch.unknown.MainActivity.IMAGE_ID_ARRAYLIST;
 public class SplashActivity extends AppCompatActivity {
 
     private SharedPreferences pref;
+    //private InterstitialAd interstitialAd;
+    //app id : ca-app-pub-8489601855107344~4865112043
+    //test ad id : ca-app-pub-3940256099942544/1033173712
+    //ad id : ca-app-pub-8489601855107344/4953398494
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_splash);
 
         //Construct Locale.
         NewThread nt = new NewThread(this);
         nt.execute();
 
-        //Construct Locale.
+
 
     }
 
@@ -50,7 +57,7 @@ public class SplashActivity extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
-
+            //MobileAds.initialize(context, "ca-app-pub-8489601855107344~4865112043");
         }
 
         @Override
@@ -59,7 +66,7 @@ public class SplashActivity extends AppCompatActivity {
             LocaleManager.setLocale(PreferencesManager.getLanguageValue(context, "LANGUAGE"));
             boolean prefFirst = PreferencesManager.getFirstRunValue(context, "FIRST");
 
-            if (prefFirst == true) {
+            if (prefFirst) {
 
                 Intent intent = new Intent(context, MainActivity.class);
                 startActivity(intent);
@@ -82,6 +89,7 @@ public class SplashActivity extends AppCompatActivity {
         @Override
         protected void onProgressUpdate(Integer... values) {
 
+
         }
 
         @Override
@@ -97,6 +105,7 @@ public class SplashActivity extends AppCompatActivity {
             }
 
             drawableImageIdSetter(191);
+
 
             return null;
         }
@@ -116,6 +125,9 @@ public class SplashActivity extends AppCompatActivity {
 
         return tempId;
     }
+
+
+
 
 
 }
