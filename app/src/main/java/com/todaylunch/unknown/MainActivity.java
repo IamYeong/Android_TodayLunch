@@ -13,10 +13,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.google.android.ads.nativetemplates.TemplateView;
 import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdLoader;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.formats.UnifiedNativeAd;
 import com.google.android.material.tabs.TabLayout;
 import java.util.ArrayList;
 
@@ -33,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     public static int BACKGROUND_NUMBER;
     public static int FRAMELAYOUT_NUMBER;
     public static int APPS_COLOR_NUMBER;
+    public static InterstitialAd interstitialAd;
+    public static AdLoader.Builder builder;
 
     //private boolean adLoad = true;
     //private InterstitialAd interstitialAd;
@@ -46,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         MobileAds.initialize(this, "ca-app-pub-8489601855107344~4865112043");
+        setNativeAd();
+        setInterstitialAd();
 
         load_design();
 
@@ -164,6 +171,29 @@ public class MainActivity extends AppCompatActivity {
 
         BackPressedDialog dialog = new BackPressedDialog(this);
         dialog.callBackPressDialog();
+
+
+    }
+
+    private void setInterstitialAd() {
+
+        interstitialAd = new InterstitialAd(this);
+        interstitialAd.setAdUnitId("ca-app-pub-8489601855107344/4953398494");
+        interstitialAd.loadAd(new AdRequest.Builder().build());
+
+        interstitialAd.setAdListener(new AdListener() {
+
+            @Override
+            public void onAdClosed() {
+                interstitialAd.loadAd(new AdRequest.Builder().build());
+            }
+        });
+
+    }
+
+    private void setNativeAd() {
+
+        builder = new AdLoader.Builder(this, "ca-app-pub-8489601855107344/3448745136");
 
 
     }

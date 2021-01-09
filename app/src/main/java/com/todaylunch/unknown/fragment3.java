@@ -66,7 +66,6 @@ public class fragment3 extends Fragment {
         View view = inflater.inflate(R.layout.fragment_fragment3, container, false);
 
 
-
         init(view);
         loadInterstitialAd();
 
@@ -210,18 +209,9 @@ public class fragment3 extends Fragment {
 
     private void loadInterstitialAd() {
 
+        interstitialAd = MainActivity.interstitialAd;
 
-        interstitialAd = new InterstitialAd(getContext());
-        interstitialAd.setAdUnitId("ca-app-pub-8489601855107344/4953398494");
-        interstitialAd.loadAd(new AdRequest.Builder().build());
 
-        interstitialAd.setAdListener(new AdListener() {
-
-            @Override
-            public void onAdClosed() {
-                interstitialAd.loadAd(new AdRequest.Builder().build());
-            }
-        });
     }
 
 

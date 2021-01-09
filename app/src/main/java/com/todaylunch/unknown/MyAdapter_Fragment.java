@@ -20,6 +20,8 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.ads.InterstitialAd;
+
 import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -39,6 +41,7 @@ public class MyAdapter_Fragment extends RecyclerView.Adapter<MyViewHolder> {
     private ButtonDrawableUtil btnUtil;
     private Drawable drawable;
     private Typeface typeface;
+    private InterstitialAd interstitialAd;
 
 
     public MyAdapter_Fragment() {}
@@ -54,6 +57,10 @@ public class MyAdapter_Fragment extends RecyclerView.Adapter<MyViewHolder> {
 
         drawable = btnUtil.getDrawable(MainActivity.BACKGROUND_NUMBER);
         typeface = typefaceUtil.getTypeface(MainActivity.FONT_NUMBER);
+
+        interstitialAd = MainActivity.interstitialAd;
+
+
     }
 
     @NonNull
@@ -133,7 +140,12 @@ public class MyAdapter_Fragment extends RecyclerView.Adapter<MyViewHolder> {
                         + MySQLite.ICOL_NAME1 + " = " + date.getTime() + " WHERE " + MySQLite.ICOL_NAME4 + " = '" + strTitle + "'";
                 db.execSQL(updateDb);
 
-                Log.d("MyAdapter_Fragment : ", simpleFormatter.format(longDate));
+                if (interstitialAd.isLoaded()) {
+                    interstitialAd.show();
+                } else {
+                    Log.d("TAG", "The interstitial wasn't loaded yet.");
+                }
+
 
                 db.close();
             }

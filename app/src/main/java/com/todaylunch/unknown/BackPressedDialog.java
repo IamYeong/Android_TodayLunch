@@ -76,8 +76,8 @@ public class BackPressedDialog {
 
     private void loadNativeAd() {
 
-        AdLoader.Builder builder = new AdLoader.Builder(context, "ca-app-pub-8489601855107344/3448745136");
-        builder.forUnifiedNativeAd(new UnifiedNativeAd.OnUnifiedNativeAdLoadedListener() {
+
+        MainActivity.builder.forUnifiedNativeAd(new UnifiedNativeAd.OnUnifiedNativeAdLoadedListener() {
             @Override
             public void onUnifiedNativeAdLoaded(UnifiedNativeAd unifiedNativeAd) {
 
@@ -87,7 +87,7 @@ public class BackPressedDialog {
             }
         });
 
-        AdLoader adLoader = builder.build();
+        AdLoader adLoader = MainActivity.builder.build();
         AdRequest adRequest = new AdRequest.Builder().build();
         adLoader.loadAd(adRequest);
 
