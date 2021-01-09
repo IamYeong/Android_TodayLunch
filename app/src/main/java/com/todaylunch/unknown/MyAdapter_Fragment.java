@@ -140,6 +140,9 @@ public class MyAdapter_Fragment extends RecyclerView.Adapter<MyViewHolder> {
                         + MySQLite.ICOL_NAME1 + " = " + date.getTime() + " WHERE " + MySQLite.ICOL_NAME4 + " = '" + strTitle + "'";
                 db.execSQL(updateDb);
 
+                arrayList.get(position).setStrDate(date.getTime());
+                notifyDataSetChanged();
+
                 if (interstitialAd.isLoaded()) {
                     interstitialAd.show();
                 } else {
