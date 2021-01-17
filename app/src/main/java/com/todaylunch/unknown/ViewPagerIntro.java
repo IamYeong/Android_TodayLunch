@@ -118,15 +118,15 @@ public class ViewPagerIntro extends AppCompatActivity {
 
     private void addValue() {
 
-        arrayList.add(new ViewPagerObject(R.color.colorNaturalGrey, R.drawable.viewpager_1, getResources().getString(R.string.viewpager_0)));
-        arrayList.add(new ViewPagerObject(R.color.colorNaturalGrey, R.drawable.viewpager_1, getResources().getString(R.string.viewpager_1)));
-        arrayList.add(new ViewPagerObject(R.color.colorNaturalGrey, R.drawable.viewpager_2, getResources().getString(R.string.viewpager_2)));
-        arrayList.add(new ViewPagerObject(R.color.colorNaturalGrey, R.drawable.viewpager_3, getResources().getString(R.string.viewpager_3)));
-        arrayList.add(new ViewPagerObject(R.color.colorNaturalGrey, R.drawable.viewpager_4, getResources().getString(R.string.viewpager_4)));
-        arrayList.add(new ViewPagerObject(R.color.colorNaturalGrey, R.drawable.viewpager_5, getResources().getString(R.string.viewpager_5)));
-        arrayList.add(new ViewPagerObject(R.color.colorNaturalGrey, R.drawable.viewpager_6, getResources().getString(R.string.viewpager_6)));
-        arrayList.add(new ViewPagerObject(R.color.colorNaturalGrey, R.drawable.viewpager_7, getResources().getString(R.string.viewpager_7)));
-        arrayList.add(new ViewPagerObject(R.color.colorNaturalGrey, R.drawable.viewpager_1, getResources().getString(R.string.viewpager_8)));
+        arrayList.add(new ViewPagerObject(R.color.white, R.drawable.todaylunch_icon_original_256_copy, getResources().getString(R.string.viewpager_0)));
+        arrayList.add(new ViewPagerObject(R.color.white, R.drawable.viewpager_1, getResources().getString(R.string.viewpager_1)));
+        arrayList.add(new ViewPagerObject(R.color.white, R.drawable.viewpager_2, getResources().getString(R.string.viewpager_2)));
+        arrayList.add(new ViewPagerObject(R.color.white, R.drawable.viewpager_3, getResources().getString(R.string.viewpager_3)));
+        arrayList.add(new ViewPagerObject(R.color.white, R.drawable.viewpager_4, getResources().getString(R.string.viewpager_4)));
+        arrayList.add(new ViewPagerObject(R.color.white, R.drawable.viewpager_5, getResources().getString(R.string.viewpager_5)));
+        arrayList.add(new ViewPagerObject(R.color.white, R.drawable.viewpager_6, getResources().getString(R.string.viewpager_6)));
+        arrayList.add(new ViewPagerObject(R.color.white, R.drawable.viewpager_7, getResources().getString(R.string.viewpager_7)));
+        arrayList.add(new ViewPagerObject(R.color.white, R.drawable.todaylunch_icon_original_256_copy, getResources().getString(R.string.viewpager_8)));
 
     }
 

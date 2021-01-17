@@ -33,6 +33,8 @@
         android:layout_height="wrap_content"
         android:text="제목"
         android:textColor="@color/colorBlack"
+        android:textAlignment="center"
+        android:layout_gravity="center"
         />
 
 </LinearLayout>

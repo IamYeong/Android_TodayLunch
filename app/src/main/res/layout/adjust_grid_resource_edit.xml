@@ -19,8 +19,8 @@
         <ImageView
             android:src="@mipmap/ic_launcher_round"
             android:id="@+id/img_adjust_grid"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:layout_gravity="center"
             android:layout_margin="10dp"
             />
@@ -33,6 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:textAlignment="center"
         android:textCursorDrawable="@drawable/edittext_cursor"
         android:background="@drawable/edittext_custom1"
         android:paddingStart="10dp"

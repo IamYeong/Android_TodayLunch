@@ -18,6 +18,7 @@ import com.google.android.gms.ads.formats.UnifiedNativeAd;
 
 public class BackPressedDialog {
 
+    
     private Context context;
     private Dialog dialog;
     private ButtonDrawableUtil buttonUtil;

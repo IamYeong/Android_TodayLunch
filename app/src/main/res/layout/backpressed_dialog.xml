@@ -11,7 +11,7 @@
         android:id="@+id/tv_backpress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="종료하시겠습니까?"
+        android:text="@string/end"
         android:textSize="20dp"
 
         android:textColor="@color/colorBlack"

@@ -150,12 +150,25 @@ public class AddMenu extends AppCompatActivity {
                 String menuTitle1 = editTextTitle.getText().toString();
                 String strLink = editTextLink.getText().toString();
 
-                insert_value(menu1Number, menu2Number, menuTitle1, strLink);
-                Log.d("Add Menu : ", "added, " + menu1Number + ", " + menu2Number + ", " + menuTitle1 + ", " + strLink);
+                if (getExtraTitle.equals("Nothing")) {
 
-                finish();
+                    insert_value(menu1Number, menu2Number, menuTitle1, strLink);
+                    Log.d("Add Menu : ", "added, " + menu1Number + ", " + menu2Number + ", " + menuTitle1 + ", " + strLink);
 
-                Toast.makeText(AddMenu.this, R.string.toast_add, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddMenu.this, R.string.toast_add, Toast.LENGTH_SHORT).show();
+
+                } else {
+
+                    update_value(menu1Number, menu2Number, menuTitle1, strLink);
+                    Log.d("Add Menu : ", "update, " + menu1Number + ", " + menu2Number + ", " + menuTitle1 + ", " + strLink);
+
+                    Toast.makeText(AddMenu.this, R.string.toast_adjust, Toast.LENGTH_SHORT).show();
+
+                    finish();
+
+                    return;
+                }
+
 
             }
         });
@@ -309,7 +322,7 @@ public class AddMenu extends AppCompatActivity {
     private void insert_value(int menuNumber1, int menuNumber2, String menuTitle, String strLink) {
         SQLiteDatabase db = dbHelperMain.getWritableDatabase();
 
-        if (getExtraTitle.equals("Nothing") && overLabCheck(menuTitle)) {
+        if (overLabCheck(menuTitle)) {
 
             long longDate = date.getTime();
 
@@ -318,13 +331,23 @@ public class AddMenu extends AppCompatActivity {
             db.execSQL(insertDb);
             db.close();
 
+            finish();
+
         } else {
 
-                String updateDb = MySQLite.SQL_UPDATE + MySQLite.ICOL_NAME2 + " = " + menuNumber1 + ", '" + MySQLite.ICOL_NAME3 + "' = " + menuNumber2 + ", "
-                        + MySQLite.ICOL_NAME4 + " = '" + menuTitle + "', " + MySQLite.ICOL_NAME5 + " = '" + strLink + "'" + " WHERE " + MySQLite.ICOL_NAME4 + " = '" + getExtraTitle + "'";
-                db.execSQL(updateDb);
-                db.close();
+            Toast.makeText(this, R.string.toast_overlab, Toast.LENGTH_SHORT).show();
+
         }
+    }
+
+    private void update_value(int menuNumber1, int menuNumber2, String menuTitle, String strLink) {
+
+        SQLiteDatabase db = dbHelperMain.getWritableDatabase();
+
+        String updateDb = MySQLite.SQL_UPDATE + MySQLite.ICOL_NAME2 + " = " + menuNumber1 + ", '" + MySQLite.ICOL_NAME3 + "' = " + menuNumber2 + ", "
+                + MySQLite.ICOL_NAME4 + " = '" + menuTitle + "', " + MySQLite.ICOL_NAME5 + " = '" + strLink + "'" + " WHERE " + MySQLite.ICOL_NAME4 + " = '" + getExtraTitle + "'";
+        db.execSQL(updateDb);
+        db.close();
 
     }
 
