@@ -30,7 +30,6 @@ public class ViewPagerIntro extends AppCompatActivity {
     private ButtonDrawableUtil buttonDrawableUtil;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

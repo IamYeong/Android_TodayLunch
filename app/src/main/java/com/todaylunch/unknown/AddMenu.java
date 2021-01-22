@@ -155,18 +155,12 @@ public class AddMenu extends AppCompatActivity {
                     insert_value(menu1Number, menu2Number, menuTitle1, strLink);
                     Log.d("Add Menu : ", "added, " + menu1Number + ", " + menu2Number + ", " + menuTitle1 + ", " + strLink);
 
-                    Toast.makeText(AddMenu.this, R.string.toast_add, Toast.LENGTH_SHORT).show();
-
                 } else {
 
                     update_value(menu1Number, menu2Number, menuTitle1, strLink);
                     Log.d("Add Menu : ", "update, " + menu1Number + ", " + menu2Number + ", " + menuTitle1 + ", " + strLink);
 
-                    Toast.makeText(AddMenu.this, R.string.toast_adjust, Toast.LENGTH_SHORT).show();
-
                     finish();
-
-                    return;
                 }
 
 
@@ -331,7 +325,11 @@ public class AddMenu extends AppCompatActivity {
             db.execSQL(insertDb);
             db.close();
 
+            Toast.makeText(AddMenu.this, R.string.toast_add, Toast.LENGTH_SHORT).show();
+
             finish();
+
+
 
         } else {
 
@@ -344,10 +342,36 @@ public class AddMenu extends AppCompatActivity {
 
         SQLiteDatabase db = dbHelperMain.getWritableDatabase();
 
-        String updateDb = MySQLite.SQL_UPDATE + MySQLite.ICOL_NAME2 + " = " + menuNumber1 + ", '" + MySQLite.ICOL_NAME3 + "' = " + menuNumber2 + ", "
-                + MySQLite.ICOL_NAME4 + " = '" + menuTitle + "', " + MySQLite.ICOL_NAME5 + " = '" + strLink + "'" + " WHERE " + MySQLite.ICOL_NAME4 + " = '" + getExtraTitle + "'";
-        db.execSQL(updateDb);
-        db.close();
+        if(getExtraTitle.equals(menuTitle)) {
+
+            String updateDb = MySQLite.SQL_UPDATE + MySQLite.ICOL_NAME2 + " = " + menuNumber1 + ", '" + MySQLite.ICOL_NAME3 + "' = " + menuNumber2 + ", "
+                    + MySQLite.ICOL_NAME4 + " = '" + menuTitle + "', " + MySQLite.ICOL_NAME5 + " = '" + strLink + "'" + " WHERE " + MySQLite.ICOL_NAME4 + " = '" + getExtraTitle + "'";
+            db.execSQL(updateDb);
+            db.close();
+
+            Toast.makeText(AddMenu.this, R.string.toast_adjust, Toast.LENGTH_SHORT).show();
+
+            Log.d("update : ", menuNumber1 + ", " + menuNumber2 + ", " + menuTitle + ", " + strLink);
+
+        } else if(overLabCheck(menuTitle)) {
+
+            String updateDb = MySQLite.SQL_UPDATE + MySQLite.ICOL_NAME2 + " = " + menuNumber1 + ", '" + MySQLite.ICOL_NAME3 + "' = " + menuNumber2 + ", "
+                    + MySQLite.ICOL_NAME4 + " = '" + menuTitle + "', " + MySQLite.ICOL_NAME5 + " = '" + strLink + "'" + " WHERE " + MySQLite.ICOL_NAME4 + " = '" + getExtraTitle + "'";
+            db.execSQL(updateDb);
+            db.close();
+
+            Toast.makeText(AddMenu.this, R.string.toast_adjust, Toast.LENGTH_SHORT).show();
+
+            Log.d("update : ", menuNumber1 + ", " + menuNumber2 + ", " + menuTitle + ", " + strLink);
+
+
+        } else {
+
+            Toast.makeText(this, R.string.toast_overlab, Toast.LENGTH_SHORT).show();
+
+        }
+
+
 
     }
 
