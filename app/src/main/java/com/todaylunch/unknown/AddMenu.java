@@ -160,7 +160,6 @@ public class AddMenu extends AppCompatActivity {
                     update_value(menu1Number, menu2Number, menuTitle1, strLink);
                     Log.d("Add Menu : ", "update, " + menu1Number + ", " + menu2Number + ", " + menuTitle1 + ", " + strLink);
 
-                    finish();
                 }
 
 
@@ -353,6 +352,8 @@ public class AddMenu extends AppCompatActivity {
 
             Log.d("update : ", menuNumber1 + ", " + menuNumber2 + ", " + menuTitle + ", " + strLink);
 
+            finish();
+
         } else if(overLabCheck(menuTitle)) {
 
             String updateDb = MySQLite.SQL_UPDATE + MySQLite.ICOL_NAME2 + " = " + menuNumber1 + ", '" + MySQLite.ICOL_NAME3 + "' = " + menuNumber2 + ", "
@@ -364,6 +365,7 @@ public class AddMenu extends AppCompatActivity {
 
             Log.d("update : ", menuNumber1 + ", " + menuNumber2 + ", " + menuTitle + ", " + strLink);
 
+            finish();
 
         } else {
 
@@ -379,7 +381,7 @@ public class AddMenu extends AppCompatActivity {
     private boolean overLabCheck(String menuTitle) {
         for (int i = 0; i < arrayListMain.size(); i++) {
             if (arrayListMain.get(i).getStrTitle().equals(menuTitle)) {
-                Toast.makeText(AddMenu.this, R.string.toast_overlab, Toast.LENGTH_SHORT).show();
+
                 return false;
 
             } else {
