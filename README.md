@@ -34,74 +34,29 @@ Drawable 도 각각 만들어두어 버튼디자인도 색/모양별로 선택�
 
 ## 분석   
 
+- Language : JAVA   
+
+- RecyclerView : 정말 유용하게 썼습니다. Grid, Linear 로 활용하고 ViewPager2에서도 활용했습니다.
+- ViewPager2 : RecyclerView 를 사용한 ViewPager입니다. 앱을 처음 실행했을 때 인트로 설명에 사용했습니다.
+처음이 아니더라도 메인화면 우측상단에 물음표 이미지를 터치하면 볼 수 있습니다.
+- SQLiteHelper : Room을 쓰려다가 당시 이해하기 어려워서 하우매니에서 썼던 걸 그대로 썼습니다.
+- TabLayout : 이번엔 Fragment 를 별도로 생성하여 보기 쉽고 전환이 용이하게 분리해두었습니다.
+- Fragment : Activity와 Lifecycle을 같이 하는 Fragment를 많이 사용하는 기회가 되었습니다.
+- AsyncTask : DB에서 값을 읽어오는 건 MainThread 에서 하기엔 부담스럽기 때문에   
+비동기 방식으로 진행했습니다.
+- Custom Dialog : 공부와 병행하다가 상속에 대해 제대로 이해하게 되어
+Dialog 를 상속한 Custom Dialog를 만들었고, 비슷한 형식은 하나로 재사용 할 수 있게 만들었습니다.
+- SharedPreference : 디자인/폰트/언어 설정 등은 모두 여기서 진행했습니다. 매우 편리했습니다.
+- Drawable : 버튼 디자인은 Drawable type 리스트 중에서 고를 수 있습니다.
+- Splash screen : 앱 시작 시 나오는 준비화면을 SplashActivity, style.xml 을 손봐서 만들었습니다.
+준비화면 답게 DB를 모두 읽어오면 Intent를 사용하여 MainActivity로 이동합니다.
+- Intent : Intent는 4대 컴포넌트를 연결하는 수단인 만큼 putExtra() 와 getExtra 관련 기능을 사용하여 정보를 주고 받았습니다.
+- Typeface : 폰트 변경에 사용된 type 입니다.
+- Animation : FloatingActionButton의 회전, 나타나기, FrameLayout의 투명도 조절 등에 사용했습니다.
+- Random : 음식점 목록을 받아오고 그 갯수만큼 난수를 설정하여 구현한 기능입니다.
+- Admob : Interstitial Ad와 Native Ad를 구현했습니다.
+- Firebase : Firebase와 연동하여 사용자 유입, 사용현황, Clashlytics 등을 확인할 수 있습니다.
+- Date : java.util.Date 와 SimpleDateFormat 을 활용하여 long형으로 날짜를 다루고,
+유저에게 보여줄 때는 yyyy-mm-dd 방식으로 보여줄 수 있었습니다.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# todayLunch
-todayLunch project (Android studio with java)
-
-ㅁ개요
-- <오점무>라는 이름으로 Google play 에 업로드 되어있는 프로젝트입니다.
-매번 점심을 고르는게 어려워서 기획하게 되었고, 생각보다 다양한 기능을 넣게 되었습니다.
-
-ㅁ내용
-1. CURD 를 쉽게 지원합니다.
-수정과 추가는 같은 화면에서 이루어지는데, 경로에 따라 자동으로 Spinner와 EditText 내용을 구현합니다.
-
-2. CURD이다보니, ROOM은 뒤늦게 알게 되어 SQLiteHelper를 사용하여 db를 구현했습니다.
-
-3. 디자인 부분은, 여러부분으로 나누어 사용자가 직접 색을 지정하도록 했습니다.
-
-4. 언어나 디자인 등의 설정은 모두 SharedPreference 를 사용했습니다.
-
-5. Dialog가 꽤 많이 사용되었는데, colorPicker 다이얼로그는 외부 라이브러리이고,
-제목만 들어가는 다이얼로그는 추후 재사용할 수 있도록 만들어두었습니다.
-
-6. 기본적으로 TabLayout과 Fragment 로 이루어져있습니다.
-
-7. 버튼 디자인은 색만 바꾸면 안 된다는 걸 깨닫고 Drawable 형으로 바꿀 수 있게 했습니다.
-
-8. 폰트는 Typeface 를 활용해서 바꾸도록 했습니다.
-
-9. Splash Activity에서 대부분의 준비가 끝납니다.
-
-10. 혹시 모를 비정상종료를 막기 위해 비동기프로그래밍을 활용해서 백그라운드 작업을 로딩할 때마다 하도록 했습니다.
-
-11. FlaotngActionButton은 Animation 을 활용해서 회전 가능하도록 했습니다.
-
-12. 랜덤버튼을 눌렀을 시, 배경 투명도를 Animation으로 조절하도록 해뒀습니다.(반짝하는 효과)
-
-13. RecyclerView를 활용해서 각종 리스트를 해결했습니다.
-
-14. ViewPager2를 활용해서 최초실행 시 가이드를 구현했습니다.
-
-15. 네이티브 광고와 전면광고를 구현했고 클릭 시 실제 수익창출 확인됩니다.
-
-16. Firebase와 연동하여 사용 분석이 가능합니다.
-
-
-ㅁ비고
-- 이 프로젝트 후 객체지향 설계에 한계를 느끼게 되어 객체지향 이론과 디자인패턴을 공부하기 시작했습니다.
-그래도 생각보다 많은 기능이 다양한 방식으로 들어가있습니다.
