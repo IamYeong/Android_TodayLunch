@@ -27,7 +27,7 @@ Drawable 도 각각 만들어두어 버튼디자인도 색/모양별로 선택�
 ***
 
 ## 스크린샷   
-
+   
 <!--
 ![뷰페이져](https://user-images.githubusercontent.com/59534301/116384998-58c52880-a853-11eb-9e5f-df199ee8889f.jpg)
 ![fragment1_pink](https://user-images.githubusercontent.com/59534301/116385059-68447180-a853-11eb-8a1a-fd02cef02d25.jpg)
@@ -58,52 +58,54 @@ Drawable 도 각각 만들어두어 버튼디자인도 색/모양별로 선택�
 <img src="https://user-images.githubusercontent.com/59534301/116231898-6a93c680-a794-11eb-8bb0-a3af2f66f119.PNG" width="80px" height="80px" title="px(픽셀) 크기 설정" alt="RubberDuck"></img>
 -->
 
-- 인트로 설명 및 각종 테마 적용   
+- **인트로 설명 및 각종 테마 적용**   
+   
 <img src="https://user-images.githubusercontent.com/59534301/116384998-58c52880-a853-11eb-9e5f-df199ee8889f.jpg" width="100px" height="" title="px(픽셀) 크기 설정" alt="RubberDuck"></img>
 <img src="https://user-images.githubusercontent.com/59534301/116385059-68447180-a853-11eb-8a1a-fd02cef02d25.jpg" width="100px" height="" title="px(픽셀) 크기 설정" alt="RubberDuck"></img>
 <img src="https://user-images.githubusercontent.com/59534301/116385077-6b3f6200-a853-11eb-9330-3bf9bcaee0f5.jpg" width="100px" height="" title="px(픽셀) 크기 설정" alt="RubberDuck"></img>
 <img src="https://user-images.githubusercontent.com/59534301/116385086-6d092580-a853-11eb-8ccc-e748aebe2897.jpg" width="100px" height="" title="px(픽셀) 크기 설정" alt="RubberDuck"></img>
 <img src="https://user-images.githubusercontent.com/59534301/116385108-73979d00-a853-11eb-8081-b9147db56638.jpg" width="100px" height="" title="px(픽셀) 크기 설정" alt="RubberDuck"></img>
+   
 
-
-- 대분류 -> 소분류 -> 음식점 예시   
+- **그리드 : 대분류 > 소분류 > 음식점 예시**   
 (상단에 putExtra()를 활용하여 정보도 가져와서 경로를 표기하게 했습니다)
-
+   
 <img src="https://user-images.githubusercontent.com/59534301/116385077-6b3f6200-a853-11eb-9330-3bf9bcaee0f5.jpg" width="100px" height="" title="px(픽셀) 크기 설정" alt="RubberDuck"></img>
 <img src="https://user-images.githubusercontent.com/59534301/116385192-81e5b900-a853-11eb-8156-3b9c3c441075.jpg" width="100px" height="" title="px(픽셀) 크기 설정" alt="RubberDuck"></img>
 <img src="https://user-images.githubusercontent.com/59534301/116385213-86aa6d00-a853-11eb-943d-2e3c34450d37.jpg" width="100px" height="" title="px(픽셀) 크기 설정" alt="RubberDuck"></img>
+   
 
-
-- 리스트 -> 최신순 / 검색 /  링크 예시
+- **리스트 : 최신순 / 검색 /  링크 예시**   
 ('선택'은 음식점을 골랐다는 의미로, 날짜를 오늘로 바꾸고 전면광고를 팝업합니다)
-
+   
 <img src="https://user-images.githubusercontent.com/59534301/116385126-76928d80-a853-11eb-9755-4de1c812ac8e.jpg" width="100px" height="" title="px(픽셀) 크기 설정" alt="RubberDuck"></img>
 <img src="https://user-images.githubusercontent.com/59534301/116385337-aa6db300-a853-11eb-8bcb-173497074ff3.jpg" width="100px" height="" title="px(픽셀) 크기 설정" alt="RubberDuck"></img>
 <img src="https://user-images.githubusercontent.com/59534301/116385172-7eeac880-a853-11eb-9a6c-a514c90a3aa6.jpg" width="100px" height="" title="px(픽셀) 크기 설정" alt="RubberDuck"></img>
 <img src="https://user-images.githubusercontent.com/59534301/116385376-b3f71b00-a853-11eb-9cc3-d9e8ea13dd4f.jpg" width="100px" height="" title="px(픽셀) 크기 설정" alt="RubberDuck"></img>
+   
 
-- 랜덤 -> 전면광고 -> 결과 보여주기 예시  
-
+- **랜덤 : 전면광고 -> 결과 보여주기 예시**   
+   
 <img src="https://user-images.githubusercontent.com/59534301/116385243-90cc6b80-a853-11eb-972a-d8efad1645df.jpg" width="100px" height="" title="px(픽셀) 크기 설정" alt="RubberDuck"></img>
 <img src="https://user-images.githubusercontent.com/59534301/116385400-b9546580-a853-11eb-845c-90692caffdd2.jpg" width="100px" height="" title="px(픽셀) 크기 설정" alt="RubberDuck"></img>
 
-- 설정 -> 언어설정 / 저작권 표기 예시
-(나머지 메뉴는 Gmail, 오픈카톡링크, 블로그 링크, 구글 플레이 링크로 구성)
-
+- **설정 : 언어설정 / 저작권 표기 예시**   
+(나머지 메뉴는 Gmail, 오픈카톡링크, 블로그 링크, 구글 플레이 링크로 구성)   
+   
 <img src="https://user-images.githubusercontent.com/59534301/116385452-c40efa80-a853-11eb-9e60-fa39580a4dff.jpg" width="100px" height="" title="px(픽셀) 크기 설정" alt="RubberDuck"></img>
 <img src="https://user-images.githubusercontent.com/59534301/116385508-d0935300-a853-11eb-819f-edb0d556750a.jpg" width="100px" height="" title="px(픽셀) 크기 설정" alt="RubberDuck"></img>
 <img src="https://user-images.githubusercontent.com/59534301/116385516-d2f5ad00-a853-11eb-8e53-5f291d37bb03.jpg" width="100px" height="" title="px(픽셀) 크기 설정" alt="RubberDuck"></img>
 
 
-- 디자인 설정 : 영역별 색상 선택과 버튼디자인, 폰트 설정 예시
-
+- **디자인 설정 : 영역별 색상 선택과 버튼디자인, 폰트 설정 예시**   
+   
 <img src="https://user-images.githubusercontent.com/59534301/116385548-da1cbb00-a853-11eb-9c39-0e01d6f6eedb.jpg" width="100px" height="" title="px(픽셀) 크기 설정" alt="RubberDuck"></img>
 <img src="https://user-images.githubusercontent.com/59534301/116385560-ddb04200-a853-11eb-9083-988259e0fc4f.jpg" width="100px" height="" title="px(픽셀) 크기 설정" alt="RubberDuck"></img>
 <img src="https://user-images.githubusercontent.com/59534301/116385577-e274f600-a853-11eb-8070-c659484a7291.jpg" width="100px" height="" title="px(픽셀) 크기 설정" alt="RubberDuck"></img>
 <img src="https://user-images.githubusercontent.com/59534301/116385493-cd986280-a853-11eb-9d54-75f9e6a154ea.jpg" width="100px" height="" title="px(픽셀) 크기 설정" alt="RubberDuck"></img>
 
-- onBackPressed() Override 를 통한 종료 팝업 및 네이티브 광고
-
+- **onBackPressed() Override 를 통한 종료 팝업 및 네이티브 광고**   
+   
 <img src="https://user-images.githubusercontent.com/59534301/116385600-e9036d80-a853-11eb-84e2-8e2418194bc1.jpg" width="100px" height="" title="px(픽셀) 크기 설정" alt="RubberDuck"></img>
 
 
