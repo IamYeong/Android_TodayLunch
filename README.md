@@ -2,6 +2,8 @@
 
 ## 소개   
 
+<img src="https://user-images.githubusercontent.com/59534301/116389796-574a2f00-a858-11eb-810c-6bf240cda979.png" width="100px" height="100px" title="px(픽셀) 크기 설정" alt="RubberDuck"></img>
+
 - 전전직장에서 매일매일 "오점무?"라고 묻는 상사가 있었습니다.   
 오늘 점심은 무엇이냐는 뜻이었고 막내인 제가 추천하는 것이었는데,   
 여느 직장도 비슷한 경험이 있었고, 다른 사람들도 비슷한 고민이 있을 것이라고 생각했습니다.   
